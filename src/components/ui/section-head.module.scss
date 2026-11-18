@@ -82,10 +82,12 @@
     display: inline;
   }
 
-  /* Pre Login/Heading H1 at the 360 frame — 32/42, tracking unchanged. */
+  /* Pre Login/Heading H1 at the 360 frame — 32/42, tracking unchanged.
+     A page whose frames set a different mobile H1 (About: 28/36) overrides
+     the two custom properties on its scope. */
   .title {
-    font-size: 32px;
-    line-height: 42px;
+    font-size: var(--sh-title-m-size, 32px);
+    line-height: var(--sh-title-m-lh, 42px);
   }
 
   .subtext {
@@ -97,6 +99,10 @@
     width: 32px;
     height: 32px;
   }
+
+  .arrow {
+    --rive-arrow-size: 32px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -106,9 +112,27 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .title.h2 {
     font-size: 40px;
     line-height: 56px;
   }
+}
+
+/* 768 frames — Heading H1 is 36/46 and the subtext 18/24, h1 and h2 alike. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .title {
+    font-size: 36px;
+    line-height: 46px;
+  }
+
+  .subtext {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+/* Once the Rive arrow is playing it animates the hover itself. */
+.arrow:has([data-rive-active]):hover {
+  transform: none;
 }

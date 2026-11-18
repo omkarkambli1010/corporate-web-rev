@@ -107,6 +107,14 @@
   --sb-section-gap: 40px;
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    /* 768 canvas, 688 content, 40 gutter (Sprint 1 tablet frames) */
+    --sb-content: 688px;
+    --sb-gutter: 40px;
+  }
+}
+
 @media (max-width: 767px) {
   :root {
     /* 360 canvas, 328 content, 16 gutter */

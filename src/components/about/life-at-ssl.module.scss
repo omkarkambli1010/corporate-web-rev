@@ -131,6 +131,14 @@
   inset: 0;
 }
 
+/* Rive slot lifeAtSsl — the "Stack" artboard (606 x 412) contained in the
+   stack box at every size; the button around it still advances the slide. */
+.stack .riveStack {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
 .photo {
   position: absolute;
   box-sizing: border-box;
@@ -194,6 +202,108 @@
   }
 }
 
+/* 768 frame — one centred 532 column: the photo stack at 375 x 254, the
+   story (24/30 title, 12/16 copy clamped to five lines), Read more, the CTA,
+   then a dotted-rule pager 564 wide. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .inner {
+    gap: 24px;
+    padding: 40px var(--sb-gutter);
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: 0;
+  }
+
+  .subtext {
+    font-family: var(--sb-font-body);
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .body {
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    gap: 0;
+    width: min(564px, 100%);
+  }
+
+  .story,
+  .gallery {
+    display: contents;
+    animation: none;
+  }
+
+  .stack {
+    order: 1;
+    width: 375px;
+    height: 254px;
+    margin-bottom: 16px;
+  }
+
+  .stackInner {
+    inset: auto;
+    top: 0;
+    left: 0;
+    width: 606px;
+    height: 412px;
+    transform: scale(0.6188);
+    transform-origin: top left;
+  }
+
+  .storyTitle {
+    order: 2;
+    max-width: 532px;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-align: center;
+    animation: life-story-in 0.3s linear;
+  }
+
+  .storyText {
+    order: 3;
+    max-width: 532px;
+    max-height: 80px;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    -webkit-line-clamp: 5;
+    animation: life-story-in 0.3s linear;
+  }
+
+  .more {
+    order: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0 16px;
+    text-decoration: none;
+  }
+
+  .caret {
+    display: block;
+    transform: rotate(90deg);
+  }
+
+  .more[aria-expanded="true"] .caret {
+    transform: rotate(-90deg);
+  }
+
+  .cta {
+    order: 5;
+  }
+
+  .pager {
+    order: 6;
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+
 /* 360 frame — copy above, the photo stack scaled to the 328 column. */
 @media (max-width: 767px) {
   /* 1:72674 — heading, the image stack, then the story and the CTA, with no
@@ -242,6 +352,7 @@
   .storyTitle {
     order: 2;
     margin: 0 0 8px;
+    font-weight: 500;
     font-size: 20px;
     line-height: 28px;
     letter-spacing: 0;

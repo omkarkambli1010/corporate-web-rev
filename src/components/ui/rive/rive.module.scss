@@ -1,0 +1,42 @@
+/* The box a Rive canvas fills. Callers size it with `className`; until the
+   file is ready the fallback sits in it and the canvas is invisible on top. */
+.wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Live canvases take the pointer, so Rive listeners (hover, clicks on a
+   carousel's neighbouring cards) work. */
+.canvasReady {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The arrow-up-right box: its default size comes from the component, and a
+   section can resize it by setting --rive-arrow-size on the link. */
+.arrowBox {
+  display: inline-flex;
+  width: var(--rive-arrow-size, var(--rive-arrow-default));
+  height: var(--rive-arrow-size, var(--rive-arrow-default));
+}
+
+.arrowBox svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fills a parent that already has the size, e.g. a fixed icon box. */
+.fill {
+  width: 100%;
+  height: 100%;
+}

@@ -300,17 +300,114 @@
   cursor: pointer;
 }
 
-@media (max-width: 1100px) {
+/* 768 frame (tablet 2:73599) — title, subtext and form in a 336 column, the
+   phone and product card beside it in 287, 55 apart, 80 top and bottom.
+   The desktop row needs 1248px (338 + 396 + 338 + gaps + gutters), so this
+   layout runs up to there rather than letting the three columns overflow. */
+@media (min-width: 768px) and (max-width: 1247px) {
   .inner {
-    grid-template-columns: 1fr 338px;
-    height: auto;
-    padding-top: 64px;
-    padding-bottom: 48px;
+    grid-template-columns: minmax(0, 336px) 287px;
+    grid-template-areas:
+      "copy visual"
+      "form visual";
+    grid-template-rows: auto 1fr;
+    justify-content: center;
+    align-items: start;
+    column-gap: 55px;
     row-gap: 32px;
+    height: auto;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
+  .crumbs {
+    top: 24px;
+  }
+
+  .shadow {
+    top: 446px;
+    width: 1128px;
+    height: 421px;
+  }
+
+  .copy {
+    grid-area: copy;
+    width: 100%;
+  }
+
+  /* Heading H1 at 768 — 36/46; Paragraph 18/24. */
+  .title {
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: 0;
+  }
+
+  .subtext {
+    font-family: var(--sb-font-body);
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .form {
+    grid-area: form;
+    width: 100%;
+  }
+
+  /* Visual 287 x 493 — the whole phone (239 x 493, 24 in) under a 287-wide
+     product card 101 down. */
   .visual {
-    display: none;
+    grid-area: visual;
+    align-self: start;
+    width: 287px;
+    height: 493px;
+    overflow: visible;
+  }
+
+  .phone {
+    left: 24px;
+    width: 239px;
+    height: 493px;
+  }
+
+  .products {
+    left: -1px;
+    top: 101px;
+    width: 287px;
+    gap: 14px;
+    padding: 11.6px;
+    border-width: 1.16px;
+    border-radius: 13.9px;
+    box-shadow: 0 0 9.3px rgba(0, 0, 0, 0.25);
+  }
+
+  .product,
+  .product:nth-child(-n + 3) {
+    min-height: 55px;
+    gap: 8.7px;
+    padding: 5.8px;
+    border-radius: 5.8px;
+    font-size: 7.96px;
+  }
+
+  .product:nth-child(-n + 6) {
+    min-height: 65px;
+  }
+
+  .product img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .iconWrap {
+    padding: 5.8px;
+    border-radius: 4.3px;
+  }
+
+  .badge {
+    left: 19px;
+    padding: 1.4px 2.9px;
+    border-radius: 11.6px;
+    font-size: 5.8px;
   }
 }
 
@@ -346,9 +443,11 @@
     display: none;
   }
 
+  /* Heading H1 at 360 — 28/36. */
   .title {
-    font-size: 32px;
-    line-height: 42px;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0;
   }
 
   .subtext {

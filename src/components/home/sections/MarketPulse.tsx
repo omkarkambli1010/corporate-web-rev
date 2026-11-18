@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRightIcon } from "@/components/ui/SbIcons";
+import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import { MARKET_PULSE } from "@/constants/sbi-home";
 import styles from "./market-pulse.module.scss";
 
@@ -44,7 +44,7 @@ export default function MarketPulse() {
         </div>
 
         <Link href="#markets" className={styles.arrow} aria-label="All markets">
-          <ArrowUpRightIcon />
+          <RiveArrowUpRight tone="dark" />
         </Link>
       </div>
     </section>

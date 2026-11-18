@@ -15,7 +15,9 @@ export default function ValuesSection({ values }: { values: AboutContent["values
 
         <ul className={styles.bento}>
           {values.items.map((value, i) => (
-            <li key={`${value.key}-${value.title}`} className={`${styles.card} ${styles[TONES[i % TONES.length]]}`}>
+            <li key={`${value.key}-${value.title}`} className={`${styles.card} ${styles[TONES[i % TONES.length]]}`}
+              style={{ "--stack": i } as React.CSSProperties}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className={styles.icon}

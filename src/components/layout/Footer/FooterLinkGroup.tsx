@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import type { FooterColumn } from "@/constants/sbi-home";
 import useMediaQuery, { MOBILE_QUERY } from "@/utils/useMediaQuery";
+import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import styles from "./Footer.module.scss";
 
 /* The Figma lists every link by label only. Those with a route today point at
@@ -83,13 +84,21 @@ export default function FooterLinkGroup({
             onClick={() => setOpen((current) => !current)}
           >
             {group.title}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className={styles.chevron}
-              src="/figma/footer/chevron.svg"
-              alt=""
-              width={18}
-              height={18}
+            {/* Rive slot `chevron`, driven by `open`; the rotating SVG until supplied. */}
+            <RiveAnimation
+              slot="chevron"
+              values={{ open: expanded }}
+              className={styles.riveChevron}
+              fallback={
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  className={styles.chevron}
+                  src="/figma/footer/chevron.svg"
+                  alt=""
+                  width={18}
+                  height={18}
+                />
+              }
             />
           </button>
         ) : (

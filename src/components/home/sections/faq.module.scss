@@ -100,11 +100,56 @@
   color: var(--sb-text-secondary);
 }
 
-@media (max-width: 1023px) {
+/* 768 frame (About tablet 2:73599) — one centred column, 80 top and bottom:
+   the title on one 32/40 line, 640 of questions inset 24 from the 688 edge,
+   then the 228 CTA centred under them. */
+@media (min-width: 768px) and (max-width: 1023px) {
   .inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 48px var(--sb-gutter);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 80px var(--sb-gutter);
+  }
+
+  .aside {
+    display: contents;
+  }
+
+  .title {
+    order: 1;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .title br {
+    display: none;
+  }
+
+  .list {
+    order: 2;
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .cta {
+    order: 3;
+  }
+
+  .question {
+    padding: 12px 0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .open .question {
+    padding: 12px 0 0;
+  }
+
+  .answer {
+    padding: 16px 24px 12px 0;
   }
 }
 

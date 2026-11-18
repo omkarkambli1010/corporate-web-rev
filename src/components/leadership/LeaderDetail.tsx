@@ -3,7 +3,7 @@ import SbScope from "@/components/ui/SbScope";
 import type { LeaderContent } from "@/types/pages";
 import styles from "./leadership.module.scss";
 
-/** Leader detail — desktop 4:127648, mobile 1:76177. */
+/** Leader detail — desktop 4:127648, tablet 2:73906 (Leader-Tablet), mobile 1:76177. */
 export default function LeaderDetail({
   leader,
   breadcrumbs,
@@ -17,6 +17,8 @@ export default function LeaderDetail({
         <div className={styles.bannerInner}>
           <Breadcrumbs items={breadcrumbs} />
           <h1 className={`${styles.heading} ${styles.desktopOnly}`}>{leader.name}</h1>
+          {/* Leader-Tablet sets the role under the name, in the banner. */}
+          <p className={`${styles.tabletRole} ${styles.tabletOnly}`}>{leader.role}</p>
 
           {/* 360 frame 1:79374 — the portrait sits beside the name and role inside
               the banner; the desktop layout keeps them under the heading. */}

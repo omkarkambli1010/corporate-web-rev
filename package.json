@@ -14,10 +14,12 @@
     "start": "next start",
     "start:uat": "env-cmd -f .env.uat next start",
     "start:prod": "env-cmd -f .env.production next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "node scripts/copy-rive-wasm.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@rive-app/react-canvas": "^4.39.0",
     "axios": "^1.18.1",
     "bootstrap": "^5.3.8",
     "crypto-js": "^4.2.0",

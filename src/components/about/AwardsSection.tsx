@@ -10,6 +10,9 @@ import styles from "./awards.module.scss";
  * Analysis you can trust — desktop 4:127327, mobile 1:72643. Four 421-wide
  * cards run as a rail with a pager on desktop; the 360 frame stacks them.
  */
+/** The rail's live column gap — 24 on desktop, 16 at 768. */
+const railGap = (rail: HTMLElement) => parseFloat(getComputedStyle(rail).columnGap) || 0;
+
 export default function AwardsSection({ awards }: { awards: AboutContent["awards"] }) {
   const AWARDS = awards.items;
   const railRef = useRef<HTMLUListElement>(null);
@@ -21,7 +24,7 @@ export default function AwardsSection({ awards }: { awards: AboutContent["awards
     const onScroll = () => {
       const card = rail.firstElementChild as HTMLElement | null;
       if (!card) return;
-      setIndex(Math.round(rail.scrollLeft / (card.clientWidth + 24)));
+      setIndex(Math.round(rail.scrollLeft / (card.clientWidth + railGap(rail))));
     };
     rail.addEventListener("scroll", onScroll, { passive: true });
     return () => rail.removeEventListener("scroll", onScroll);
@@ -31,7 +34,7 @@ export default function AwardsSection({ awards }: { awards: AboutContent["awards
     const rail = railRef.current;
     if (!rail) return;
     const card = rail.firstElementChild as HTMLElement | null;
-    rail.scrollBy({ left: delta * ((card?.clientWidth ?? 421) + 24), behavior: "smooth" });
+    rail.scrollBy({ left: delta * ((card?.clientWidth ?? 421) + railGap(rail)), behavior: "smooth" });
   };
 
   return (

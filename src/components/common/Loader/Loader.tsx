@@ -1,6 +1,7 @@
 "use client";
 
 import { useLoader } from "@/context/LoaderContext";
+import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import styles from "./Loader.module.scss";
 
 export default function Loader() {
@@ -18,9 +19,11 @@ export default function Loader() {
       aria-label="Loading"
     >
       <div className={styles.loaderContent}>
-        <div
-          className={styles.spinner}
-          aria-hidden="true"
+        {/* Rive slot `loader`; the CSS spinner until its .riv is supplied. */}
+        <RiveAnimation
+          slot="loader"
+          className={styles.riveLoader}
+          fallback={<div className={styles.spinner} aria-hidden="true" />}
         />
 
         <span className={styles.loaderText}>

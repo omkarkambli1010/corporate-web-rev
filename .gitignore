@@ -49,3 +49,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Rive runtime wasm, copied from node_modules on postinstall
+/public/rive/*.wasm

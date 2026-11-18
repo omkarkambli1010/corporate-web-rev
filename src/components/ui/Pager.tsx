@@ -7,10 +7,13 @@ interface PagerProps {
   onPrev: () => void;
   onNext: () => void;
   label: string;
-  /** The dotted rules either side of the controls, as the carousels draw them. */
-  rules?: boolean;
+  /** The dotted rules either side of the controls, as the carousels draw them;
+   *  "tablet" draws them only in the 768 frames. */
+  rules?: boolean | "tablet";
   /** "end" is the Awards rail: a progress rule fills the left, controls sit right. */
   align?: "center" | "end";
+  /** The 16/24 pill the 768 frames give the CSR and Life at SSL pagers. */
+  compact?: boolean;
 }
 
 function pad(n: number) {
@@ -21,9 +24,9 @@ function pad(n: number) {
  * "Arrows and Page Numbers" — two 40px dotted arrows around a 01/04 pill,
  * optionally flanked by a solid rule on the left and a dotted one on the right.
  */
-export default function Pager({ index, total, onPrev, onNext, label, rules = false, align = "center" }: PagerProps) {
+export default function Pager({ index, total, onPrev, onNext, label, rules = false, align = "center", compact = false }: PagerProps) {
   return (
-    <div className={`${styles.pager} ${rules ? styles.withRules : ""} ${align === "end" ? styles.end : ""}`}>
+    <div className={`${styles.pager} ${rules ? styles.withRules : ""} ${align === "end" ? styles.end : ""} ${compact ? styles.compact : ""} ${rules === "tablet" ? styles.rulesTablet : ""}`}>
       {rules && align === "end" ? <span className={styles.ruleSolid} aria-hidden="true" /> : null}
       {rules ? <span className={styles.ruleDotted} aria-hidden="true" /> : null}
       <div className={styles.controls}>

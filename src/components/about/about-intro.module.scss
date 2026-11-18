@@ -38,14 +38,44 @@
   margin: 0;
 }
 
-@media (max-width: 767px) {
+/* 768 frame — one #292075 -> #d71e53 ramp (the end stop sits past the
+   bottom edge), 16 between a centred 40/48 title and centred 14/20 copy. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .who {
+    background-image: linear-gradient(180deg, #292075 0%, #d71e53 137.9%);
+  }
+
   .whoInner {
+    gap: 16px;
+  }
+
+  .whoTitle {
+    letter-spacing: 0;
+  }
+
+  .whoBody {
+    max-width: none;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* 360 frame — #342073 -> #a51f5d, a 28/36 title 8 above 14/20 copy whose
+   paragraphs are a blank line (20) apart. */
+@media (max-width: 767px) {
+  .who {
+    background-image: linear-gradient(180deg, #342073 0%, #a51f5d 100%);
+  }
+
+  .whoInner {
+    gap: 8px;
     padding: 40px var(--sb-gutter);
   }
 
   .whoTitle {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0;
   }
 
   .whoTitle {
@@ -55,8 +85,8 @@
   .whoBody {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    font-size: 16px;
+    gap: 20px;
+    font-size: 14px;
     line-height: 20px;
     text-align: left;
   }

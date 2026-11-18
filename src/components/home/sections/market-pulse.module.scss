@@ -193,6 +193,10 @@
     height: 32px;
   }
 
+  .arrow {
+    --rive-arrow-size: 32px;
+  }
+
   .ticker {
     grid-area: ticker;
   }
@@ -203,4 +207,9 @@
     height: auto;
     padding: 0 20px;
   }
+}
+
+/* Once the Rive arrow is playing it animates the hover itself. */
+.arrow:has([data-rive-active]):hover {
+  transform: none;
 }

@@ -162,6 +162,23 @@ function SectorHeatmap({ rows }: { rows: readonly Sector[] }) {
   );
 }
 
+/**
+ * Pagination 1:253339 — ‹ 1 2 … 9 ›: the first and last page, the current
+ * page with one either side, and an ellipsis over any run that is skipped.
+ */
+function pageWindow(page: number, pages: number): (number | null)[] {
+  const keep = new Set([1, pages, page - 1, page, page + 1].filter((n) => n >= 1 && n <= pages));
+  const out: (number | null)[] = [];
+  let last = 0;
+  for (const n of [...keep].sort((a, b) => a - b)) {
+    if (n - last === 2) out.push(last + 1);
+    else if (n - last > 2) out.push(null);
+    out.push(n);
+    last = n;
+  }
+  return out;
+}
+
 function Pagination({
   page,
   pages,
@@ -174,19 +191,39 @@ function Pagination({
   onChange: (page: number) => void;
 }) {
   if (pages <= 1) return null;
+  const caret = (dir: "prev" | "next") => (
+    <button
+      type="button"
+      className={`${styles.pageButton} ${styles.pageCaret} ${dir === "prev" ? styles.pagePrev : ""}`}
+      aria-label={dir === "prev" ? "Previous page" : "Next page"}
+      disabled={dir === "prev" ? page === 1 : page === pages}
+      onClick={() => onChange(dir === "prev" ? page - 1 : page + 1)}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/figma/about/hero/caret-right.svg" alt="" width={16} height={16} />
+    </button>
+  );
   return (
     <nav className={styles.pagination} aria-label={label}>
-      {Array.from({ length: pages }, (_, i) => i + 1).map((n) => (
-        <button
-          key={n}
-          type="button"
-          className={`${styles.pageButton} ${n === page ? styles.pageActive : ""}`}
-          aria-current={n === page ? "page" : undefined}
-          onClick={() => onChange(n)}
-        >
-          {n}
-        </button>
-      ))}
+      {caret("prev")}
+      {pageWindow(page, pages).map((n, i) =>
+        n === null ? (
+          <span key={`gap-${i}`} className={`${styles.pageButton} ${styles.pageGap}`} aria-hidden="true">
+            ...
+          </span>
+        ) : (
+          <button
+            key={n}
+            type="button"
+            className={`${styles.pageButton} ${n === page ? styles.pageActive : ""}`}
+            aria-current={n === page ? "page" : undefined}
+            onClick={() => onChange(n)}
+          >
+            {n}
+          </button>
+        ),
+      )}
+      {caret("next")}
     </nav>
   );
 }

@@ -124,6 +124,26 @@
   max-width: 1312px;
 }
 
+/* 768 frame — 375 x 258 cards, 16 apart, still a rail with the end pager;
+   the 46px narrower card pulls each pattern ~24px left to keep its crop. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .inner {
+    gap: 24px;
+  }
+
+  .rail {
+    gap: 16px;
+  }
+
+  .card {
+    flex-basis: 375px;
+  }
+
+  .pattern {
+    translate: -24px 0;
+  }
+}
+
 /* 360 frame — the cards stack at 328 x 258 and the pager is dropped. */
 @media (max-width: 767px) {
   .inner {
@@ -144,6 +164,12 @@
   .copy {
     left: 16px;
     width: 164px;
+  }
+
+  /* Award titles drop to 14/20 at 360. */
+  .title {
+    font-size: 14px;
+    line-height: 20px;
   }
 
   .pager {

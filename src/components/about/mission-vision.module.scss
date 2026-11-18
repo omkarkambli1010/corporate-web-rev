@@ -87,6 +87,29 @@
   }
 }
 
+/* 768 frame — a 438 window, 80 top and 40 either side, over a 580 column
+   (Mission 278, 80 gap, Vision 222): 80 + 580 - 438 = 222 of travel. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mv {
+    --travel: 222px;
+    height: calc(438px + var(--travel) + var(--reveal-run));
+  }
+
+  .pin {
+    height: 438px;
+  }
+
+  .column {
+    gap: 80px;
+    max-width: none;
+    padding: 80px var(--sb-gutter) 0;
+  }
+
+  .label {
+    letter-spacing: 0;
+  }
+}
+
 /* 360 frames 1:72639 / 1:72640 — two 540 screens, line one in Text Display. */
 @media (max-width: 767px) {
   .mv {

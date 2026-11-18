@@ -420,6 +420,26 @@
   color: var(--sb-primary-50);
 }
 
+.pageCaret,
+.pageGap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageCaret:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pagePrev img {
+  transform: scaleX(-1);
+}
+
+.pageGap {
+  cursor: default;
+}
+
 /* 360 frame — title and view toggle share a row, table gives way to cards. */
 @media (max-width: 767px) {
   .inner {
@@ -500,5 +520,29 @@
   .tileName {
     font-size: 12px;
     line-height: 16px;
+  }
+
+  /* Pagination 1:253339 — 4 apart; idle pages and carets are bare 32 x 44
+     cells (Inter 14/21, #292075), the current page the 44 gradient button. */
+  .pagination {
+    gap: 4px;
+  }
+
+  .pageButton {
+    min-width: 32px;
+    padding: 0 8px;
+    border-color: transparent;
+    background: none;
+    font-family: var(--sb-font-data);
+    line-height: 21px;
+    color: var(--sb-text-display);
+  }
+
+  .pageActive {
+    min-width: 44px;
+    background: var(--sb-gradient-primary);
+    font-family: var(--sb-font-body);
+    line-height: 20px;
+    color: var(--sb-primary-50);
   }
 }

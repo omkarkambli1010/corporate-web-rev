@@ -537,6 +537,12 @@ $muted: #ccd9e8;
     transform: none;
   }
 
+  .riveChevron {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+  }
+
   .groupClosed .groupToggle {
     padding-bottom: 13px;
   }

@@ -394,6 +394,10 @@
     height: 32px;
   }
 
+  .arrow {
+    --rive-arrow-size: 32px;
+  }
+
   .leverage {
     margin-top: 16px;
   }
@@ -449,4 +453,21 @@
   .mobileOnly {
     display: inline;
   }
+}
+
+/* Once the Rive arrow is playing it animates the hover itself. */
+.arrow:has([data-rive-active]):hover {
+  transform: none;
+}
+
+/* A card's Rive art covers the card behind its text (slots bento*). */
+.card .riveArt {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.card .riveArt canvas {
+  pointer-events: none;
 }

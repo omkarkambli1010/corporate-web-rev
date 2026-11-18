@@ -84,37 +84,66 @@
   color: var(--sb-neutral-200);
 }
 
-@media (max-width: 1023px) {
+/* 768 frame — two 336 x 354 cards a row, 16 apart, with Sustainability
+   across the full 688 at 310 tall; the three light cards set 16/24 copy. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section {
+    background: var(--sb-surface-primary);
+  }
+
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
   .service,
   .transparency,
   .ethics,
-  .politeness,
+  .politeness {
+    grid-column: span 1;
+    min-height: 354px;
+  }
+
   .sustainability {
-    grid-column: span 6;
+    grid-column: 1 / -1;
+    min-height: 310px;
+  }
+
+  .service .body,
+  .transparency .body,
+  .ethics .body {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
 /* 360 frame — five 328-wide cards, one per row, with a 40px icon. */
 @media (max-width: 767px) {
+  /* Interaction note: the cards stack on top of one another as the user
+     scrolls — each sticks while the next slides over it, 60 apart in flow and
+     each resting 10px lower than the one before (Stacked State). */
   .bento {
-    gap: 16px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 60px;
   }
 
-  /* Interaction note: the cards stack on top of one another as the user
-     scrolls — each sticks while the next slides over it. */
-  .bento {
-    gap: 24px;
+  .service,
+  .transparency,
+  .ethics,
+  .politeness,
+  .sustainability {
+    grid-column: 1 / -1;
   }
 
   .card {
     position: sticky;
-    top: 96px;
+    top: calc(96px + var(--stack, 0) * 10px);
     min-height: 406px;
     padding: 24px 18px;
   }
 
   .body {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
   }
 

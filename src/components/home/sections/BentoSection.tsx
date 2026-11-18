@@ -1,15 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRightIcon } from "@/components/ui/SbIcons";
+import RiveAnimation from "@/components/ui/rive/RiveAnimation";
+import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
+import type { RiveSlotKey } from "@/config/rive.config";
 import { BENTO } from "@/constants/sbi-home";
 import styles from "./bento.module.scss";
+
+/** Whether the enclosing card has been scrolled to. */
+const CardShown = createContext(false);
+
+/**
+ * A card's art as a Rive slot, driven by `shown`. Until the slot has a .riv,
+ * the images render as before and slide in on the CSS transition.
+ */
+function BentoArt({ slot, children }: { slot: RiveSlotKey; children: React.ReactNode }) {
+  const shown = useContext(CardShown);
+  return (
+    <RiveAnimation slot={slot} values={{ shown }} className={styles.riveArt} fallback={<>{children}</>} />
+  );
+}
 
 function CardArrow({ label }: { label: string }) {
   return (
     <Link href="#explore" className={styles.arrow} aria-label={label}>
-      <ArrowUpRightIcon />
+      <RiveArrowUpRight />
     </Link>
   );
 }
@@ -71,7 +87,7 @@ function RevealCard({
         } as React.CSSProperties
       }
     >
-      {children}
+      <CardShown.Provider value={shown}>{children}</CardShown.Provider>
     </article>
   );
 }
@@ -141,8 +157,10 @@ export default function BentoSection() {
                 <span className={styles.leverageSmall}>{marginTrading.leverage}</span>
               </p>
 
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.scaleArt} src="/figma/bento/margin-scale.png" alt="" />
+              <BentoArt slot="bentoMarginTrading">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={styles.scaleArt} src="/figma/bento/margin-scale.png" alt="" />
+              </BentoArt>
             </RevealCard>
 
             <RevealCard
@@ -161,10 +179,12 @@ export default function BentoSection() {
                 <CardArrow label={nri.title.join(" ")} />
               </div>
 
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.nriGlobe} src="/figma/bento/nri-globe.png" alt="" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.nriPhone} src="/figma/bento/nri-phone.png" alt="" />
+              <BentoArt slot="bentoNri">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={styles.nriGlobe} src="/figma/bento/nri-globe.png" alt="" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={styles.nriPhone} src="/figma/bento/nri-phone.png" alt="" />
+              </BentoArt>
             </RevealCard>
           </div>
 
@@ -198,8 +218,10 @@ export default function BentoSection() {
                 ))}
               </dl>
 
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.indiaArt} src="/figma/bento/support-india.png" alt="" />
+              <BentoArt slot="bentoSupport">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={styles.indiaArt} src="/figma/bento/support-india.png" alt="" />
+              </BentoArt>
             </RevealCard>
 
             <RevealCard
@@ -216,10 +238,12 @@ export default function BentoSection() {
                 <CardArrow label={baskets.title.join(" ")} />
               </div>
 
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.basketChart} src="/figma/bento/baskets-chart.png" alt="" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.basketPhone} src="/figma/bento/baskets-phone.png" alt="" />
+              <BentoArt slot="bentoBaskets">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={styles.basketChart} src="/figma/bento/baskets-chart.png" alt="" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={styles.basketPhone} src="/figma/bento/baskets-phone.png" alt="" />
+              </BentoArt>
             </RevealCard>
           </div>
         </div>

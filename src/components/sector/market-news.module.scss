@@ -127,6 +127,10 @@
     height: 32px;
   }
 
+  .arrow {
+    --rive-arrow-size: 32px;
+  }
+
   .rail {
     gap: 16px;
     margin-right: calc(var(--sb-gutter) * -1);
@@ -143,4 +147,9 @@
   .name {
     font-size: 16px;
   }
+}
+
+/* Once the Rive arrow is playing it animates the hover itself. */
+.arrow:has([data-rive-active]):hover {
+  transform: none;
 }

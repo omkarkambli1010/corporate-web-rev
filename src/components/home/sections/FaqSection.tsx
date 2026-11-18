@@ -4,6 +4,7 @@ import { useState } from "react";
 import SbButton from "@/components/ui/SbButton";
 import { FAQS } from "@/constants/sbi-home";
 import type { FaqContent } from "@/types/pages";
+import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import styles from "./faq.module.scss";
 
 /** What the section prints when no content is passed — the built-in copy. */
@@ -26,7 +27,7 @@ export default function FaqSection({ content = DEFAULT_CONTENT }: { content?: Fa
       <div className={styles.inner}>
         <div className={styles.aside}>
           <h2 className={styles.title}>
-            {content.title.split(" ").slice(0, 2).join(" ")}
+            {content.title.split(" ").slice(0, 2).join(" ")}{" "}
             <br />
             {content.title.split(" ").slice(2).join(" ")}
           </h2>
@@ -52,13 +53,21 @@ export default function FaqSection({ content = DEFAULT_CONTENT }: { content?: Fa
                   onClick={() => setOpen(open === i ? -1 : i)}
                 >
                   {faq.question}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  {/* Rive slot `faqToggle`, driven by `open`; the plus/minus SVGs until supplied. */}
+                  <RiveAnimation
+                    slot="faqToggle"
+                    values={{ open: open === i }}
                     className={styles.sign}
-                    src={open === i ? "/figma/faq/minus.svg" : "/figma/faq/plus.svg"}
-                    alt=""
-                    width={24}
-                    height={24}
+                    fallback={
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        className={styles.sign}
+                        src={open === i ? "/figma/faq/minus.svg" : "/figma/faq/plus.svg"}
+                        alt=""
+                        width={24}
+                        height={24}
+                      />
+                    }
                   />
                 </button>
               </h3>

@@ -76,6 +76,25 @@
   margin-right: 4px;
 }
 
+.rulesTablet .ruleDotted,
+.rulesTablet .ruleSolid {
+  display: none;
+}
+
+/* 768 frames — CSR and Life at SSL set the pill at 16/24, 4 x 16. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .compact .pill {
+    padding: 4px 16px;
+    font-family: var(--sb-font-body);
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .rulesTablet .ruleDotted {
+    display: block;
+  }
+}
+
 @media (max-width: 767px) {
   .arrow img {
     width: 24px;

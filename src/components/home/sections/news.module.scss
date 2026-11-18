@@ -177,6 +177,10 @@
     height: 32px;
   }
 
+  .arrow {
+    --rive-arrow-size: 32px;
+  }
+
   /* Frame 2147225986 0:66059 — the four cards stack 24 apart, and every one is
      a full card rather than the desktop's lead plus thumbnail rows. */
   .grid {
@@ -254,4 +258,9 @@
   .mobileBreak {
     display: inline;
   }
+}
+
+/* Once the Rive arrow is playing it animates the hover itself. */
+.arrow:has([data-rive-active]):hover {
+  transform: none;
 }

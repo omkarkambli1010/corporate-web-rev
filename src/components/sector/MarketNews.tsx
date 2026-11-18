@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Pager from "@/components/ui/Pager";
-import { ArrowUpRightIcon } from "@/components/ui/SbIcons";
+import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import type { SectorContent } from "@/types/pages";
 import styles from "./market-news.module.scss";
 
@@ -41,7 +41,7 @@ export default function MarketNews({ news }: { news: SectorContent["news"] }) {
         <div className={styles.head}>
           <h2 className={styles.title}>{news.title}</h2>
           <Link href={news.allHref} className={styles.arrow} aria-label={news.allLabel}>
-            <ArrowUpRightIcon size={40} />
+            <RiveArrowUpRight size={40} />
           </Link>
         </div>
 

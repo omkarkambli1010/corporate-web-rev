@@ -9,11 +9,12 @@ import AwardsSection from "./AwardsSection";
 import CsrSection from "./CsrSection";
 import LifeAtSsl from "./LifeAtSsl";
 import ValuesSection from "./ValuesSection";
+import styles from "./about-page.module.scss";
 
-/** About us — desktop 4:127197, mobile 1:72557. */
+/** About us — desktop 4:127197, tablet 2:73599, mobile 1:72554. */
 export default function AboutPage({ content }: { content: AboutContent }) {
   return (
-    <SbScope>
+    <SbScope className={styles.page}>
       <AboutHero breadcrumbs={content.breadcrumbs} hero={content.hero} />
       <AboutIntro who={content.who} statements={content.statements} />
       <ValuesSection values={content.values} />

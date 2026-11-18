@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRightIcon } from "@/components/ui/SbIcons";
+import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import { NEWS } from "@/constants/sbi-home";
 import styles from "./news.module.scss";
 
@@ -49,7 +49,7 @@ export default function NewsSection() {
             <p className={styles.subtext}>{NEWS.subtext}</p>
           </div>
           <Link href="#news" className={styles.arrow} aria-label="All market news">
-            <ArrowUpRightIcon />
+            <RiveArrowUpRight tone="dark" />
           </Link>
         </div>
 

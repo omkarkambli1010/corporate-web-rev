@@ -157,17 +157,110 @@
   margin: 0 0 24px;
 }
 
-@media (max-width: 1023px) {
+.tabletOnly {
+  display: none;
+}
+
+/* 768 frames (Leadership-Tablet / Leader-Tablet 2:73906). */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Hero section — 24 / 40 padding, 16 under the trail, a 40/48 title. */
+  .bannerInner {
+    padding: 24px var(--sb-gutter);
+  }
+
+  .heading {
+    letter-spacing: 0;
+  }
+
+  .stop {
+    display: none;
+  }
+
+  /* Tabs 375 wide, 28 under the banner; cards 24 under the tabs. */
+  .tabs > div {
+    width: 375px;
+  }
+
+  .listingInner {
+    gap: 24px;
+    padding: 28px var(--sb-gutter) 40px;
+  }
+
+  /* Three 219 cards a row, 16 across and 32 down. */
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px 16px;
+    align-items: start;
+  }
+
+  .name {
+    font-family: var(--sb-font-body);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .role {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Leader-Tablet — the role moves up under the name in the banner (20/28,
+     8 below it), and the biography wraps round a 297 portrait, 16 clear. */
+  .tabletOnly {
+    display: block;
+  }
+
+  .bannerInner:has(.tabletRole) {
+    gap: 16px;
+  }
+
+  .bannerInner:has(.tabletRole) .heading {
+    margin-bottom: -8px;
+  }
+
+  .tabletRole {
+    margin: 0;
+    font-family: var(--sb-font-body);
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--sb-text-secondary);
   }
 
   .detailInner {
-    grid-template-columns: minmax(0, 1fr);
+    display: block;
+    padding: 40px var(--sb-gutter);
+  }
+
+  .detailInner::after {
+    content: "";
+    display: table;
+    clear: both;
   }
 
   .detailCard {
-    max-width: 421px;
+    float: left;
+    width: 297px;
+    margin: 0 16px 16px 0;
+  }
+
+  .detailCard .portrait {
+    border-radius: 11.3px;
+  }
+
+  .detailRole {
+    display: none;
+  }
+
+  .bio {
+    min-height: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #484f6b;
+  }
+
+  .bio .para {
+    margin-bottom: 20px;
   }
 }
 
@@ -295,6 +388,10 @@
 
   .bio .para:last-child {
     margin-bottom: 0;
+  }
+
+  .detailInner {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .detailCard {

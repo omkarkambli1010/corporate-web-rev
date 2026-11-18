@@ -12,6 +12,33 @@
   padding: 40px var(--sb-gutter);
 }
 
+/* Holds the stage — the HTML cards, or the Rive canvas with the active
+   card's description under it. */
+.stageWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.stageWrap .riveStage {
+  display: block;
+  width: 100%;
+}
+
+/* Rive slot csrCarousel, Desktop artboard 1372 x 362 — the same overhang as
+   the HTML stage, 30px past the column either side. */
+.stageWrap .riveStage[data-rive-active] {
+  width: calc(100% + 60px);
+  height: 362px;
+  margin-inline: -30px;
+}
+
+.riveText {
+  margin: 0;
+}
+
 /* CSR list 1312 x 462 — a 644 active card between two 322 neighbours. */
 .stage {
   display: grid;
@@ -26,14 +53,14 @@
 /* CSR Card click -> next variant: smart animate, linear, 0.3s (4:94639). */
 @keyframes csr-from-next {
   from {
-    transform: translateX(364px);
+    transform: translateX(var(--csr-step, 364px));
     opacity: 0.4;
   }
 }
 
 @keyframes csr-from-prev {
   from {
-    transform: translateX(-364px);
+    transform: translateX(calc(-1 * var(--csr-step, 364px)));
     opacity: 0.4;
   }
 }
@@ -65,6 +92,11 @@
 
 button.card {
   cursor: pointer;
+}
+
+/* The outer pair exists only in the 768 frame. */
+.far {
+  display: none;
 }
 
 .media {
@@ -174,7 +206,126 @@ button.card {
   display: none;
 }
 
-@media (max-width: 1023px) {
+/* 768 frame — five cards in a 1192 row centred on the screen, so the outer
+   two are cut by its edges: 188 x 106 neighbours around a 376 x 211 card,
+   16 apart, the whole stage 275 tall. The shades are the desktop ones scaled
+   by 376 / 644. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section {
+    overflow: hidden;
+  }
+
+  .inner {
+    gap: 24px;
+  }
+
+  .stage {
+    --csr-step: 204px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    margin-inline: 0;
+    min-height: 275px;
+  }
+
+  .card {
+    flex: none;
+    gap: 16px;
+  }
+
+  .far {
+    display: flex;
+  }
+
+  .prev .media,
+  .next .media,
+  .far .media {
+    width: 188px;
+    height: 106px;
+    border-radius: var(--sb-radius-8);
+  }
+
+  .prev .media img,
+  .next .media img,
+  .far .media img {
+    border-radius: var(--sb-radius-8);
+  }
+
+  .active .media {
+    width: 376px;
+    height: 211px;
+  }
+
+  .shade {
+    bottom: -21.7px;
+    left: calc(50% - 1.4px);
+    width: 199.5px;
+    height: 66px;
+  }
+
+  .shadeBand {
+    width: 195.8px;
+    height: 45.8px;
+  }
+
+  .active .shade {
+    bottom: -49.7px;
+    left: calc(50% - 12.9px);
+    width: 412.7px;
+    height: 125.2px;
+  }
+
+  .active .shadeBand {
+    width: 406.3px;
+    height: 83.3px;
+  }
+
+  .prev .name,
+  .next .name,
+  .far .name {
+    left: 8px;
+    bottom: 8px;
+    font-family: var(--sb-font-body);
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .active .name {
+    left: 12px;
+    bottom: 12px;
+    font-family: var(--sb-font-body);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .text {
+    max-width: 376px;
+    min-height: 48px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .pager {
+    max-width: 564px;
+  }
+
+  /* Tablet artboard 1192 x 211, centred and cut by the screen edges. */
+  .stageWrap {
+    gap: 16px;
+  }
+
+  .stageWrap .riveStage[data-rive-active] {
+    flex: none;
+    width: 1192px;
+    height: 211px;
+    margin-inline: 0;
+  }
+}
+
+@media (max-width: 767px) {
   .stage {
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
@@ -215,6 +366,14 @@ button.card {
     font-size: 14px;
     line-height: 20px;
     text-align: left;
+  }
+
+  /* Mobile artboard 328 x 185 — the active card across the column. */
+  .stageWrap .riveStage[data-rive-active] {
+    width: 100%;
+    height: auto;
+    margin-inline: 0;
+    aspect-ratio: 328 / 185;
   }
 
   .pagerDesktop {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRightIcon } from "./SbIcons";
+import RiveArrowUpRight from "./rive/RiveArrowUpRight";
 import styles from "./section-head.module.scss";
 
 interface SectionHeadProps {
@@ -68,7 +68,7 @@ export default function SectionHead({
       </div>
       {href ? (
         <Link href={href} className={styles.arrow} aria-label={hrefLabel ?? title}>
-          <ArrowUpRightIcon />
+          <RiveArrowUpRight tone={tone === "dark" ? "dark" : "light"} />
         </Link>
       ) : null}
     </div>
