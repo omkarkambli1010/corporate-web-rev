@@ -20,9 +20,11 @@
   --header-height: 72px;
 }
 
-[data-theme="dark"] {
-  --color-text: #f8f9fa;
-  --color-body-bg: #121212;
+/* Matches the --sb-* dark surfaces (src/components/home/sbi-home.scss). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-text: #eef2fa;
+  --color-body-bg: #0d1122;
   --color-primary: #66b2ff;
   --color-secondary: #adb5bd;
   --color-border: #343a40;

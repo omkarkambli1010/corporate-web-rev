@@ -34,7 +34,7 @@
   overflow: hidden;
   scroll-snap-align: start;
   border-radius: var(--sb-radius-12);
-  background: radial-gradient(circle at 100% 100%, #fff 0%, var(--sb-primary-300) 100%);
+  background: radial-gradient(circle at 100% 100%, var(--sb-neutral-00) 0%, var(--sb-primary-300) 100%);
 }
 
 .copy {
@@ -175,4 +175,13 @@
   .pager {
     display: none;
   }
+}
+
+/* Dark theme — award logos are brand artwork on transparent grounds (the CDSL
+   mark is navy), so they sit on a white plate instead of being recoloured. The
+   plate is a spread shadow, so the logo box keeps its size and its crop. */
+:global([data-theme="dark"]) .logo {
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px #ffffff;
 }

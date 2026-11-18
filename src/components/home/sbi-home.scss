@@ -107,6 +107,96 @@
   --sb-section-gap: 40px;
 }
 
+/* Dark theme — set by the accessibility sidebar ("Switch to Dark Theme"),
+   which puts data-theme="dark" on <html>. `:root[data-theme]` outranks the
+   bare `:root` above whatever order the stylesheets load in.
+
+   Only semantic tokens flip: surfaces go navy, text goes light. The brand
+   scale (primary-500 and up, the pink, the gradients behind white text) is
+   unchanged, as is neutral-200, which sections use as light copy on the
+   dark brand gradients. The pastel primaries 50-400 are used only as card
+   and chip grounds, so they take dark tints of the same hue. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --sb-primary-50: #1a1b3d;
+  --sb-primary-100: #1e1f4a;
+  --sb-primary-200: #24255a;
+  --sb-primary-300: #2c2b6e;
+  --sb-primary-400: #363487;
+
+  --sb-neutral-00: #0d1122;
+  --sb-neutral-50: #131a31;
+  --sb-neutral-100: #1b2340;
+  --sb-neutral-1000: #eef2fa;
+
+  --sb-text-display: #c9c7ff;
+  --sb-text-primary: #eef2fa;
+  --sb-text-secondary: #b4c0d8;
+  --sb-text-tertiary: #8d9dbb;
+  --sb-text-success: #4fd69c;
+  --sb-text-hover: #aaa7ff;
+  --sb-icon-primary: #e3e9f5;
+  --sb-icon-secondary: #b4c0d8;
+  --sb-icon-display: #c9c7ff;
+
+  --sb-surface-primary: #0d1122;
+  --sb-surface-secondary: #131a31;
+  --sb-surface-tertiary: #161938;
+  --sb-surface-footer: #0a0d1c;
+  --sb-stroke-default: #2c3658;
+  --sb-stroke-hover: #8d89f6;
+  --sb-divider: #232b4a;
+  --sb-card-stroke: #232b4a;
+
+  --sb-chip-green-bg: #0f3326;
+  --sb-chip-green-stroke: #1d5c43;
+
+  --sb-elevation-01: rgba(0, 0, 0, 0.45);
+
+  --sb-gradient-secondary: linear-gradient(180deg, #1b2340 20%, #24255a 100%);
+  --sb-gradient-lilac: linear-gradient(180deg, #1e1f4a 0%, #3a1a37 100%);
+  --sb-gradient-card: linear-gradient(180deg, #131a31 0%, #24255a 100%);
+}
+
+/* Dark theme — the single-colour navy icon files (arrows, carets, ticks,
+   plus/minus, header glyphs) would vanish on the dark surfaces, so they are
+   recoloured to a light tone. Listed by file so photos and brand artwork are
+   never touched; add new navy icons here. */
+:root[data-theme="dark"] img:is(
+  [src$="/figma/about/csr/arrow-next.svg"],
+  [src$="/figma/about/csr/arrow-prev.svg"],
+  [src$="/figma/about/hero/caret-right.svg"],
+  [src$="/figma/about/hero/check.svg"],
+  [src$="/figma/about/hero/info.svg"],
+  [src$="/figma/about/life/arrow-next.svg"],
+  [src$="/figma/about/life/arrow-prev.svg"],
+  [src$="/figma/about/values/ethics.svg"],
+  [src$="/figma/about/values/service.svg"],
+  [src$="/figma/about/values/transparency.svg"],
+  [src$="/figma/faq/minus.svg"],
+  [src$="/figma/faq/plus.svg"],
+  [src$="/figma/header/accessibility.svg"],
+  [src$="/figma/header/caret-down.svg"],
+  [src$="/figma/header/command.svg"],
+  [src$="/figma/header/headset.svg"],
+  [src$="/figma/header/search.svg"],
+  [src$="/figma/header/m-accessibility.svg"],
+  [src$="/figma/header/m-menu.svg"],
+  [src$="/figma/header/m-search.svg"],
+  [src$="/figma/hero/check.svg"],
+  [src$="/figma/hero/info.svg"],
+  [src$="/figma/pricing/check.svg"],
+  [src$="/figma/purpose/tick.svg"],
+  [src$="/figma/sector/news/arrow-right.svg"],
+  [src$="/figma/sector/sort-arrow.svg"],
+  [src$="/figma/sector/view-card.svg"],
+  [src$="/figma/sector/view-heatmap.svg"],
+  [src$="/figma/sector/view-table.svg"]
+) {
+  filter: brightness(0) invert(0.88);
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   :root {
     /* 768 canvas, 688 content, 40 gutter (Sprint 1 tablet frames) */

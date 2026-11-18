@@ -28,7 +28,7 @@ const DEFAULT_FONT_SIZE = 16;
 const MIN_FONT_SIZE = 14;
 const MAX_FONT_SIZE = 22;
 
-const STORAGE_KEYS = {
+export const STORAGE_KEYS = {
   theme: "sbisecurities-theme",
   fontSize: "sbisecurities-font-size",
 };
@@ -74,23 +74,26 @@ export function AccessibilityProvider({
     };
   }, []);
 
+  /* The inline script in app/layout.tsx has already applied the saved theme
+     and font size before first paint, so nothing is written to <html> until
+     the saved preferences are loaded here; writing the "light" default first
+     would flash the page back to light. */
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-
-    if (preferencesLoaded) {
-      window.localStorage.setItem(STORAGE_KEYS.theme, theme);
-    }
+    if (!preferencesLoaded) return;
+    const root = document.documentElement;
+    root.setAttribute("data-theme", theme);
+    // Bootstrap 5.3's own dark mode, for any Bootstrap-styled controls.
+    root.setAttribute("data-bs-theme", theme);
+    window.localStorage.setItem(STORAGE_KEYS.theme, theme);
   }, [theme, preferencesLoaded]);
 
   useEffect(() => {
+    if (!preferencesLoaded) return;
     document.documentElement.style.setProperty(
       "--font-size-base",
       `${fontSize}px`
     );
-
-    if (preferencesLoaded) {
-      window.localStorage.setItem(STORAGE_KEYS.fontSize, String(fontSize));
-    }
+    window.localStorage.setItem(STORAGE_KEYS.fontSize, String(fontSize));
   }, [fontSize, preferencesLoaded]);
 
   const increaseFontSize = useCallback(() => {

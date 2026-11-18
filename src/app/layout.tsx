@@ -16,6 +16,9 @@ import { ToastProvider } from "@/context/ToastContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/globals.scss";
+/* The --sb-* design tokens (light and dark) for every route — the header and
+   footer read them too. The file holds only :root tokens and .sb-scope rules. */
+import "@/components/home/sbi-home.scss";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -84,7 +87,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      data-theme="light"
+      data-bs-theme="light"
+      suppressHydrationWarning
+    >
+      <head>
+        {/* Applies the saved accessibility theme and font size before first
+            paint, so a dark-theme visitor never sees the page flash light.
+            Keys match STORAGE_KEYS in src/context/AccessibilityContext.tsx. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement,t=localStorage.getItem("sbisecurities-theme");if(t==="dark"||t==="light"){d.setAttribute("data-theme",t);d.setAttribute("data-bs-theme",t)}var f=Number(localStorage.getItem("sbisecurities-font-size"));if(f>=14&&f<=22)d.style.setProperty("--font-size-base",f+"px")}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className={openSans.variable}>
         <GoogleTagManager />
         <AccessibilityProvider>

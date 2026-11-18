@@ -3,22 +3,22 @@
 
    88 tall on a 1440 frame: a 48 logo with 20 above and below, 64 either side.
 
-   Literal hex rather than the `--sb-*` tokens, and local button styles rather
-   than SbButton, for the same reason the footer does it: those tokens live in
-   `sbi-home.scss`, which only reaches routes that render HomeComponent, while
-   this header is chrome for every marketing route.
+   Colours come from the `--sb-*` tokens (loaded globally by the root layout)
+   so the header follows the accessibility dark theme; the literal values are
+   fallbacks only.
 --------------------------------------------------------------------------- */
 
-$display: #292075;
-$icon: #101b34;
-$muted: #3b4c72;
-$stroke: #ccd9e8;
+$display: var(--sb-text-display, #292075);
+$icon: var(--sb-icon-primary, #101b34);
+$muted: var(--sb-text-secondary, #3b4c72);
+$stroke: var(--sb-stroke-default, #ccd9e8);
+$surface: var(--sb-surface-primary, #ffffff);
 
 .siteHeader {
   position: sticky;
   top: 0;
   z-index: 1030;
-  background: #ffffff;
+  background: $surface;
   font-family: var(--header-font-inter), "Segoe UI", -apple-system, sans-serif;
 }
 
@@ -129,7 +129,7 @@ $stroke: #ccd9e8;
   padding: 0 12px;
   border: 1px solid $stroke;
   border-radius: 8px;
-  background: #ffffff;
+  background: $surface;
 }
 
 .searchIcon {
@@ -202,7 +202,7 @@ $stroke: #ccd9e8;
 }
 
 .iconButton:hover {
-  background: #f6f6ff;
+  background: var(--sb-surface-tertiary, #f6f6ff);
 }
 
 /* Only the 360 frame trades the field for a glyph; above it the field is in
@@ -238,7 +238,7 @@ $stroke: #ccd9e8;
   padding: 10px;
   border: 0;
   border-radius: 8px;
-  box-shadow: 0 10px 20px 4px rgba(204, 217, 232, 0.2);
+  box-shadow: 0 10px 20px 4px var(--sb-elevation-01, rgba(204, 217, 232, 0.2));
   font-size: 12px;
   line-height: 16px;
   text-decoration: none;
@@ -252,7 +252,7 @@ $stroke: #ccd9e8;
 }
 
 .ctaSecondary {
-  background: linear-gradient(180deg, #f7fbff 20%, #dbdbfe 100%);
+  background: var(--sb-gradient-secondary, linear-gradient(180deg, #f7fbff 20%, #dbdbfe 100%));
   color: $display;
 }
 
@@ -354,7 +354,7 @@ $stroke: #ccd9e8;
     justify-content: space-between;
     max-height: none;
     padding: 12px 0;
-    border-top: 1px solid #edf4fc;
+    border-top: 1px solid var(--sb-divider, #edf4fc);
   }
 }
 
@@ -365,7 +365,7 @@ $stroke: #ccd9e8;
    account buttons and the support glyph the 1440 bar shows are not in it. */
 @media (max-width: 767px) {
   .siteHeader {
-    border-bottom: 1px solid #dcd9d9;
+    border-bottom: 1px solid var(--sb-stroke-default, #dcd9d9);
   }
 
   .inner {
@@ -433,10 +433,11 @@ $stroke: #ccd9e8;
     z-index: 1;
     display: flex;
     width: auto;
-    box-shadow: 0 10px 20px 4px rgba(204, 217, 232, 0.4);
+    box-shadow: 0 10px 20px 4px var(--sb-elevation-01, rgba(204, 217, 232, 0.4));
   }
 
   .shortcut {
     display: none;
   }
 }
+

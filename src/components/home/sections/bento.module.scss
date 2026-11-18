@@ -65,7 +65,7 @@
   overflow: hidden;
   border-radius: var(--sb-radius-12);
   background-color: var(--sb-neutral-00);
-  background-image: linear-gradient(180deg, #ffffff 0%, var(--sb-primary-200) 100%);
+  background-image: linear-gradient(180deg, var(--sb-neutral-00) 0%, var(--sb-primary-200) 100%);
 }
 
 /* Only the margin-trading card carries the dot grid in the Figma. */
@@ -75,7 +75,7 @@
       rgba(110, 103, 238, 0.28) 1px,
       transparent 1px
     ),
-    linear-gradient(180deg, #ffffff 0%, var(--sb-primary-200) 100%);
+    linear-gradient(180deg, var(--sb-neutral-00) 0%, var(--sb-primary-200) 100%);
   background-size: 19.71px 19.71px, 100% 100%;
 }
 
@@ -102,7 +102,7 @@
 .arrow {
   flex-shrink: 0;
   display: inline-flex;
-  color: var(--sb-primary-1000);
+  color: var(--sb-text-display);
   transition: transform 0.2s ease;
 }
 
@@ -353,7 +353,7 @@
     border: 1px solid var(--sb-primary-200);
     background-image: linear-gradient(
       180deg,
-      #ffffff 59.06%,
+      var(--sb-neutral-00) 59.06%,
       var(--sb-primary-300) 100%
     );
   }
@@ -365,7 +365,7 @@
         rgba(110, 103, 238, 0.28) 1px,
         transparent 1px
       ),
-      linear-gradient(180deg, #ffffff 59.06%, var(--sb-primary-300) 100%);
+      linear-gradient(180deg, var(--sb-neutral-00) 59.06%, var(--sb-primary-300) 100%);
     background-size: 19.8px 22.25px, 100% 100%;
   }
 

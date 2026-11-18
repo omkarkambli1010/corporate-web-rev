@@ -546,3 +546,9 @@
     color: var(--sb-primary-50);
   }
 }
+
+/* Dark theme — the literal #253040 names fall back to the light text token. */
+:global([data-theme="dark"]) .table th.name,
+:global([data-theme="dark"]) .cardTitle {
+  color: var(--sb-text-primary);
+}

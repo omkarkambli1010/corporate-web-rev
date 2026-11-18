@@ -65,7 +65,9 @@
   height: 44px;
   padding: 12px;
   border-radius: var(--sb-radius-8);
-  background: var(--sb-gradient-secondary);
+  /* Always on the brand banner, so it keeps the light secondary fill in the
+     dark theme too (the token goes dark there). */
+  background: linear-gradient(180deg, #f7fbff 20%, #dbdbfe 100%);
   box-shadow: 0 10px 20px 4px rgba(5, 8, 15, 0.2);
   font-family: var(--sb-font-data);
   font-size: 14px;
