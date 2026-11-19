@@ -1,0 +1,84 @@
+{
+  "_note": "MOCK DATA for site search until a search API exists. Every price, change, return, date and headline here is made up. Shapes follow the Sprint 1 search frames (Stocks, News, Options, Mutual Funds, ETFs, Research, Reports, FAQs). Replace this file, or loadIndex() in src/services/search/searchService.ts, when the real source is ready.",
+  "categories": [
+    { "key": "stock", "label": "Stocks", "tab": "Stocks" },
+    { "key": "news", "label": "Recent News", "tab": "News" },
+    { "key": "option", "label": "Options", "tab": "Options" },
+    { "key": "mf", "label": "Mutual Funds", "tab": "Mutual Funds" },
+    { "key": "etf", "label": "ETFs", "tab": "ETF" },
+    { "key": "research", "label": "Research", "tab": "Research" },
+    { "key": "report", "label": "Reports", "tab": "Reports" },
+    { "key": "faq", "label": "FAQs", "tab": "FAQs" }
+  ],
+  "suggestions": ["Top Gainers", "High Dividend Stocks", "High Growth Stocks", "Reliance Industries"],
+  "gateways": [
+    { "type": "mf", "label": "Mutual Funds", "aliases": ["mutual fund", "mutual funds", "mf", "funds"] },
+    { "type": "etf", "label": "ETFs", "aliases": ["etf", "etfs", "exchange traded fund"] },
+    { "type": "option", "label": "Options", "aliases": ["option", "options", "option chain", "f&o", "fno"] }
+  ],
+  "latestResearch": ["res-tatasteel", "res-tatapower", "res-tataelxsi"],
+  "items": [
+    { "id": "stk-tatasteel", "type": "stock", "title": "TATASTEEL", "subtitle": "Tata Steel Ltd.", "badge": "NSE", "price": 4287.65, "change": -22.85, "pct": -1.92, "keywords": ["tata", "steel", "metal"] },
+    { "id": "stk-tcs", "type": "stock", "title": "TCS", "subtitle": "Tata Consultancy Services Ltd.", "badge": "BSE", "price": 4105.6, "change": 22.85, "pct": 1.92, "keywords": ["tata", "it", "consultancy"] },
+    { "id": "stk-tmcv", "type": "stock", "title": "TMCV", "subtitle": "Tata Motors Ltd.", "badge": "NSE", "price": 1025.4, "change": 22.85, "pct": 2.35, "keywords": ["tata", "motors", "auto"] },
+    { "id": "stk-tatapower", "type": "stock", "title": "TATAPOWER", "subtitle": "Tata Power Company Ltd.", "badge": "NSE", "price": 412.3, "change": 5.1, "pct": 1.25, "keywords": ["tata", "power", "energy"] },
+    { "id": "stk-tataelxsi", "type": "stock", "title": "TATAELXSI", "subtitle": "Tata Elxsi Ltd.", "badge": "NSE", "price": 6820.0, "change": -41.5, "pct": -0.6, "keywords": ["tata", "elxsi", "it"] },
+    { "id": "stk-wipro-nse", "type": "stock", "title": "Wipro", "subtitle": "Wipro Ltd.", "badge": "NSE", "price": 542.65, "change": -6.2, "pct": -1.13, "keywords": ["wipro", "it"] },
+    { "id": "stk-wipro-bse", "type": "stock", "title": "Wipro", "subtitle": "Wipro Ltd.", "badge": "BSE", "price": 542.8, "change": 6.05, "pct": 1.12, "keywords": ["wipro", "it"] },
+    { "id": "stk-reliance", "type": "stock", "title": "RELIANCE", "subtitle": "Reliance Industries Ltd.", "badge": "NSE", "price": 2943.15, "change": 12.4, "pct": 0.42, "keywords": ["reliance", "ril", "industries"] },
+    { "id": "stk-infy", "type": "stock", "title": "INFY", "subtitle": "Infosys Ltd.", "badge": "NSE", "price": 1842.75, "change": 12.45, "pct": 0.68, "keywords": ["infosys", "it"] },
+    { "id": "stk-sbin", "type": "stock", "title": "SBIN", "subtitle": "State Bank of India", "badge": "NSE", "price": 842.75, "change": 7.95, "pct": 0.95, "keywords": ["sbi", "state bank", "bank"] },
+    { "id": "stk-hdfcbank", "type": "stock", "title": "HDFCBANK", "subtitle": "HDFC Bank Ltd.", "badge": "NSE", "price": 1642.1, "change": -6.25, "pct": -0.38, "keywords": ["hdfc", "bank"] },
+    { "id": "stk-icicibank", "type": "stock", "title": "ICICIBANK", "subtitle": "ICICI Bank Ltd.", "badge": "NSE", "price": 1188.75, "change": 10.7, "pct": 0.91, "keywords": ["icici", "bank"] },
+    { "id": "stk-nifty50", "type": "stock", "title": "NIFTY 50", "subtitle": "Nifty 50 Index", "badge": "NSE", "price": 24456.9, "change": 70.9, "pct": 0.29, "keywords": ["nifty", "index"] },
+
+    { "id": "news-tata-1", "type": "news", "title": "Tata's Q1 financial results outshine predictions, net profit jumps 18% year-over-year.", "symbol": "SBIN", "pct": 2.45, "time": "1h ago", "image": "/figma/news/item-1.png", "keywords": ["tata", "results", "q1"] },
+    { "id": "news-tata-2", "type": "news", "title": "TATA reports Q1 results exceeding forecasts, showing an impressive 18% rise in net profit compared to last year.", "symbol": "SBIN", "pct": 2.45, "time": "1h ago", "image": "/figma/news/item-2.png", "keywords": ["tata", "results", "q1"] },
+    { "id": "news-tata-3", "type": "news", "title": "Tata's Q1 results exceed expectations, net profit soars 18% year-on-year.", "symbol": "SBIN", "pct": 2.45, "time": "2h ago", "image": "/figma/news/item-3.png", "keywords": ["tata", "results"] },
+    { "id": "news-tata-4", "type": "news", "title": "Tata's Q1 earnings surpass expectations, with a remarkable 18% year-on-year profit increase.", "symbol": "SBIN", "pct": 2.45, "time": "3h ago", "image": "/figma/news/lead.png", "keywords": ["tata", "earnings"] },
+    { "id": "news-tata-5", "type": "news", "title": "Tata's Q1 performance beats estimates, with an 18% YoY surge in net profit.", "symbol": "SBIN", "pct": 2.45, "time": "4h ago", "image": "/figma/sector/news/rupee.png", "keywords": ["tata", "performance"] },
+    { "id": "news-wipro-1", "type": "news", "title": "Wipro's Q1 financial results outshine predictions, net profit jumps 18% year-over-year.", "symbol": "SBIN", "pct": 2.45, "time": "1h ago", "image": "/figma/news/item-1.png", "keywords": ["wipro", "results"] },
+    { "id": "news-wipro-2", "type": "news", "title": "Wipro reports Q1 results exceeding forecasts, showing an impressive 18% rise in net profit compared to last year.", "symbol": "SBIN", "pct": 2.45, "time": "1h ago", "image": "/figma/news/item-2.png", "keywords": ["wipro", "results"] },
+    { "id": "news-wipro-3", "type": "news", "title": "Wipro's Q1 performance beats estimates, with an 18% YoY surge in net profit.", "symbol": "SBIN", "pct": 2.45, "time": "1h ago", "image": "/figma/news/item-3.png", "keywords": ["wipro", "performance"] },
+    { "id": "news-mf-1", "type": "news", "title": "Mutual fund SIP inflows hit a record high for the month as retail participation grows.", "symbol": "SBIN", "pct": 1.2, "time": "2h ago", "image": "/figma/sector/news/eternal.png", "keywords": ["mutual fund", "mf", "sip", "funds"] },
+    { "id": "news-reliance-1", "type": "news", "title": "Reliance Industries shares rise after strong retail and telecom numbers.", "symbol": "RELIANCE", "pct": 0.42, "time": "5h ago", "image": "/figma/sector/news/ola.png", "keywords": ["reliance", "ril"] },
+
+    { "id": "opt-tatasteel", "type": "option", "title": "TATASTEEL option chain", "subtitle": "25 Aug 2026", "price": 4287.65, "change": -22.85, "pct": -1.92, "keywords": ["tata", "steel", "option", "f&o"] },
+    { "id": "opt-tatapower", "type": "option", "title": "TATAPOWER option chain", "subtitle": "25 Aug 2026", "price": 412.3, "change": 5.1, "pct": 1.25, "keywords": ["tata", "power", "option", "f&o"] },
+    { "id": "opt-tataelxsi", "type": "option", "title": "TATAELXSI option chain", "subtitle": "25 Aug 2026", "price": 6820.0, "change": -41.5, "pct": -0.6, "keywords": ["tata", "elxsi", "option", "f&o"] },
+    { "id": "opt-wipro", "type": "option", "title": "WIPRO option chain", "subtitle": "25 Aug 2026", "price": 542.65, "change": -6.2, "pct": -1.13, "keywords": ["wipro", "option", "f&o"] },
+    { "id": "opt-nifty", "type": "option", "title": "NIFTY option chain", "subtitle": "27 Nov 2026", "price": 24456.9, "change": 70.9, "pct": 0.29, "keywords": ["nifty", "option", "f&o"] },
+    { "id": "opt-reliance", "type": "option", "title": "RELIANCE option chain", "subtitle": "25 Aug 2026", "price": 2943.15, "change": 12.4, "pct": 0.42, "keywords": ["reliance", "option", "f&o"] },
+
+    { "id": "mf-tata-multicap", "type": "mf", "title": "Tata Multicap Fund", "badge": "MF", "price": 24.87, "change": 0.31, "pct": 1.26, "keywords": ["tata", "mutual fund", "multicap"] },
+    { "id": "mf-tata-maaf", "type": "mf", "title": "Tata Multi Asset Allocation Fund Direct Growth", "badge": "MF", "price": 22.4, "change": -0.12, "pct": -0.53, "keywords": ["tata", "mutual fund", "multi asset"] },
+    { "id": "mf-tata-arbitrage", "type": "mf", "title": "Tata Arbitrage Fund Direct Growth", "badge": "MF", "price": 14.32, "change": 0.02, "pct": 0.14, "keywords": ["tata", "mutual fund", "arbitrage"] },
+    { "id": "mf-sbi-contra", "type": "mf", "title": "SBI Contra Fund Direct Growth", "badge": "MF", "price": 412.5, "change": 3.4, "pct": 0.83, "keywords": ["sbi", "mutual fund", "contra"] },
+    { "id": "mf-sbi-bluechip", "type": "mf", "title": "SBI Bluechip Fund Direct Growth", "badge": "MF", "price": 98.6, "change": 0.74, "pct": 0.76, "keywords": ["sbi", "mutual fund", "bluechip", "large cap"] },
+    { "id": "mf-hdfc-midcap", "type": "mf", "title": "HDFC Mid-Cap Opportunities Fund Direct Growth", "badge": "MF", "price": 152.3, "change": 2.18, "pct": 1.45, "keywords": ["hdfc", "mutual fund", "mid cap"] },
+    { "id": "mf-icici-value", "type": "mf", "title": "ICICI Pru Value Discovery Fund Direct Growth", "badge": "MF", "price": 312.75, "change": -6.95, "pct": -2.18, "keywords": ["icici", "mutual fund", "value"] },
+
+    { "id": "etf-tata-gold", "type": "etf", "title": "Tata Gold ETF FoF Direct Growth", "subtitle": "SBI Nifty 50 ETF", "badge": "ETF", "price": 11.42, "change": 0.08, "pct": 0.71, "keywords": ["tata", "gold", "etf"] },
+    { "id": "etf-tata-silver", "type": "etf", "title": "Tata Silver ETF FoF Direct Growth", "subtitle": "SBI Nifty 50 ETF", "badge": "ETF", "price": 13.05, "change": 0.11, "pct": 0.85, "keywords": ["tata", "silver", "etf"] },
+    { "id": "etf-tata-digital", "type": "etf", "title": "Tata Nifty India Digital ETF FoF Direct Growth", "subtitle": "SBI Nifty 50 ETF", "badge": "ETF", "price": 10.88, "change": 0.06, "pct": 0.55, "keywords": ["tata", "nifty", "digital", "etf"] },
+    { "id": "etf-sbi-nifty50", "type": "etf", "title": "SBI Nifty 50 ETF", "subtitle": "Index ETF", "badge": "ETF", "price": 262.4, "change": 0.74, "pct": 0.28, "keywords": ["sbi", "nifty", "etf"] },
+
+    { "id": "res-tatasteel", "type": "research", "title": "TATASTEEL", "badge": "Margin", "time": "Today 10:00 AM", "expectedProfit": 8.5, "targetMargin": 1456, "price": 4287.65, "change": 22.85, "pct": 1.92, "keywords": ["tata", "steel", "research"] },
+    { "id": "res-tatapower", "type": "research", "title": "TATAPOWER", "badge": "Margin", "time": "Today 10:00 AM", "expectedProfit": -8.5, "targetMargin": 1456, "price": 412.3, "change": 22.85, "pct": 1.92, "keywords": ["tata", "power", "research"] },
+    { "id": "res-tataelxsi", "type": "research", "title": "TATAELXSI", "badge": "Margin", "time": "Today 10:00 AM", "expectedProfit": 8.5, "targetMargin": 1456, "price": 6820.0, "change": 22.85, "pct": 1.92, "keywords": ["tata", "elxsi", "research"] },
+    { "id": "res-wipro", "type": "research", "title": "WIPRO", "badge": "Intraday", "time": "Today 09:30 AM", "expectedProfit": 4.2, "targetMargin": 565, "price": 542.65, "change": -6.2, "pct": -1.13, "keywords": ["wipro", "research"] },
+    { "id": "res-sbin", "type": "research", "title": "SBIN", "badge": "Intraday", "time": "Today 09:15 AM", "expectedProfit": 3.8, "targetMargin": 875, "price": 842.75, "change": 7.95, "pct": 0.95, "keywords": ["sbi", "bank", "research", "mutual fund"] },
+
+    { "id": "rep-tata-1", "type": "report", "title": "Tata Market Insights: Morning Briefing", "subtitle": "Daily Morning Update", "date": "01 Sep 2026", "keywords": ["tata", "report", "morning"] },
+    { "id": "rep-tata-2", "type": "report", "title": "Tata Market Insights: Evening Wrap", "subtitle": "Daily Evening Update", "date": "01 Sep 2026", "keywords": ["tata", "report"] },
+    { "id": "rep-tata-3", "type": "report", "title": "Tata Financial Snapshot: Morning Review", "subtitle": "Daily Morning Update", "date": "31 Aug 2026", "keywords": ["tata", "report"] },
+    { "id": "rep-wipro-1", "type": "report", "title": "Wipro Quarterly Results Review", "subtitle": "Company Update", "date": "28 Aug 2026", "keywords": ["wipro", "report", "results"] },
+    { "id": "rep-mf-1", "type": "report", "title": "Mutual Fund Monthly: Flows and Category Returns", "subtitle": "Monthly Report", "date": "01 Sep 2026", "keywords": ["mutual fund", "mf", "report", "funds"] },
+
+    { "id": "faq-joint-demat", "type": "faq", "title": "Can I open a joint Demat account?", "subtitle": "FAQ · Demat Account", "href": "/#faqs", "keywords": ["joint", "demat", "account", "joint demat"] },
+    { "id": "faq-joint-holders", "type": "faq", "title": "How many holders can a joint Demat account have?", "subtitle": "FAQ · Demat Account", "href": "/#faqs", "keywords": ["joint", "demat", "holders", "joint demat"] },
+    { "id": "blog-joint-demat", "type": "faq", "title": "Joint Demat accounts explained: who should open one", "subtitle": "Blog · Investor Awareness", "href": "/blogs", "keywords": ["joint", "demat", "blog", "joint demat", "awareness"] },
+    { "id": "faq-open-demat", "type": "faq", "title": "How do I open a Demat account with SBI Securities?", "subtitle": "FAQ · Demat Account", "href": "/#faqs", "keywords": ["demat", "account", "open"] },
+    { "id": "faq-mf-sip", "type": "faq", "title": "How do I start a SIP in mutual funds?", "subtitle": "FAQ · Mutual Funds", "href": "/#faqs", "keywords": ["mutual fund", "sip", "mf"] }
+  ]
+}

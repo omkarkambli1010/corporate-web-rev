@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Pager from "@/components/ui/Pager";
+import PlayPauseButton from "@/components/ui/PlayPauseButton";
+import useMediaQuery from "@/utils/useMediaQuery";
 import SbButton from "@/components/ui/SbButton";
 import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import type { RiveSlides } from "@/components/ui/rive/riveTypes";
@@ -28,14 +30,22 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
   const total = slides.length;
   const go = (delta: number) => setIndex((i) => (i + delta + total) % total);
 
+  /* Auto-advance can be paused (WCAG 2.2.2). It starts paused for visitors who
+     ask for reduced motion; after that the button decides. */
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const [userPlaying, setUserPlaying] = useState<boolean | null>(null);
+  const playing = userPlaying ?? !reducedMotion;
+  const togglePlay = () => setUserPlaying(!playing);
+
   useEffect(() => {
+    if (!playing) return;
     const id = window.setInterval(
       () => setIndex((i) => (i + 1) % total),
       life.autoAdvanceMs,
     );
     return () => window.clearInterval(id);
     // Restart the timer whenever the slide is changed by hand.
-  }, [index, total, life.autoAdvanceMs]);
+  }, [index, total, life.autoAdvanceMs, playing]);
 
   const slide = slides[index];
 
@@ -91,6 +101,13 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
             <SbButton href={life.ctaHref} className={styles.cta}>
               {life.ctaLabel}
             </SbButton>
+            {/* The 360 frame drops the pager, so pause / play stands alone. */}
+            <PlayPauseButton
+              playing={playing}
+              onToggle={togglePlay}
+              label="photo carousel"
+              className={styles.mobilePlay}
+            />
           </div>
 
           <div className={styles.gallery}>
@@ -145,6 +162,8 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
                 label="photo"
                 rules="tablet"
                 compact
+                playing={playing}
+                onTogglePlay={togglePlay}
               />
             </div>
           </div>

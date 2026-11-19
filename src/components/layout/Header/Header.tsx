@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 
+import SearchModal from "@/components/search/SearchModal";
 import { SEARCH_PLACEHOLDER, TOP_NAV } from "@/constants/sbi-home";
 import styles from "./Header.module.scss";
 
@@ -22,20 +23,16 @@ const inter = Inter({
 /** Top Nav — Figma `Top Nav` 0:64969, Pre-Login Home Page Sprint 2. */
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  /* Below 768 the frame keeps only the search glyph in the bar, so the field
-     itself drops to a row that the glyph opens. Above it the field is always
-     in the bar and this flag never applies. */
+  /* Search opens as a modal (desktop/tablet) or a full screen (360) — the
+     field in the bar, the glyph below 1280, and ⌘K / Ctrl+K all open it. */
   const [searchOpen, setSearchOpen] = useState(false);
-  const searchRef = useRef<HTMLInputElement>(null);
 
-  /* The field advertises a shortcut, so it honours one — leaving the badge
-     decorative would be a visible untruth. Nothing else about search is wired:
-     there is no search route yet (see the note in the PR description). */
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
-        searchRef.current?.focus();
+        setMenuOpen(false);
+        setSearchOpen(true);
       }
     }
 
@@ -103,48 +100,39 @@ export default function Header() {
           <button
             type="button"
             className={`${styles.iconButton} ${styles.searchToggle}`}
+            aria-haspopup="dialog"
             aria-expanded={searchOpen}
-            aria-controls="site-search"
             onClick={() => {
               setMenuOpen(false);
-              setSearchOpen((open) => !open);
-              if (!searchOpen) {
-                window.setTimeout(() => searchRef.current?.focus(), 0);
-              }
+              setSearchOpen(true);
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/figma/header/m-search.svg" alt="" width={24} height={24} />
-            <span className="visually-hidden">
-              {searchOpen ? "Close search" : "Search"}
-            </span>
+            <span className="visually-hidden">Search</span>
           </button>
 
-          <div className={`${styles.search} ${searchOpen ? styles.searchOpen : ""}`}>
-            <label htmlFor="site-search" className="visually-hidden">
-              Search
-            </label>
+          {/* Input Field 18571:6304 — looks like a field, opens the search. */}
+          <button
+            type="button"
+            className={styles.search}
+            aria-haspopup="dialog"
+            aria-expanded={searchOpen}
+            onClick={() => {
+              setMenuOpen(false);
+              setSearchOpen(true);
+            }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className={styles.searchIcon}
-              src="/figma/header/search.svg"
-              alt=""
-              width={20}
-              height={20}
-              aria-hidden="true"
-            />
-            <input
-              id="site-search"
-              ref={searchRef}
-              type="search"
-              className={styles.searchInput}
-              placeholder={SEARCH_PLACEHOLDER}
-            />
+            <img className={styles.searchIcon} src="/figma/header/search.svg" alt="" width={20} height={20} />
+            <span className={styles.searchLabel}>Search</span>
             <span className={styles.shortcut} aria-hidden="true">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/figma/header/command.svg" alt="" width={16} height={16} />K
             </span>
-          </div>
+          </button>
+
+          <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} placeholder={SEARCH_PLACEHOLDER} />
 
           <Link
             href="/support"

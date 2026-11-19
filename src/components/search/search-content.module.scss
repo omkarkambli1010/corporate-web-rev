@@ -1,0 +1,360 @@
+/* Search body — landing and results, shared by the desktop/tablet modal, the
+   360 search screen and the /search page (Sprint 1 search frames). */
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.blockHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* "Think it Search it" — Poppins Med 16/24 in #4437d8, set italic. */
+.think {
+  margin: 0;
+  font-family: var(--sb-font-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sb-text-hover);
+}
+
+/* Section headings — Poppins Med 16/24, Text Secondary. */
+.blockTitle {
+  margin: 0;
+  font-family: var(--sb-font-body);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sb-text-secondary);
+}
+
+.headArrow {
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sb-text-primary);
+  cursor: pointer;
+}
+
+.headArrow:hover {
+  color: var(--sb-text-hover);
+}
+
+.viewAllLink {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--sb-font-data);
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--sb-text-display);
+  cursor: pointer;
+}
+
+/* Tags+Icon — 32 tall, 6 x 10, 16 radius, white-to-#ececff with a lilac
+   hairline; a 12px search glyph 4 before the 14/20 label. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 6px 10px;
+  border: 0.5px solid #c5c4fd;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--sb-surface-primary) 0%, var(--sb-primary-100) 100%);
+  font-family: var(--sb-font-body);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sb-text-secondary);
+  cursor: pointer;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  border-color: var(--sb-stroke-hover);
+  color: var(--sb-text-hover);
+}
+
+/* Recent Searches — 160 x 56 cards, 8 apart: Inter Med 12/16 name over the
+   quote. The clock glyph belongs to the 360 pill variant only. */
+.recent {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.recentCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  width: 160px;
+  min-height: 56px;
+  padding: 4px 8px;
+  border: 1px solid var(--sb-stroke-default);
+  border-radius: var(--sb-radius-8);
+  background: var(--sb-surface-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.recentCard:hover,
+.recentCard:focus-visible {
+  border-color: var(--sb-stroke-hover);
+}
+
+.recentName {
+  overflow: hidden;
+  max-width: 100%;
+  font-family: var(--sb-font-data);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--sb-text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.recentQuote {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--sb-font-data);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--sb-text-secondary);
+}
+
+.recentClock {
+  display: none;
+}
+
+.up {
+  color: #0a5f3c;
+}
+
+.down {
+  color: #a80d0d;
+}
+
+:global([data-theme="dark"]) .up {
+  color: #4fd69c;
+}
+
+:global([data-theme="dark"]) .down {
+  color: #ff8a8a;
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Tab Bar — 8 above 44 tall underline tabs on a 1px #edf4fc rule; Poppins
+   Med 14/20, tertiary, the current one Text Display over a 2px underline. */
+.tabBar {
+  padding-top: 8px;
+  border-bottom: 1px solid var(--sb-divider);
+}
+
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-family: var(--sb-font-body);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sb-text-tertiary);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--sb-text-display);
+}
+
+.tabActive {
+  border-bottom-color: var(--sb-text-display);
+  color: var(--sb-text-display);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Sections — 8 in from either side, 4 between heading and rows. */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.count {
+  margin: 0;
+  font-family: var(--sb-font-body);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sb-text-tertiary);
+}
+
+.countNumber {
+  color: var(--sb-text-hover);
+}
+
+/* "Looking for Mutual Funds" — a light-blue round glyph, 14/20 text, arrow. */
+.gateway {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  font-family: var(--sb-font-data);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sb-text-tertiary);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.gateway strong {
+  font-weight: 400;
+  color: var(--sb-text-primary);
+}
+
+.gatewayIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e2f1ff;
+  color: #2f6fd8;
+}
+
+.gatewayText {
+  flex: 1;
+}
+
+.gatewayArrow {
+  color: var(--sb-text-primary);
+}
+
+/* No results — Inter 14/20 tertiary, the query in #4437d8, centred. */
+.noResults {
+  margin: 0;
+  font-family: var(--sb-font-data);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sb-text-tertiary);
+  text-align: center;
+}
+
+.noResultsQuery {
+  color: var(--sb-text-hover);
+}
+
+/* 360 frames — recent searches become clock pills, sections lose the inset. */
+@media (max-width: 767px) {
+  .landing {
+    gap: 24px;
+  }
+
+  .think,
+  .blockTitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .recentCard {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    width: auto;
+    min-height: 0;
+    height: 36px;
+    padding: 6px 12px;
+    border-radius: 18px;
+  }
+
+  .recentName {
+    font-family: var(--sb-font-body);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: none;
+  }
+
+  .recentQuote {
+    display: none;
+  }
+
+  .recentClock {
+    display: block;
+    flex-shrink: 0;
+    color: var(--sb-text-secondary);
+  }
+
+  .section {
+    padding: 0;
+  }
+
+  .results {
+    gap: 24px;
+  }
+
+  .tab {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

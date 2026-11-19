@@ -1,0 +1,231 @@
+/* Search modal — Sprint 1 search frames. Desktop 865 wide and tablet 560,
+   centred 52 under the header over a #000 20% scrim that leaves the header
+   clear; 360 is a full screen above everything. */
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 1020; /* under the sticky header (1030) */
+  pointer-events: none;
+}
+
+.scrim {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+}
+
+/* Search 865 x 568 — white, 1px #ccd9e8, 12 radius. */
+.panel {
+  position: fixed;
+  top: var(--search-top, 140px);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: min(865px, calc(100vw - 208px));
+  max-height: min(568px, calc(100vh - var(--search-top, 140px) - 24px));
+  transform: translateX(-50%);
+  overflow: hidden;
+  background: var(--sb-surface-primary);
+  border: 1px solid var(--sb-stroke-default);
+  border-radius: var(--sb-radius-12);
+  box-shadow: 0 10px 20px 4px var(--sb-elevation-01);
+  pointer-events: auto;
+}
+
+/* Input row — the field runs the panel's width under a #edf4fc rule. */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin: 0 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--sb-divider);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fieldIcon {
+  flex-shrink: 0;
+  color: var(--sb-text-tertiary);
+}
+
+.back,
+.clear,
+.dismiss,
+.mobileBack {
+  flex-shrink: 0;
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sb-text-primary);
+  cursor: pointer;
+}
+
+.mobileBack {
+  display: none;
+}
+
+/* The × on the bar closes; while typing the clear × sits in the field. */
+.field:has(.clear) ~ .dismiss {
+  display: none;
+}
+
+/* Input — Inter 14/21, placeholder #61799b. */
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--sb-font-data);
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--sb-text-primary);
+}
+
+.input::placeholder {
+  color: var(--sb-text-tertiary);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::-webkit-search-decoration,
+.input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.bar:focus-within {
+  border-bottom-color: var(--sb-stroke-hover);
+}
+
+.tabsWrap {
+  flex-shrink: 0;
+  margin: 0 16px;
+}
+
+.fieldIconTyping {
+  display: none;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 16px 16px;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #97abc3 var(--sb-divider);
+}
+
+/* Overlay Bottom — 56 tall #f6f6ff strip, "View all" Inter 14/21 + 20 arrow. */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 56px;
+  background: var(--sb-surface-tertiary);
+}
+
+.viewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sb-font-data);
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--sb-text-display);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 360 — a full screen: back arrow, then a bordered field; no footer, the
+   page scrolls every section. */
+@media (max-width: 767px) {
+  .root {
+    z-index: 1100; /* over the header */
+  }
+
+  .scrim {
+    display: none;
+  }
+
+  .panel {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    transform: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .bar {
+    gap: 12px;
+    margin: 0;
+    padding: 16px;
+    border-bottom: 0;
+  }
+
+  .mobileBack {
+    display: inline-flex;
+  }
+
+  .dismiss {
+    display: none;
+  }
+
+  .field {
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--sb-stroke-default);
+    border-radius: var(--sb-radius-8);
+  }
+
+  .field:focus-within {
+    border-color: var(--sb-stroke-hover);
+  }
+
+  /* No in-field back arrow on 360 — the bar's own arrow is the way back. */
+  .back {
+    display: none;
+  }
+
+  .fieldIconTyping {
+    display: block;
+  }
+
+  .tabsWrap {
+    margin: 0;
+    padding: 0 16px;
+  }
+
+  .bar:focus-within {
+    border-bottom-color: transparent;
+  }
+
+  .body {
+    padding: 8px 16px 24px;
+  }
+
+  .footer {
+    display: none;
+  }
+}

@@ -139,35 +139,30 @@ $surface: var(--sb-surface-primary, #ffffff);
   height: 20px;
 }
 
-.searchInput {
+/* The field is a button that opens the search modal: "Search" in the
+   placeholder colour, the ⌘K hint at the end. */
+.search {
+  font-family: inherit;
+  text-align: left;
+  cursor: text;
+}
+
+.searchLabel {
   flex: 1;
   min-width: 0;
-  border: 0;
-  background: none;
-  font-family: inherit;
   font-size: 14px;
   line-height: 21px;
-  color: $display;
-}
-
-.searchInput::placeholder {
   color: $muted;
-  /* The frame clips the placeholder at 117 rather than wrapping it. */
-  text-overflow: ellipsis;
 }
 
-.searchInput:focus {
-  outline: none;
+.search:hover,
+.search:focus-visible {
+  border-color: var(--sb-stroke-hover, #4f45e4);
 }
 
-.search:focus-within {
-  border-color: #4f45e4;
-}
-
-/* Cancel the UA decorations on type="search" so the field matches the frame. */
-.searchInput::-webkit-search-decoration,
-.searchInput::-webkit-search-cancel-button {
-  appearance: none;
+.search:focus-visible {
+  outline: 2px solid var(--sb-stroke-hover, #4f45e4);
+  outline-offset: 1px;
 }
 
 .shortcut {
@@ -305,10 +300,14 @@ $surface: var(--sb-surface-primary, #ffffff);
     padding: 20px 32px;
   }
 
-  /* The search field is the first thing to go: the nav and the account actions
-     carry more of the page than a field with no destination yet. */
+  /* The field is the first thing to leave the bar; the search glyph takes its
+     place and opens the same search (tablet and mobile frames). */
   .search {
     display: none;
+  }
+
+  .searchToggle {
+    display: inline-flex;
   }
 }
 
@@ -419,22 +418,6 @@ $surface: var(--sb-surface-primary, #ffffff);
     max-width: none;
   }
 
-  /* The field is not in the 360 bar, so it opens as a sheet under it rather
-     than squeezing into a row that has no space for it. */
-  .search {
-    display: none;
-  }
-
-  .searchOpen {
-    position: absolute;
-    left: 16px;
-    right: 16px;
-    top: calc(100% + 8px);
-    z-index: 1;
-    display: flex;
-    width: auto;
-    box-shadow: 0 10px 20px 4px var(--sb-elevation-01, rgba(204, 217, 232, 0.4));
-  }
 
   .shortcut {
     display: none;

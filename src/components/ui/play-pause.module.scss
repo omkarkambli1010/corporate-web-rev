@@ -1,0 +1,39 @@
+/* Pause / play — sized to sit beside the pager arrows (40) and pill: the
+   pill's #f7fbff fill and 1.43px #ccd9e8 ring, the glyph in Text Display. */
+.button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1.43px solid var(--sb-stroke-default, #ccd9e8);
+  border-radius: 50%;
+  background: var(--sb-surface-secondary, #f7fbff);
+  color: var(--sb-text-display, #292075);
+  cursor: pointer;
+  transition: border-color 0.18s ease;
+}
+
+.button:hover {
+  border-color: var(--sb-stroke-hover, #4f45e4);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--sb-stroke-hover, #4f45e4);
+  outline-offset: 2px;
+}
+
+/* On the dark Market Pulse band. */
+.dark {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.dark:hover {
+  border-color: #ffffff;
+}
+
+.dark:focus-visible {
+  outline-color: #ffffff;
+}

@@ -1,0 +1,331 @@
+/* Search Rows — Sprint 1 search frames (desktop 4:127748). 16 above the
+   content, a 1px #edf4fc divider under it: 72 tall for two-line rows. Colours
+   use the --sb-* tokens where the design's value is a token, so rows follow
+   the dark theme; badges and up/down figures keep their literal tones. */
+
+.row {
+  position: relative;
+  border-bottom: 1px solid var(--sb-divider);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: 16px 0 15px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:hover .title,
+.link:focus-visible .title {
+  color: var(--sb-text-hover);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--sb-stroke-hover);
+  outline-offset: 2px;
+  border-radius: var(--sb-radius-4);
+}
+
+/* Logo — 36 round, 0.56px #d9d9d9 ring, 18 glyph. */
+.logo {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0.56px solid #d9d9d9;
+  border-radius: 50%;
+  color: var(--sb-text-tertiary);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Title — Poppins 12/16, Text Primary. */
+.title {
+  font-family: var(--sb-font-body);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--sb-text-primary);
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Subtitle — Poppins 12/16, Text Secondary. */
+.subtitle {
+  font-family: var(--sb-font-body);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--sb-text-secondary);
+}
+
+/* Badge — Inter 10/14, 4 x 6, 4 radius. */
+.badge {
+  flex-shrink: 0;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: var(--sb-font-data);
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.badgeLilac {
+  background: #f6f6ff;
+  color: #4437d8;
+}
+
+.badgeGreen {
+  background: #e0fff2;
+  color: #0b412b;
+}
+
+.badgeNeutral {
+  background: #f7fbff;
+  color: #101b34;
+}
+
+.time {
+  flex-shrink: 0;
+  font-family: var(--sb-font-data);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sb-text-tertiary);
+}
+
+.researchFigures {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.reportMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sb-font-body);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--sb-text-tertiary);
+}
+
+/* PriceChange — price 12/16 secondary, then change 14/20 · pct 14/20 Med and
+   a 20px direction arrow. */
+.priceBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.price {
+  min-width: 82px;
+  font-family: var(--sb-font-body);
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  color: var(--sb-text-secondary);
+}
+
+.change {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--sb-font-body);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.dot {
+  padding: 0 4px;
+}
+
+.pct {
+  font-weight: 500;
+}
+
+.up {
+  color: #0a5f3c;
+}
+
+.down {
+  color: #a80d0d;
+}
+
+:global([data-theme="dark"]) .up {
+  color: #4fd69c;
+}
+
+:global([data-theme="dark"]) .down {
+  color: #ff8a8a;
+}
+
+/* News — 48 thumbnail, headline beside "1h ago", symbol and a return pill. */
+.thumb {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 4.8px;
+  object-fit: cover;
+}
+
+.newsText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.newsTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.newsTop .time {
+  font-family: var(--sb-font-body);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.newsMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.symbol {
+  font-family: var(--sb-font-body);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sb-text-secondary);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-family: var(--sb-font-data);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.pillUp {
+  background: #f7fffc;
+  color: #1d8057;
+}
+
+.pillDown {
+  background: #fff3f3;
+  color: #a80d0d;
+}
+
+/* Buy / Sell on hover — switched off for now (see SearchRow.tsx).
+
+/ * Buy / Sell — revealed on hover or keyboard focus, left of the price. * /
+.trade {
+  position: absolute;
+  top: 50%;
+  right: 250px;
+  display: none;
+  gap: 8px;
+  transform: translateY(-50%);
+}
+
+.row:hover .trade,
+.row:focus-within .trade {
+  display: inline-flex;
+}
+
+.tradeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--sb-radius-6);
+  font-family: var(--sb-font-data);
+  font-weight: 600;
+  font-size: 12px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.buy {
+  background: #28a872;
+}
+
+.sell {
+  background: #e95d5d;
+}
+*/
+
+/* 360 frames — the price block stacks over its change, and no hover. */
+@media (max-width: 767px) {
+  .link {
+    align-items: flex-start;
+  }
+
+  .priceBlock {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .price {
+    min-width: 0;
+  }
+
+  .change {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .change svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .researchFigures {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  /* Buy / Sell off for now:
+  .trade {
+    display: none !important;
+  }
+  */
+}

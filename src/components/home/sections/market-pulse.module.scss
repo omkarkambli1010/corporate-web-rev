@@ -65,10 +65,10 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .track {
-    animation: none;
-  }
+/* Paused by the button — or from the start for reduced motion (see
+   MarketPulseTicker), which used to switch the animation off here instead. */
+.paused .track {
+  animation-play-state: paused;
 }
 
 .list {
@@ -166,11 +166,12 @@
 @media (max-width: 767px) {
   .inner {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
     grid-template-areas:
-      "title arrow"
-      "ticker ticker";
+      "title play arrow"
+      "ticker ticker ticker";
     row-gap: 24px;
+    column-gap: 12px;
     min-height: 164px;
     padding: 20px var(--sb-gutter);
   }
@@ -199,6 +200,13 @@
 
   .ticker {
     grid-area: ticker;
+  }
+
+  /* Pause / play joins the head row, beside the arrow. */
+  .toggle {
+    grid-area: play;
+    align-self: start;
+    margin-top: -2px;
   }
 
   /* Logo/01 keeps its 20 of horizontal padding on the 360 frame, so the first

@@ -36,9 +36,31 @@
 }
 
 .tabs {
+  position: relative;
   display: flex;
   justify-content: center;
   margin: 24px 0;
+}
+
+/* Pause / play for the auto-advancing steps, at the row's end so the tabs
+   stay centred. */
+.play {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 767px) {
+  .tabs {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .play {
+    position: static;
+    transform: none;
+  }
 }
 
 /* The authored heading break exists only under the mobile breakpoint. */

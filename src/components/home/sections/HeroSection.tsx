@@ -1,9 +1,10 @@
 "use client";
 
-import type { ChangeEvent } from "react";
+import { useState, type ChangeEvent } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import PlayPauseButton from "@/components/ui/PlayPauseButton";
 import SbButton from "@/components/ui/SbButton";
 import { HERO } from "@/constants/sbi-home";
 import {
@@ -67,6 +68,12 @@ export default function HeroSection() {
     },
   });
 
+  /* The headline rotates on its own, so it can be paused (WCAG 2.2.2). It
+     starts paused for visitors who ask for reduced motion. */
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const [userPlaying, setUserPlaying] = useState<boolean | null>(null);
+  const rotating = userPlaying ?? !reducedMotion;
+
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.inner}>
@@ -74,7 +81,7 @@ export default function HeroSection() {
           <h1 id="hero-title" className={styles.title}>
             <span className={styles.titleLead}>{HERO.titleLead}</span>
             {/* The headline cycles in place inside a fixed two-line window. */}
-            <span className={styles.rotator}>
+            <span className={`${styles.rotator} ${rotating ? "" : styles.rotatorPaused}`}>
               <span className={styles.rotatorTrack}>
                 {[...HERO.rotatingLines, HERO.rotatingLines[0]].map((lines, i) => (
                   <span className={styles.rotatorItem} key={i} aria-hidden={i === 3}>
@@ -91,6 +98,13 @@ export default function HeroSection() {
             <br />
             {HERO.subtext[1]}
           </p>
+          <PlayPauseButton
+            playing={rotating}
+            onToggle={() => setUserPlaying(!rotating)}
+            label="rotating headline"
+            size={32}
+            className={styles.rotatorToggle}
+          />
         </div>
 
         <div className={styles.mockup} aria-hidden="true">

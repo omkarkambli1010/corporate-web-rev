@@ -93,10 +93,18 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .rotatorTrack {
-    animation: none;
-  }
+/* Paused by the button — or from the start for reduced motion (see
+   HeroSection), which used to switch the animation off here instead. */
+.rotatorPaused .rotatorTrack {
+  animation-play-state: paused;
+}
+
+/* Pause / play for the rotating headline, in the free corner after the
+   subtext's short second line so nothing below it moves. */
+.rotatorToggle {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
 }
 
 .subtext {
