@@ -8,7 +8,7 @@ import {
   PLATFORM_TABS,
 } from "@/constants/sbi-home";
 import PlayPauseButton from "@/components/ui/PlayPauseButton";
-import useMediaQuery from "@/utils/useMediaQuery";
+import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
 import styles from "./platform.module.scss";
 
 /** Next-gen Investment Platform — desktop 1:59598, mobile 0:55678. */
@@ -18,9 +18,6 @@ export default function PlatformSection() {
   /* The steps advance on their own until someone picks or hovers one; the
      pause / play button controls that too (WCAG 2.2.2). Starts paused for
      visitors who ask for reduced motion. */
-  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const [userPlaying, setUserPlaying] = useState<boolean | null>(null);
-  const playing = userPlaying ?? !reducedMotion;
 
   const steps = PLATFORM.steps[tab] ?? PLATFORM.steps[PLATFORM_TABS[0]];
   const panels = PLATFORM.panels[tab] ?? PLATFORM.panels[PLATFORM_TABS[0]];
@@ -62,14 +59,10 @@ export default function PlatformSection() {
   }, [layers, fade.durationMs]);
 
   // The steps auto-advance, as the Figma note describes, until someone picks one.
-  useEffect(() => {
-    if (!playing) return;
-    const id = window.setInterval(
-      () => setStep((current) => (current + 1) % steps.length),
-      4000
-    );
-    return () => window.clearInterval(id);
-  }, [playing, steps.length]);
+  const autoplay = useCarouselAutoplay({
+    advance: () => setStep((current) => (current + 1) % steps.length),
+    intervalMs: 4000,
+  });
 
   return (
     <section className={styles.section}>
@@ -102,22 +95,22 @@ export default function PlatformSection() {
             label="Platform surface"
           />
           <PlayPauseButton
-            playing={playing}
-            onToggle={() => setUserPlaying(!playing)}
+            playing={autoplay.playing}
+            onToggle={autoplay.toggle}
             label="platform steps"
             className={styles.play}
           />
         </div>
 
         <div className={styles.body}>
-          <ol className={styles.steps} onMouseEnter={() => setUserPlaying(false)}>
+          <ol className={styles.steps} onMouseEnter={autoplay.pause}>
             {steps.map((item, i) => (
               <li key={item.title} className={i === step ? styles.active : ""}>
                 <button
                   type="button"
                   onClick={() => {
                     setStep(i);
-                    setUserPlaying(false);
+                    autoplay.pause();
                   }}
                   aria-current={i === step}
                 >

@@ -216,7 +216,7 @@ export const INSURANCE: Offering[] = [
   {
     slug: "life-insurance",
     mobileOrder: 1,
-    art: "/figma/offerings/life-insurance.png",
+    art: "/figma/offerings/life-insurance.svg",
     title: "Life Insurance",
     lede: "Protect what matters most.",
     highlight: "Cover your family's future.",
@@ -226,7 +226,7 @@ export const INSURANCE: Offering[] = [
   {
     slug: "health-insurance",
     mobileOrder: 2,
-    art: "/figma/offerings/health-insurance.png",
+    art: "/figma/offerings/health-insurance.svg",
     title: "Health Insurance",
     lede: "Care without the cost worry.",
     highlight: "Cashless hospital network.",
@@ -236,7 +236,7 @@ export const INSURANCE: Offering[] = [
   {
     slug: "term-insurance",
     mobileOrder: 3,
-    art: "/figma/offerings/term-insurance.png",
+    art: "/figma/offerings/term-insurance.svg",
     title: "Term Insurance",
     lede: "High cover, low premium.",
     highlight: "Secure them for the long run.",

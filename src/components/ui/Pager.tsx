@@ -39,7 +39,7 @@ export default function Pager({ index, total, onPrev, onNext, label, rules = fal
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/figma/about/csr/arrow-prev.svg" alt="" width={40} height={40} />
         </button>
-        <p className={styles.pill} aria-live="polite">
+        <p className={styles.pill} aria-live={playing ? "off" : "polite"}>
           <span className={styles.current}>{pad(index + 1)}</span>
           <span className={styles.total}>/{pad(total)}</span>
         </p>
@@ -48,7 +48,7 @@ export default function Pager({ index, total, onPrev, onNext, label, rules = fal
           <img src="/figma/about/csr/arrow-next.svg" alt="" width={40} height={40} />
         </button>
         {onTogglePlay && playing !== undefined ? (
-          <PlayPauseButton playing={playing} onToggle={onTogglePlay} label={`${label} carousel`} className={styles.play} />
+          <PlayPauseButton playing={playing} onToggle={onTogglePlay} label={`${label} carousel`} mobileSize={32} className={styles.play} />
         ) : null}
       </div>
       {rules && align === "center" ? <span className={styles.ruleDotted} aria-hidden="true" /> : null}

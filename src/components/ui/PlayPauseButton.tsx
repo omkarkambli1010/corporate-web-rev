@@ -11,6 +11,8 @@ interface PlayPauseButtonProps {
   /** "dark" is the white button for dark grounds (Market Pulse). */
   tone?: "light" | "dark";
   size?: number;
+  /** Size below 767px, to match carousels whose mobile arrows shrink to 32. */
+  mobileSize?: number;
   className?: string;
 }
 
@@ -25,6 +27,7 @@ export default function PlayPauseButton({
   label,
   tone = "light",
   size = 40,
+  mobileSize,
   className,
 }: PlayPauseButtonProps) {
   const icon = Math.round(size * 0.45);
@@ -32,7 +35,12 @@ export default function PlayPauseButton({
     <button
       type="button"
       className={`${styles.button} ${tone === "dark" ? styles.dark : ""} ${className ?? ""}`}
-      style={{ width: size, height: size }}
+      style={
+        {
+          "--pp-size": `${size}px`,
+          ...(mobileSize ? { "--pp-size-mobile": `${mobileSize}px` } : {}),
+        } as React.CSSProperties
+      }
       onClick={onToggle}
       aria-label={`${playing ? "Pause" : "Play"} ${label}`}
     >

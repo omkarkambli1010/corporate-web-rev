@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Pager from "@/components/ui/Pager";
 import PlayPauseButton from "@/components/ui/PlayPauseButton";
-import useMediaQuery from "@/utils/useMediaQuery";
+import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
 import SbButton from "@/components/ui/SbButton";
 import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import type { RiveSlides } from "@/components/ui/rive/riveTypes";
@@ -30,22 +30,16 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
   const total = slides.length;
   const go = (delta: number) => setIndex((i) => (i + delta + total) % total);
 
-  /* Auto-advance can be paused (WCAG 2.2.2). It starts paused for visitors who
-     ask for reduced motion; after that the button decides. */
-  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const [userPlaying, setUserPlaying] = useState<boolean | null>(null);
-  const playing = userPlaying ?? !reducedMotion;
-  const togglePlay = () => setUserPlaying(!playing);
-
-  useEffect(() => {
-    if (!playing) return;
-    const id = window.setInterval(
-      () => setIndex((i) => (i + 1) % total),
-      life.autoAdvanceMs,
-    );
-    return () => window.clearInterval(id);
-    // Restart the timer whenever the slide is changed by hand.
-  }, [index, total, life.autoAdvanceMs, playing]);
+  /* Auto-advance with pause / play (WCAG 2.2.2); the timer restarts whenever
+     the slide is changed by hand. */
+  const stackRef = useRef<HTMLButtonElement>(null);
+  const autoplay = useCarouselAutoplay({
+    advance: () => go(1),
+    intervalMs: life.autoAdvanceMs,
+    resetKey: index,
+    hoverTarget: stackRef,
+  });
+  const { playing, toggle: togglePlay } = autoplay;
 
   const slide = slides[index];
 
@@ -113,6 +107,7 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
           <div className={styles.gallery}>
             <button
               type="button"
+              ref={stackRef}
               className={styles.stack}
               onClick={() => go(1)}
               aria-label="Show the next photo"

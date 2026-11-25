@@ -2,6 +2,8 @@
    pill's #f7fbff fill and 1.43px #ccd9e8 ring, the glyph in Text Display. */
 .button {
   flex-shrink: 0;
+  width: var(--pp-size, 40px);
+  height: var(--pp-size, 40px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -36,4 +38,11 @@
 
 .dark:focus-visible {
   outline-color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .button {
+    width: var(--pp-size-mobile, var(--pp-size, 40px));
+    height: var(--pp-size-mobile, var(--pp-size, 40px));
+  }
 }

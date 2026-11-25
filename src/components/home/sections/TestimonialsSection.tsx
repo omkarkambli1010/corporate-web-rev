@@ -8,6 +8,9 @@ import {
   LargeChevronRightIcon,
 } from "@/components/ui/SbIcons";
 import { TESTIMONIALS } from "@/constants/sbi-home";
+import { scrollRail } from "@/utils/scrollRail.utils";
+import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
+import PlayPauseButton from "@/components/ui/PlayPauseButton";
 import styles from "./testimonials.module.scss";
 
 function pad(n: number) {
@@ -86,15 +89,19 @@ export default function TestimonialsSection() {
   const move = (delta: -1 | 1) => {
     const rail = stackRef.current;
     if (isRail && rail) {
-      const card = rail.firstElementChild as HTMLElement | null;
-      rail.scrollBy({
-        left: delta * ((card?.clientWidth ?? 259) + 16),
-        behavior: "smooth",
-      });
+      // The mobile rail loops at its ends, as the desktop deck does.
+      scrollRail(rail, delta, 259);
       return;
     }
     setStep((current) => current + delta);
   };
+
+  // Both the desktop deck and the mobile rail advance on their own.
+  const autoplay = useCarouselAutoplay({
+    advance: () => move(1),
+    resetKey: index,
+    hoverTarget: stackRef,
+  });
 
   return (
     <section className={styles.section}>
@@ -166,7 +173,7 @@ export default function TestimonialsSection() {
               <ChevronLeftIcon />
             </button>
 
-            <p className={styles.pill} aria-live="polite">
+            <p className={styles.pill} aria-live={autoplay.playing ? "off" : "polite"}>
               <span className={styles.current}>{pad(index + 1)}</span>
               <span className={styles.total}>/{pad(total)}</span>
             </p>
@@ -179,6 +186,12 @@ export default function TestimonialsSection() {
             >
               <ChevronRightIcon />
             </button>
+            <PlayPauseButton
+              playing={autoplay.playing}
+              onToggle={autoplay.toggle}
+              label="testimonials carousel"
+              mobileSize={32}
+            />
           </div>
 
           <span className={styles.rule} aria-hidden="true" />

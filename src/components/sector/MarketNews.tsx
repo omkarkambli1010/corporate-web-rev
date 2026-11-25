@@ -5,6 +5,8 @@ import Link from "next/link";
 import Pager from "@/components/ui/Pager";
 import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import type { SectorContent } from "@/types/pages";
+import { scrollRail } from "@/utils/scrollRail.utils";
+import useCarouselAutoplay, { useRailOverflow } from "@/utils/useCarouselAutoplay";
 import styles from "./market-news.module.scss";
 
 /**
@@ -28,12 +30,16 @@ export default function MarketNews({ news }: { news: SectorContent["news"] }) {
     return () => rail.removeEventListener("scroll", onScroll);
   }, []);
 
-  const page = (delta: -1 | 1) => {
-    const rail = railRef.current;
-    if (!rail) return;
-    const card = rail.firstElementChild as HTMLElement | null;
-    rail.scrollBy({ left: delta * ((card?.clientWidth ?? 242) + 16), behavior: "smooth" });
-  };
+  const page = (delta: -1 | 1) => scrollRail(railRef.current, delta, 242);
+
+  // Advances on its own while the rail overflows, with pause / play.
+  const overflows = useRailOverflow(railRef);
+  const autoplay = useCarouselAutoplay({
+    advance: () => page(1),
+    enabled: overflows,
+    resetKey: index,
+    hoverTarget: railRef,
+  });
 
   return (
     <section className={styles.section} id="market-news">
@@ -73,6 +79,8 @@ export default function MarketNews({ news }: { news: SectorContent["news"] }) {
           <Pager
             index={Math.min(index, MARKET_NEWS.length - 1)}
             total={MARKET_NEWS.length}
+            playing={overflows ? autoplay.playing : undefined}
+            onTogglePlay={overflows ? autoplay.toggle : undefined}
             onPrev={() => page(-1)}
             onNext={() => page(1)}
             label="news"

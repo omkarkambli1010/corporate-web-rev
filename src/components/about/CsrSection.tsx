@@ -6,6 +6,7 @@ import SectionHead from "@/components/ui/SectionHead";
 import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import type { RiveSlides } from "@/components/ui/rive/riveTypes";
 import useMediaQuery, { MOBILE_QUERY } from "@/utils/useMediaQuery";
+import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
 import type { AboutContent } from "@/types/pages";
 import styles from "./csr.module.scss";
 
@@ -49,6 +50,14 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
     setActive((i) => (((i + delta) % total) + total) % total);
   };
 
+  // Advances on its own, with pause / play beside the arrows (WCAG 2.2.2).
+  const stageRef = useRef<HTMLDivElement>(null);
+  const autoplay = useCarouselAutoplay({
+    advance: () => go(1),
+    resetKey: active,
+    hoverTarget: stageRef,
+  });
+
   const onWheel = (e: React.WheelEvent) => {
     if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 20)
       return;
@@ -77,7 +86,7 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
       <div className={styles.inner}>
         <SectionHead title={csr.title} align="center" mobileStart size="h2" />
 
-        <div className={styles.stageWrap} onWheel={onWheel}>
+        <div className={styles.stageWrap} onWheel={onWheel} ref={stageRef}>
           <RiveAnimation
             slot="csrCarousel"
             artboard={isMobile ? "Mobile" : isTablet ? "Tablet" : "Desktop"}
@@ -142,6 +151,8 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
             onPrev={() => go(-1)}
             onNext={() => go(1)}
             label="activity"
+            playing={autoplay.playing}
+            onTogglePlay={autoplay.toggle}
             rules
             compact
           />
@@ -153,6 +164,8 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
             onPrev={() => go(-1)}
             onNext={() => go(1)}
             label="activity"
+            playing={autoplay.playing}
+            onTogglePlay={autoplay.toggle}
             rules
             align="end"
           />
