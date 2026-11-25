@@ -1,3 +1,5 @@
+import { scrollBehavior } from "./carouselA11y";
+
 /**
  * Pages a scroll-snap rail by one card, looping at either end the way the
  * Testimonials deck does: "next" on the last card returns to the first, and
@@ -5,6 +7,7 @@
  *
  * The ends are read off the live scroll position rather than a card index, so
  * the loop holds whatever number of cards fit in view at the current width.
+ * Scrolls instantly for visitors who ask for reduced motion.
  */
 export function scrollRail(rail: HTMLElement | null, delta: -1 | 1, fallbackCard = 0) {
   if (!rail) return;
@@ -19,10 +22,10 @@ export function scrollRail(rail: HTMLElement | null, delta: -1 | 1, fallbackCard
   const atEnd = rail.scrollLeft >= max - 2;
 
   if (delta > 0 && atEnd) {
-    rail.scrollTo({ left: 0, behavior: "smooth" });
+    rail.scrollTo({ left: 0, behavior: scrollBehavior() });
   } else if (delta < 0 && atStart) {
-    rail.scrollTo({ left: max, behavior: "smooth" });
+    rail.scrollTo({ left: max, behavior: scrollBehavior() });
   } else {
-    rail.scrollBy({ left: step * delta, behavior: "smooth" });
+    rail.scrollBy({ left: step * delta, behavior: scrollBehavior() });
   }
 }

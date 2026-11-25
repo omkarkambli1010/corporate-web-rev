@@ -6,7 +6,7 @@ import SectionHead from "@/components/ui/SectionHead";
 import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import type { RiveSlides } from "@/components/ui/rive/riveTypes";
 import useMediaQuery, { MOBILE_QUERY } from "@/utils/useMediaQuery";
-import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
+import { carouselKeys, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import type { AboutContent } from "@/types/pages";
 import styles from "./csr.module.scss";
 
@@ -50,14 +50,6 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
     setActive((i) => (((i + delta) % total) + total) % total);
   };
 
-  // Advances on its own, with pause / play beside the arrows (WCAG 2.2.2).
-  const stageRef = useRef<HTMLDivElement>(null);
-  const autoplay = useCarouselAutoplay({
-    advance: () => go(1),
-    resetKey: active,
-    hoverTarget: stageRef,
-  });
-
   const onWheel = (e: React.WheelEvent) => {
     if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 20)
       return;
@@ -83,10 +75,17 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
 
   return (
     <section className={styles.section}>
-      <div className={styles.inner}>
+      <div className={styles.inner} {...carouselRegion(csr.title)}>
         <SectionHead title={csr.title} align="center" mobileStart size="h2" />
 
-        <div className={styles.stageWrap} onWheel={onWheel} ref={stageRef}>
+        <div
+          className={styles.stageWrap}
+          onWheel={onWheel}
+          role="group"
+          aria-label="Activity slides"
+          tabIndex={0}
+          onKeyDown={(e) => carouselKeys(e, go)}
+        >
           <RiveAnimation
             slot="csrCarousel"
             artboard={isMobile ? "Mobile" : isTablet ? "Tablet" : "Desktop"}
@@ -107,7 +106,7 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
                       key={role}
                       className={`${styles.card} ${styles[role]} ${delta === -2 || delta === 2 ? styles.far : ""}`}
                       {...(isActive
-                        ? {}
+                        ? carouselSlide(active, total, true)
                         : {
                             type: "button" as const,
                             onClick: () => go(delta),
@@ -151,8 +150,6 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
             onPrev={() => go(-1)}
             onNext={() => go(1)}
             label="activity"
-            playing={autoplay.playing}
-            onTogglePlay={autoplay.toggle}
             rules
             compact
           />
@@ -164,8 +161,6 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
             onPrev={() => go(-1)}
             onNext={() => go(1)}
             label="activity"
-            playing={autoplay.playing}
-            onTogglePlay={autoplay.toggle}
             rules
             align="end"
           />

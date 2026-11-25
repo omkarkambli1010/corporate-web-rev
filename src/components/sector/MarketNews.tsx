@@ -6,7 +6,7 @@ import Pager from "@/components/ui/Pager";
 import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import type { SectorContent } from "@/types/pages";
 import { scrollRail } from "@/utils/scrollRail.utils";
-import useCarouselAutoplay, { useRailOverflow } from "@/utils/useCarouselAutoplay";
+import { carouselKeys, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import styles from "./market-news.module.scss";
 
 /**
@@ -32,18 +32,9 @@ export default function MarketNews({ news }: { news: SectorContent["news"] }) {
 
   const page = (delta: -1 | 1) => scrollRail(railRef.current, delta, 242);
 
-  // Advances on its own while the rail overflows, with pause / play.
-  const overflows = useRailOverflow(railRef);
-  const autoplay = useCarouselAutoplay({
-    advance: () => page(1),
-    enabled: overflows,
-    resetKey: index,
-    hoverTarget: railRef,
-  });
-
   return (
     <section className={styles.section} id="market-news">
-      <div className={styles.inner}>
+      <div className={styles.inner} {...carouselRegion(news.title)}>
         <div className={styles.head}>
           <h2 className={styles.title}>{news.title}</h2>
           <Link href={news.allHref} className={styles.arrow} aria-label={news.allLabel}>
@@ -51,9 +42,9 @@ export default function MarketNews({ news }: { news: SectorContent["news"] }) {
           </Link>
         </div>
 
-        <ul className={styles.rail} ref={railRef}>
+        <ul className={styles.rail} ref={railRef} tabIndex={0} onKeyDown={(e) => carouselKeys(e, page)}>
           {MARKET_NEWS.map((story, i) => (
-            <li key={`${story.image}-${i}`} className={styles.card}>
+            <li key={`${story.image}-${i}`} className={styles.card} {...carouselSlide(i, MARKET_NEWS.length)}>
               <span className={styles.thumb}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={story.image} alt="" loading="lazy" />
@@ -79,8 +70,6 @@ export default function MarketNews({ news }: { news: SectorContent["news"] }) {
           <Pager
             index={Math.min(index, MARKET_NEWS.length - 1)}
             total={MARKET_NEWS.length}
-            playing={overflows ? autoplay.playing : undefined}
-            onTogglePlay={overflows ? autoplay.toggle : undefined}
             onPrev={() => page(-1)}
             onNext={() => page(1)}
             label="news"

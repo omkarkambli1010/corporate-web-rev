@@ -1,10 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Children, cloneElement, isValidElement, useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "./SbIcons";
 import { scrollRail } from "@/utils/scrollRail.utils";
-import useCarouselAutoplay, { useRailOverflow } from "@/utils/useCarouselAutoplay";
-import PlayPauseButton from "./PlayPauseButton";
+import { carouselKeys, carouselLive, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import styles from "./card-rail.module.scss";
 
 interface CardRailProps {
@@ -85,15 +84,6 @@ export default function CardRail({
   // grey out.
   const move = (direction: -1 | 1) => scrollRail(railRef.current, direction);
 
-  // Advances on its own while there is anything to page, with pause / play.
-  const overflows = useRailOverflow(railRef);
-  const autoplay = useCarouselAutoplay({
-    advance: () => move(1),
-    enabled: overflows,
-    resetKey: page,
-    hoverTarget: railRef,
-  });
-
   const controls = (
     <div className={styles.controls}>
       <button
@@ -104,7 +94,7 @@ export default function CardRail({
       >
         <ChevronLeftIcon />
       </button>
-      <p className={styles.pill}>
+      <p className={styles.pill} {...carouselLive}>
         <span className={styles.current}>{pad(page)}</span>
         <span className={styles.total}>/{pad(count)}</span>
       </p>
@@ -116,20 +106,17 @@ export default function CardRail({
       >
         <ChevronRightIcon />
       </button>
-      {overflows ? (
-        <PlayPauseButton
-          playing={autoplay.playing}
-          onToggle={autoplay.toggle}
-          label={`${label} carousel`}
-          tone={tone}
-          mobileSize={32}
-        />
-      ) : null}
     </div>
   );
 
+  // Each card is announced as "slide, N of M" (W3C APG carousel pattern).
+  const slides = Children.toArray(children).filter(isValidElement);
+  const labelled = slides.map((slide, i) =>
+    cloneElement(slide as React.ReactElement<Record<string, unknown>>, carouselSlide(i, slides.length)),
+  );
+
   return (
-    <div className={`${styles.wrap} ${tone === "dark" ? styles.dark : ""}`}>
+    <div className={`${styles.wrap} ${tone === "dark" ? styles.dark : ""}`} {...carouselRegion(label)}>
       <div className={styles.railRow}>
         {arrows === "flanking" ? (
           <button
@@ -146,10 +133,11 @@ export default function CardRail({
           className={arrows === "inline" ? `${styles.rail} ${styles.bleed}` : styles.rail}
           ref={railRef}
           role="group"
-          aria-label={label}
+          aria-label={`${label} slides`}
           tabIndex={0}
+          onKeyDown={(e) => carouselKeys(e, move)}
         >
-          {children}
+          {labelled}
         </div>
 
         {arrows === "flanking" ? (

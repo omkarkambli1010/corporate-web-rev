@@ -102,11 +102,6 @@
   display: none;
 }
 
-/* Stand-alone pause / play — only where the pager is hidden (360). */
-.mobilePlay {
-  display: none !important;
-}
-
 .cta {
   width: 228px;
 }
@@ -352,12 +347,6 @@
 
   .pager {
     display: none;
-  }
-
-  .mobilePlay {
-    order: 6;
-    display: inline-flex !important;
-    margin-top: 16px;
   }
 
   .storyTitle {

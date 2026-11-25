@@ -7,8 +7,7 @@ import SegmentedTabs from "@/components/ui/SegmentedTabs";
 import { RESEARCH, RESEARCH_TABS } from "@/constants/sbi-home";
 import type { ResearchContent } from "@/types/pages";
 import { scrollRail } from "@/utils/scrollRail.utils";
-import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
-import PlayPauseButton from "@/components/ui/PlayPauseButton";
+import { carouselKeys, carouselLive, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import styles from "./research.module.scss";
 
 function pad(n: number) {
@@ -67,17 +66,10 @@ export default function ResearchSection({ content = DEFAULT_CONTENT }: { content
 
   const page = (delta: -1 | 1) => scrollRail(railRef.current, delta, 258);
 
-  // The rail only exists on mobile; on desktop the grid has nothing to move.
-  const autoplay = useCarouselAutoplay({
-    advance: () => page(1),
-    enabled: isRail,
-    resetKey: railIndex,
-    hoverTarget: railRef,
-  });
-
   return (
     <section className={styles.section} id="research">
-      <div className={styles.inner}>
+      {/* Only the mobile rail is a carousel; the desktop grid stays a list. */}
+      <div className={styles.inner} {...(isRail ? carouselRegion(content.title) : {})}>
         <SectionHead
           title={content.title}
           href="#research-reports"
@@ -94,9 +86,18 @@ export default function ResearchSection({ content = DEFAULT_CONTENT }: { content
           />
         </div>
 
-        <ul className={styles.grid} ref={railRef}>
+        <ul
+          className={styles.grid}
+          ref={railRef}
+          tabIndex={isRail ? 0 : undefined}
+          onKeyDown={isRail ? (e) => carouselKeys(e, page) : undefined}
+        >
           {reports.map((report, i) => (
-            <li key={`${report.title}-${i}`} className={styles.card}>
+            <li
+              key={`${report.title}-${i}`}
+              className={styles.card}
+              {...(isRail ? carouselSlide(i, reports.length) : {})}
+            >
               {/* The report kind is set inside the artwork, so it is repeated
                   here for assistive tech rather than drawn twice. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -128,7 +129,7 @@ export default function ResearchSection({ content = DEFAULT_CONTENT }: { content
             >
               <ChevronLeftIcon />
             </button>
-            <p className={styles.pill} aria-live={autoplay.playing ? "off" : "polite"}>
+            <p className={styles.pill} {...carouselLive}>
               <span className={styles.current}>{pad(railIndex + 1)}</span>
               <span className={styles.total}>/{pad(reports.length)}</span>
             </p>
@@ -140,14 +141,6 @@ export default function ResearchSection({ content = DEFAULT_CONTENT }: { content
             >
               <ChevronRightIcon />
             </button>
-            {isRail ? (
-              <PlayPauseButton
-                playing={autoplay.playing}
-                onToggle={autoplay.toggle}
-                label="reports carousel"
-                mobileSize={32}
-              />
-            ) : null}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import Pager from "@/components/ui/Pager";
 import SectionHead from "@/components/ui/SectionHead";
 import type { AboutContent } from "@/types/pages";
 import { scrollRail } from "@/utils/scrollRail.utils";
-import useCarouselAutoplay, { useRailOverflow } from "@/utils/useCarouselAutoplay";
+import { carouselKeys, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import styles from "./awards.module.scss";
 
 /**
@@ -34,26 +34,17 @@ export default function AwardsSection({ awards }: { awards: AboutContent["awards
 
   const page = (delta: -1 | 1) => scrollRail(railRef.current, delta, 421);
 
-  // Advances on its own while the rail overflows, with pause / play.
-  const overflows = useRailOverflow(railRef);
-  const autoplay = useCarouselAutoplay({
-    advance: () => page(1),
-    enabled: overflows,
-    resetKey: index,
-    hoverTarget: railRef,
-  });
-
   return (
     <section className={styles.section}>
-      <div className={styles.inner}>
+      <div className={styles.inner} {...carouselRegion(awards.title)}>
         <SectionHead title={awards.title} align="center" mobileStart size="h2" />
 
-        <ul className={styles.rail} ref={railRef}>
-          {AWARDS.map((award) => {
+        <ul className={styles.rail} ref={railRef} tabIndex={0} onKeyDown={(e) => carouselKeys(e, page)}>
+          {AWARDS.map((award, i) => {
             const { pattern } = award;
             const crop = award.crop ?? null;
             return (
-              <li key={award.title} className={styles.card}>
+              <li key={award.title} className={styles.card} {...carouselSlide(i, AWARDS.length)}>
                 <div className={styles.copy} style={{ top: `calc(50% - ${award.offset}px)` }}>
                   <span className={styles.logo} style={{ width: award.logoSize[0], height: award.logoSize[1] }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -114,8 +105,6 @@ export default function AwardsSection({ awards }: { awards: AboutContent["awards
           <Pager
             index={Math.min(index, AWARDS.length - 1)}
             total={AWARDS.length}
-            playing={overflows ? autoplay.playing : undefined}
-            onTogglePlay={overflows ? autoplay.toggle : undefined}
             onPrev={() => page(-1)}
             onNext={() => page(1)}
             label="award"

@@ -1,4 +1,4 @@
-import PlayPauseButton from "./PlayPauseButton";
+import { carouselLive } from "@/utils/carouselA11y";
 import styles from "./pager.module.scss";
 
 interface PagerProps {
@@ -15,10 +15,6 @@ interface PagerProps {
   align?: "center" | "end";
   /** The 16/24 pill the 768 frames give the CSR and Life at SSL pagers. */
   compact?: boolean;
-  /** For a carousel that advances on its own: pass both to add pause / play
-   *  after the next arrow (WCAG 2.2.2). */
-  playing?: boolean;
-  onTogglePlay?: () => void;
 }
 
 function pad(n: number) {
@@ -29,7 +25,7 @@ function pad(n: number) {
  * "Arrows and Page Numbers" — two 40px dotted arrows around a 01/04 pill,
  * optionally flanked by a solid rule on the left and a dotted one on the right.
  */
-export default function Pager({ index, total, onPrev, onNext, label, rules = false, align = "center", compact = false, playing, onTogglePlay }: PagerProps) {
+export default function Pager({ index, total, onPrev, onNext, label, rules = false, align = "center", compact = false }: PagerProps) {
   return (
     <div className={`${styles.pager} ${rules ? styles.withRules : ""} ${align === "end" ? styles.end : ""} ${compact ? styles.compact : ""} ${rules === "tablet" ? styles.rulesTablet : ""}`}>
       {rules && align === "end" ? <span className={styles.ruleSolid} aria-hidden="true" /> : null}
@@ -39,7 +35,7 @@ export default function Pager({ index, total, onPrev, onNext, label, rules = fal
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/figma/about/csr/arrow-prev.svg" alt="" width={40} height={40} />
         </button>
-        <p className={styles.pill} aria-live={playing ? "off" : "polite"}>
+        <p className={styles.pill} {...carouselLive}>
           <span className={styles.current}>{pad(index + 1)}</span>
           <span className={styles.total}>/{pad(total)}</span>
         </p>
@@ -47,9 +43,6 @@ export default function Pager({ index, total, onPrev, onNext, label, rules = fal
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/figma/about/csr/arrow-next.svg" alt="" width={40} height={40} />
         </button>
-        {onTogglePlay && playing !== undefined ? (
-          <PlayPauseButton playing={playing} onToggle={onTogglePlay} label={`${label} carousel`} mobileSize={32} className={styles.play} />
-        ) : null}
       </div>
       {rules && align === "center" ? <span className={styles.ruleDotted} aria-hidden="true" /> : null}
     </div>

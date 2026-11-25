@@ -9,8 +9,7 @@ import {
 } from "@/components/ui/SbIcons";
 import { TESTIMONIALS } from "@/constants/sbi-home";
 import { scrollRail } from "@/utils/scrollRail.utils";
-import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
-import PlayPauseButton from "@/components/ui/PlayPauseButton";
+import { carouselKeys, carouselLive, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import styles from "./testimonials.module.scss";
 
 function pad(n: number) {
@@ -96,16 +95,9 @@ export default function TestimonialsSection() {
     setStep((current) => current + delta);
   };
 
-  // Both the desktop deck and the mobile rail advance on their own.
-  const autoplay = useCarouselAutoplay({
-    advance: () => move(1),
-    resetKey: index,
-    hoverTarget: stackRef,
-  });
-
   return (
     <section className={styles.section}>
-      <div className={styles.inner}>
+      <div className={styles.inner} {...carouselRegion("Testimonials")}>
         <h2 className={styles.title}>Testimonials</h2>
 
         <div className={styles.stage}>
@@ -119,10 +111,18 @@ export default function TestimonialsSection() {
               <LargeChevronLeftIcon />
             </button>
 
-            <div className={styles.stack} ref={stackRef}>
+            <div
+              className={styles.stack}
+              ref={stackRef}
+              role="group"
+              aria-label="Testimonial slides"
+              tabIndex={0}
+              onKeyDown={(e) => carouselKeys(e, move)}
+            >
               {[0, 1, 2].map((card) => {
                 const slot = mod(card + step, 3);
-                const entry = TESTIMONIALS[mod(step + SLOT_OFFSET[slot], total)];
+                const quote = mod(step + SLOT_OFFSET[slot], total);
+                const entry = TESTIMONIALS[quote];
 
                 // All three are on show in the rail, so only the deck hides
                 // the two sitting behind the quote.
@@ -131,6 +131,7 @@ export default function TestimonialsSection() {
                     key={card}
                     className={`${styles.card} ${styles[SLOTS[slot]]}`}
                     aria-hidden={!isRail && slot !== 0}
+                    {...carouselSlide(quote, total, true)}
                   >
                     <blockquote>
                       <p>{entry.quote}</p>
@@ -173,7 +174,7 @@ export default function TestimonialsSection() {
               <ChevronLeftIcon />
             </button>
 
-            <p className={styles.pill} aria-live={autoplay.playing ? "off" : "polite"}>
+            <p className={styles.pill} {...carouselLive}>
               <span className={styles.current}>{pad(index + 1)}</span>
               <span className={styles.total}>/{pad(total)}</span>
             </p>
@@ -186,12 +187,6 @@ export default function TestimonialsSection() {
             >
               <ChevronRightIcon />
             </button>
-            <PlayPauseButton
-              playing={autoplay.playing}
-              onToggle={autoplay.toggle}
-              label="testimonials carousel"
-              mobileSize={32}
-            />
           </div>
 
           <span className={styles.rule} aria-hidden="true" />

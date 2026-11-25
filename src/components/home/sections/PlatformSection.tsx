@@ -7,17 +7,12 @@ import {
   PLATFORM_PANEL_TRANSITION,
   PLATFORM_TABS,
 } from "@/constants/sbi-home";
-import PlayPauseButton from "@/components/ui/PlayPauseButton";
-import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
 import styles from "./platform.module.scss";
 
 /** Next-gen Investment Platform — desktop 1:59598, mobile 0:55678. */
 export default function PlatformSection() {
   const [tab, setTab] = useState<string>(PLATFORM_TABS[0]);
   const [step, setStep] = useState(0);
-  /* The steps advance on their own until someone picks or hovers one; the
-     pause / play button controls that too (WCAG 2.2.2). Starts paused for
-     visitors who ask for reduced motion. */
 
   const steps = PLATFORM.steps[tab] ?? PLATFORM.steps[PLATFORM_TABS[0]];
   const panels = PLATFORM.panels[tab] ?? PLATFORM.panels[PLATFORM_TABS[0]];
@@ -58,11 +53,8 @@ export default function PlatformSection() {
     return () => window.clearTimeout(id);
   }, [layers, fade.durationMs]);
 
-  // The steps auto-advance, as the Figma note describes, until someone picks one.
-  const autoplay = useCarouselAutoplay({
-    advance: () => setStep((current) => (current + 1) % steps.length),
-    intervalMs: 4000,
-  });
+  /* The steps change only when someone picks one. Nothing advances on its own,
+     so WCAG 2.2.2 (Pause, Stop, Hide) needs no pause control here. */
 
   return (
     <section className={styles.section}>
@@ -94,23 +86,16 @@ export default function PlatformSection() {
             }}
             label="Platform surface"
           />
-          <PlayPauseButton
-            playing={autoplay.playing}
-            onToggle={autoplay.toggle}
-            label="platform steps"
-            className={styles.play}
-          />
         </div>
 
         <div className={styles.body}>
-          <ol className={styles.steps} onMouseEnter={autoplay.pause}>
+          <ol className={styles.steps}>
             {steps.map((item, i) => (
               <li key={item.title} className={i === step ? styles.active : ""}>
                 <button
                   type="button"
                   onClick={() => {
                     setStep(i);
-                    autoplay.pause();
                   }}
                   aria-current={i === step}
                 >

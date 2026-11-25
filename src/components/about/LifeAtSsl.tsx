@@ -1,19 +1,19 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import Pager from "@/components/ui/Pager";
-import PlayPauseButton from "@/components/ui/PlayPauseButton";
-import useCarouselAutoplay from "@/utils/useCarouselAutoplay";
 import SbButton from "@/components/ui/SbButton";
 import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import type { RiveSlides } from "@/components/ui/rive/riveTypes";
+import { carouselKeys, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import { LIFE_AT_SSL as LIFE_GEOMETRY } from "@/constants/sbi-about";
 import type { AboutContent } from "@/types/pages";
 import styles from "./life-at-ssl.module.scss";
 
 /**
- * Life at SSL — desktop 4:127383, mobile 1:72674. Photos advance every 60s and
- * on click; "Read more" expands the story and flips to "View less"; "View
+ * Life at SSL — desktop 4:127383, mobile 1:72674. Photos advance on click and
+ * on the pager arrows — never on their own, so WCAG 2.2.2 needs no pause
+ * control; "Read more" expands the story and flips to "View less"; "View
  * Openings" goes to the careers page.
  *
  * The photo stack is the Rive slot `lifeAtSsl` (src/config/rive.config.ts):
@@ -21,8 +21,6 @@ import styles from "./life-at-ssl.module.scss";
  * page's `index`. Until that .riv exists the HTML stack below plays instead.
  */
 export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
-  /* The photos change on their own every 60 seconds by default (Figma
-     interaction note); the CMS can set the interval. */
   const { slides } = life;
   const [index, setIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
@@ -30,16 +28,6 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
   const total = slides.length;
   const go = (delta: number) => setIndex((i) => (i + delta + total) % total);
 
-  /* Auto-advance with pause / play (WCAG 2.2.2); the timer restarts whenever
-     the slide is changed by hand. */
-  const stackRef = useRef<HTMLButtonElement>(null);
-  const autoplay = useCarouselAutoplay({
-    advance: () => go(1),
-    intervalMs: life.autoAdvanceMs,
-    resetKey: index,
-    hoverTarget: stackRef,
-  });
-  const { playing, toggle: togglePlay } = autoplay;
 
   const slide = slides[index];
 
@@ -60,14 +48,14 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
 
   return (
     <section className={styles.section}>
-      <div className={styles.inner}>
+      <div className={styles.inner} {...carouselRegion(life.title)}>
         <header className={styles.head}>
           <h2 className={styles.title}>{life.title}</h2>
           <p className={styles.subtext}>{life.subtext}</p>
         </header>
 
         <div className={styles.body}>
-          <div key={index} className={styles.story}>
+          <div key={index} className={styles.story} {...carouselSlide(index, total, true)}>
             <h3 className={styles.storyTitle}>{slide.title}</h3>
             <p
               className={`${styles.storyText} ${expanded ? styles.expanded : ""}`}
@@ -95,20 +83,13 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
             <SbButton href={life.ctaHref} className={styles.cta}>
               {life.ctaLabel}
             </SbButton>
-            {/* The 360 frame drops the pager, so pause / play stands alone. */}
-            <PlayPauseButton
-              playing={playing}
-              onToggle={togglePlay}
-              label="photo carousel"
-              className={styles.mobilePlay}
-            />
           </div>
 
           <div className={styles.gallery}>
             <button
               type="button"
-              ref={stackRef}
               className={styles.stack}
+              onKeyDown={(e) => carouselKeys(e, go)}
               onClick={() => go(1)}
               aria-label="Show the next photo"
             >
@@ -157,8 +138,6 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
                 label="photo"
                 rules="tablet"
                 compact
-                playing={playing}
-                onTogglePlay={togglePlay}
               />
             </div>
           </div>
