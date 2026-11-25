@@ -155,6 +155,25 @@
   }
 }
 
+/* Below the 1440 frame the step column narrows, its copy takes an extra line
+   and the fixed thirds clipped it. The column now keeps 425 as a floor and
+   grows with its copy, and the gap between columns gives back some width. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .body {
+    gap: 64px;
+  }
+
+  .steps {
+    height: auto;
+    min-height: 425px;
+  }
+
+  .steps li {
+    flex: 1 0 auto;
+    overflow: visible;
+  }
+}
+
 @media (max-width: 1023px) {
   .body {
     grid-template-columns: 1fr;

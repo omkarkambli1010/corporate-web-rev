@@ -299,7 +299,12 @@ $surface: var(--sb-surface-primary, #ffffff);
   .inner {
     padding: 20px 32px;
   }
+}
 
+/* The full bar (logo, five links, search field, actions) needs ~1413px, so
+   below the 1440 frame the field gives way first — at 1280, which is what a
+   1920 screen at 150% scaling reports, it used to cover the last nav links. */
+@media (max-width: 1439px) {
   /* The field is the first thing to leave the bar; the search glyph takes its
      place and opens the same search (tablet and mobile frames). */
   .search {
@@ -311,7 +316,9 @@ $surface: var(--sb-surface-primary, #ffffff);
   }
 }
 
-@media (max-width: 1023px) {
+/* Without the field the bar still needs ~1186px, so the links fold into the
+   menu below 1200 rather than at the tablet breakpoint. */
+@media (max-width: 1199px) {
   .inner {
     flex-wrap: wrap;
     padding: 16px 24px;

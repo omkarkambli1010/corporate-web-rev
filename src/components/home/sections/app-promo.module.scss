@@ -30,7 +30,10 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  width: 674px;
+  /* 674 on the 1312 card. The handset is anchored to the right edge and its
+     visible part starts 558 in from it, so on a narrower card the copy keeps
+     clear of it rather than running underneath (the heading wraps instead). */
+  width: min(674px, calc(100% - 638px));
   max-width: calc(100% - 160px);
 }
 

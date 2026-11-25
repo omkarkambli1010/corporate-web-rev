@@ -93,6 +93,14 @@
   white-space: nowrap;
 }
 
+/* Below the 1440 frame the columns narrow past the one-line ledes, which then
+   ran into the neighbouring card — let them wrap instead. */
+@media (max-width: 1439px) {
+  .lede {
+    white-space: normal;
+  }
+}
+
 .points {
   flex: 1;
   display: flex;

@@ -24,7 +24,7 @@ const inter = Inter({
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   /* Search opens as a modal (desktop/tablet) or a full screen (360) — the
-     field in the bar, the glyph below 1280, and ⌘K / Ctrl+K all open it. */
+     field in the bar, the glyph below 1440, and ⌘K / Ctrl+K all open it. */
   const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {

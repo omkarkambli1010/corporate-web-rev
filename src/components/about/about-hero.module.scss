@@ -302,6 +302,27 @@
   cursor: pointer;
 }
 
+/* 1248–1439 (e.g. 1920 at 150% scaling = 1280): the 420 copy overhangs its
+   338 column into the middle one, which at 1440 has room for it but here no
+   longer does, so the subtext ran under the phone. The phone keeps its 396
+   slot and the copy takes whatever is left, wrapping rather than overlapping. */
+@media (min-width: 1248px) and (max-width: 1439px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr) 396px 338px;
+  }
+
+  .copy {
+    width: auto;
+    max-width: 420px;
+  }
+
+  /* The authored break only works at the 420 measure; narrower, it leaves a
+     short orphaned line, so the copy simply flows. */
+  .line {
+    display: inline;
+  }
+}
+
 /* 768 frame (tablet 2:73599) — title, subtext and form in a 336 column, the
    phone and product card beside it in 287, 55 apart, 80 top and bottom.
    The desktop row needs 1248px (338 + 396 + 338 + gaps + gutters), so this

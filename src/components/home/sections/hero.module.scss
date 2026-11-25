@@ -408,6 +408,24 @@
   display: none;
 }
 
+/* --- small desktop (1200–1439, e.g. 1920 at 150% scaling = 1280) --------- */
+
+/* Below the 1440 frame the phone, placed by percentage, slides left while the
+   503 copy column does not — so the KPI tiles ran under the phone. Here the
+   phone is pinned 472 in from the gutter (its 1440 position, where the KPI
+   row ends at 461) and takes whatever room is left before a slightly
+   narrower form, shrinking rather than overlapping. */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .inner {
+    grid-template-columns: minmax(0, 503px) minmax(0, 1fr) minmax(0, 320px);
+  }
+
+  .mockup {
+    left: calc(var(--sb-gutter) + 472px);
+    width: calc(100% - 2 * var(--sb-gutter) - 472px - 320px - 16px);
+  }
+}
+
 /* --- tablet -------------------------------------------------------------- */
 
 @media (max-width: 1199px) {

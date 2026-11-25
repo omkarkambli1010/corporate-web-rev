@@ -206,6 +206,39 @@ button.card {
   display: none;
 }
 
+/* 1024–1439 (e.g. 1920 at 150% scaling = 1280): the fixed 322 / 644 / 322
+   row is 1288 wide and no longer fits the stage, so it pushed a horizontal
+   scrollbar onto the page and the active card overlapped its neighbours. The
+   same 1 : 2 : 1 row is kept, but as shares of the stage. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .section {
+    overflow-x: clip;
+  }
+
+  .stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    column-gap: 24px;
+    min-height: 0;
+  }
+
+  .stage .card {
+    min-width: 0;
+  }
+
+  .prev .media,
+  .next .media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 322 / 181;
+  }
+
+  .active .media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 644 / 362;
+  }
+}
+
 /* 768 frame — five cards in a 1192 row centred on the screen, so the outer
    two are cut by its edges: 188 x 106 neighbours around a 376 x 211 card,
    16 apart, the whole stage 275 tall. The shades are the desktop ones scaled
