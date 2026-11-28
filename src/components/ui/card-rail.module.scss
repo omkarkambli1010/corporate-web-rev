@@ -134,8 +134,8 @@
   border-radius: 42.857px;
   background: var(--sb-surface-secondary);
   font-family: var(--sb-font-data);
-  font-size: 20px;
-  line-height: 28.571px;
+  font-size: 1.25rem;
+  line-height: 1.78569rem;
 }
 
 .current {
@@ -191,7 +191,7 @@
   .pill {
     min-height: 28px;
     padding: 0 12.5px;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1rem;
+    line-height: 1.25rem;
   }
 }

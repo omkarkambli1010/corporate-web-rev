@@ -46,8 +46,8 @@
   margin: 0;
   font-family: var(--sb-font-data);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--sb-text-primary);
 }
 
@@ -64,8 +64,8 @@
   border-radius: var(--sb-radius-4);
   background: var(--sb-chip-green-bg);
   font-family: var(--sb-font-data);
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
   color: var(--sb-text-success);
 }
 
@@ -99,8 +99,8 @@
 
 .facts dt {
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-tertiary);
 }
 
@@ -108,15 +108,15 @@
   margin: 0;
   font-family: var(--sb-font-data);
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-primary);
 }
 
 .unit {
   font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-tertiary);
 }
 
@@ -133,8 +133,8 @@
   padding: 8px 10px;
   background: var(--sb-primary-100);
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-tertiary);
   text-align: center;
 }
@@ -185,7 +185,7 @@
   }
 
   .name {
-    line-height: 20px;
+    line-height: 1.25rem;
   }
 
   .chip {
@@ -203,8 +203,8 @@
 
   .facts dt {
     font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 
   /* Buttons 0:58799 — one 296x36 Apply across the card. */
@@ -230,8 +230,8 @@
     border: 1px solid var(--sb-primary-pink);
     border-radius: var(--sb-radius-4);
     font-family: var(--sb-font-data);
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     color: var(--sb-primary-pink);
     text-align: center;
   }
@@ -249,7 +249,16 @@
     border-top: 0;
     border-radius: 0 0 var(--sb-radius-16) var(--sb-radius-16);
     background: var(--sb-surface-primary);
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
+}
+
+/* Larger text. */
+:global(html[data-text-size="large"]) .facts > div {
+  height: auto;
+}
+
+:global(html[data-text-size="large"]) .cardHead {
+  height: auto;
 }

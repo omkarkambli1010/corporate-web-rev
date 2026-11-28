@@ -12,7 +12,8 @@ export function seoMetadata(seo: SeoContent, path: string): Metadata {
   const robots = seo.robots.toLowerCase();
 
   return {
-    title: seo.title,
+    /* A title that already names the site must not get the layout suffix too. */
+    title: seo.title.includes("SBI Securities") ? { absolute: seo.title } : seo.title,
     description: seo.description || undefined,
     keywords: seo.keywords.length > 0 ? seo.keywords : undefined,
     alternates: { canonical: seo.canonical || path },

@@ -1,6 +1,8 @@
 
 import type { Metadata } from "next";
 
+import SectionTitle from "@/components/ui/SectionTitle";
+
 export const metadata: Metadata = {
   title: "Investment Products",
 
@@ -26,7 +28,9 @@ export default function ProductsPage() {
   return (
     <section className="section-padding">
       <div className="container">
-        <h1>Products</h1>
+        <SectionTitle as="h1" size="page" className="mb-2">
+          Products
+        </SectionTitle>
         <p>Product listing page will be CMS/API-driven.</p>
       </div>
     </section>

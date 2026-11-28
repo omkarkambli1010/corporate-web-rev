@@ -22,8 +22,8 @@
 .crumb {
   font-family: var(--sb-font-body);
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-tertiary);
   text-decoration: none;
 }
@@ -36,8 +36,8 @@ a.crumb:hover {
 .current {
   font-family: var(--sb-font-body);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--sb-text-primary);
 }
 
@@ -48,7 +48,7 @@ a.crumb:hover {
 
 @media (max-width: 767px) {
   .current {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }

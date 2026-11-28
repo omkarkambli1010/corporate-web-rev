@@ -56,7 +56,9 @@
   overflow: hidden;
 }
 
-.logo img {
+/* Three parts, to outrank `.sb-scope img { max-width: 100% }`, which would
+   squash the logos that are cropped by being drawn wider than their box. */
+.card .logo img {
   position: absolute;
   inset: 0;
   display: block;
@@ -76,8 +78,8 @@
   margin: 0;
   font-family: var(--sb-font-body);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--sb-text-display);
 }
 
@@ -85,8 +87,8 @@
 .text {
   margin: 0;
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-secondary);
 }
 
@@ -115,8 +117,8 @@
 .small {
   white-space: pre-line;
   font-family: var(--sb-font-data);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .pager {
@@ -168,8 +170,8 @@
 
   /* Award titles drop to 14/20 at 360. */
   .title {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .pager {

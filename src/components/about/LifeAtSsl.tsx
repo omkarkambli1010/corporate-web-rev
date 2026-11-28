@@ -8,6 +8,7 @@ import type { RiveSlides } from "@/components/ui/rive/riveTypes";
 import { carouselKeys, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
 import { LIFE_AT_SSL as LIFE_GEOMETRY } from "@/constants/sbi-about";
 import type { AboutContent } from "@/types/pages";
+import SectionHead from "@/components/ui/SectionHead";
 import styles from "./life-at-ssl.module.scss";
 
 /**
@@ -49,10 +50,7 @@ export default function LifeAtSsl({ life }: { life: AboutContent["life"] }) {
   return (
     <section className={styles.section}>
       <div className={styles.inner} {...carouselRegion(life.title)}>
-        <header className={styles.head}>
-          <h2 className={styles.title}>{life.title}</h2>
-          <p className={styles.subtext}>{life.subtext}</p>
-        </header>
+        <SectionHead title={life.title} subtext={life.subtext} align="center" size="medium" />
 
         <div className={styles.body}>
           <div key={index} className={styles.story} {...carouselSlide(index, total, true)}>

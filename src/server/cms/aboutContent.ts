@@ -54,7 +54,7 @@ export const DEFAULT_ABOUT: AboutContent = {
     form: {
       mobileLabel: "Enter Mobile no.",
       mobilePlaceholder: "Enter your mobile number",
-      mobileHelp: "You will receive an OTP on the mobile number",
+      mobileHelp: "Enter 10 digits. We will send an OTP to it",
       nameLabel: "Enter Full Name",
       namePlaceholder: "Enter your full name",
       consent: "I agree to terms and conditions",

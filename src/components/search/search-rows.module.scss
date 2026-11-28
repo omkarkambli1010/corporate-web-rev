@@ -60,8 +60,8 @@
 /* Title — Poppins 12/16, Text Primary. */
 .title {
   font-family: var(--sb-font-body);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-primary);
 }
 
@@ -74,8 +74,8 @@
 /* Subtitle — Poppins 12/16, Text Secondary. */
 .subtitle {
   font-family: var(--sb-font-body);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-secondary);
 }
 
@@ -85,8 +85,8 @@
   padding: 3px 6px;
   border-radius: 4px;
   font-family: var(--sb-font-data);
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 0.625rem;
+  line-height: 0.875rem;
 }
 
 .badgeLilac {
@@ -107,8 +107,8 @@
 .time {
   flex-shrink: 0;
   font-family: var(--sb-font-data);
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
   color: var(--sb-text-tertiary);
 }
 
@@ -122,8 +122,8 @@
   align-items: center;
   gap: 6px;
   font-family: var(--sb-font-body);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-tertiary);
 }
 
@@ -141,8 +141,8 @@
 .price {
   min-width: 82px;
   font-family: var(--sb-font-body);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   text-align: right;
   color: var(--sb-text-secondary);
 }
@@ -152,8 +152,8 @@
   align-items: center;
   gap: 2px;
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .dot {
@@ -206,8 +206,8 @@
 
 .newsTop .time {
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .clamp {
@@ -225,8 +225,8 @@
 
 .symbol {
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-secondary);
 }
 
@@ -237,8 +237,8 @@
   border-radius: 4px;
   font-family: var(--sb-font-data);
   font-weight: 500;
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
 }
 
 .pillUp {
@@ -308,8 +308,8 @@
   }
 
   .change {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 
   .change svg {

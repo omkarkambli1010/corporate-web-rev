@@ -7,6 +7,7 @@ import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import type { SectorContent } from "@/types/pages";
 import { scrollRail } from "@/utils/scrollRail.utils";
 import { carouselKeys, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
+import SectionTitle from "@/components/ui/SectionTitle";
 import styles from "./market-news.module.scss";
 
 /**
@@ -36,7 +37,7 @@ export default function MarketNews({ news }: { news: SectorContent["news"] }) {
     <section className={styles.section} id="market-news">
       <div className={styles.inner} {...carouselRegion(news.title)}>
         <div className={styles.head}>
-          <h2 className={styles.title}>{news.title}</h2>
+          <SectionTitle size="compact" className={styles.title}>{news.title}</SectionTitle>
           <Link href={news.allHref} className={styles.arrow} aria-label={news.allLabel}>
             <RiveArrowUpRight size={40} />
           </Link>

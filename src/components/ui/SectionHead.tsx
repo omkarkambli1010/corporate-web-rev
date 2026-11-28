@@ -1,10 +1,12 @@
 import Link from "next/link";
 import RiveArrowUpRight from "./rive/RiveArrowUpRight";
+import SectionTitle, { type TitleSize } from "./SectionTitle";
 import styles from "./section-head.module.scss";
 
 interface SectionHeadProps {
   title: string;
-  subtext?: string;
+  /** Text, or markup where the frames carry different copy. */
+  subtext?: React.ReactNode;
   /** Renders the dotted arrow-up-right that links through to the listing. */
   href?: string;
   /** Accessible name for that arrow, since the glyph carries no text. */
@@ -12,8 +14,11 @@ interface SectionHeadProps {
   align?: "start" | "center";
   /** The 360 frame left-aligns this centred heading (Awards, CSR). */
   mobileStart?: boolean;
-  /** "h2" is the 40/48 heading Awards and CSR use; the default is the 48/56 H1. */
-  size?: "h1" | "h2";
+  /** See SectionTitle; "medium" is the smaller heading the About page uses. */
+  size?: TitleSize;
+  headingId?: string;
+  /** Placement and section-only tweaks for the whole block. */
+  className?: string;
   tone?: "light" | "dark";
   /**
    * Words on the first line at the 360 frame. The mobile frames set their own
@@ -27,8 +32,8 @@ interface SectionHeadProps {
 }
 
 /** Splits `text` at `after` words around a break that mobile alone renders. */
-function withMobileBreak(text: string, after?: number) {
-  if (!after) return text;
+function withMobileBreak(text: React.ReactNode, after?: number) {
+  if (!after || typeof text !== "string") return text;
   const words = text.split(" ");
   if (after >= words.length) return text;
   return (
@@ -51,17 +56,21 @@ export default function SectionHead({
   hrefLabel,
   align = "start",
   mobileStart = false,
-  size = "h1",
+  size = "section",
+  headingId,
+  className = "",
   tone = "light",
   titleBreakAfter,
   subtextBreakAfter,
 }: SectionHeadProps) {
   return (
     <div
-      className={`${styles.head} ${styles[align]} ${tone === "dark" ? styles.dark : ""} ${mobileStart ? styles.mobileStart : ""}`}
+      className={`${styles.head} ${styles[align]} ${tone === "dark" ? styles.dark : ""} ${mobileStart ? styles.mobileStart : ""} ${className}`}
     >
       <div className={styles.text}>
-        <h2 className={`${styles.title} ${size === "h2" ? styles.h2 : ""}`}>{withMobileBreak(title, titleBreakAfter)}</h2>
+        <SectionTitle id={headingId} size={size} tone={tone}>
+          {withMobileBreak(title, titleBreakAfter)}
+        </SectionTitle>
         {subtext ? (
           <p className={styles.subtext}>{withMobileBreak(subtext, subtextBreakAfter)}</p>
         ) : null}

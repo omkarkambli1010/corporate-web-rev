@@ -13,23 +13,12 @@
   padding: 40px var(--sb-gutter);
 }
 
-/* Pre Login - 2/Heading/H2 Reg — 40/48, -1px, on the dark ground. */
-.whoTitle {
-  margin: 0;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: -1px;
-  color: var(--sb-text-on-dark);
-}
-
 /* Body/B1 Reg — 18/24, centered, 1114 measure. */
 .whoBody {
   max-width: 1114px;
   font-family: var(--sb-font-body);
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
   text-align: center;
   color: var(--sb-neutral-200);
 }
@@ -49,14 +38,10 @@
     gap: 16px;
   }
 
-  .whoTitle {
-    letter-spacing: 0;
-  }
-
   .whoBody {
     max-width: none;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 
@@ -73,12 +58,6 @@
   }
 
   .whoTitle {
-    font-size: 28px;
-    line-height: 36px;
-    letter-spacing: 0;
-  }
-
-  .whoTitle {
     align-self: flex-start;
   }
 
@@ -86,8 +65,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     text-align: left;
   }
 }

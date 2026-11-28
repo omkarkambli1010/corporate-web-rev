@@ -18,17 +18,6 @@
   gap: 24px;
 }
 
-/* H2 Reg — 40/48, -1px. */
-.title {
-  margin: 0;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: -1px;
-  color: var(--sb-text-display);
-}
-
 /* Segmented view toggle — #f7fbff track, white 6px-radius active tab. */
 .views {
   display: flex;
@@ -83,8 +72,8 @@
   border: 1px solid var(--sb-stroke-default);
   border-radius: var(--sb-radius-20);
   font-family: var(--sb-font-body);
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
   color: var(--sb-text-primary);
   cursor: pointer;
 }
@@ -114,8 +103,8 @@
   min-width: 960px;
   border-collapse: collapse;
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .table th,
@@ -152,11 +141,11 @@
 }
 
 .up {
-  color: #28a872;
+  color: var(--sb-text-success);
 }
 
 .down {
-  color: #e95d5d;
+  color: #a80d0d;
 }
 
 .advDec {
@@ -219,8 +208,8 @@
   overflow: hidden;
   font-family: var(--sb-font-body);
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: #253040;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -232,14 +221,14 @@
   gap: 4px;
   margin: -8px 0 0;
   font-family: var(--sb-font-body);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-tertiary);
 }
 
 .dayChange strong {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 500;
 }
 
@@ -262,8 +251,8 @@
 .badgeDown {
   padding: 4px 8px;
   border-radius: 6px;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .badgeUp {
@@ -304,8 +293,8 @@
   justify-content: space-between;
   margin: 0;
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   font-weight: 500;
   text-align: center;
   color: var(--sb-text-secondary);
@@ -337,16 +326,16 @@
 .facts dt {
   font-family: var(--sb-font-data);
   font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   color: var(--sb-text-secondary);
 }
 
 .facts dd {
   margin: 0;
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 500;
   color: var(--sb-text-primary);
 }
@@ -381,16 +370,16 @@
 
 .tileName {
   min-width: 0;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 500;
   overflow-wrap: anywhere;
   hyphens: auto;
 }
 
 .tileValue {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 /* Pagination 328 x 44 — active page is the primary gradient button. */
@@ -408,7 +397,7 @@
   border-radius: var(--sb-radius-8);
   background: var(--sb-surface-primary);
   font-family: var(--sb-font-body);
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--sb-text-secondary);
   cursor: pointer;
 }
@@ -446,18 +435,16 @@
     padding: 20px var(--sb-gutter) 32px;
   }
 
-  .title {
-    font-size: 28px;
-    line-height: 36px;
-    white-space: nowrap;
-  }
-
   /* Figma leaves 82px between the trail and the title row — the Line Tabs
      frame (Indices / Sector & Industry, fixed to the top) sits in it, empty
      in the frame. */
   .header {
     align-items: center;
     margin-top: 58px;
+  }
+
+  .title {
+    white-space: nowrap;
   }
 
   .cardTitle {
@@ -491,8 +478,8 @@
     min-width: 74px;
     min-height: 32px;
     padding: 4px 12px;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .desktopOnly {
@@ -518,8 +505,8 @@
   }
 
   .tileName {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 
   /* Pagination 1:253339 — 4 apart; idle pages and carets are bare 32 x 44
@@ -534,7 +521,7 @@
     border-color: transparent;
     background: none;
     font-family: var(--sb-font-data);
-    line-height: 21px;
+    line-height: 1.3125rem;
     color: var(--sb-text-display);
   }
 
@@ -542,7 +529,7 @@
     min-width: 44px;
     background: var(--sb-gradient-primary);
     font-family: var(--sb-font-body);
-    line-height: 20px;
+    line-height: 1.25rem;
     color: var(--sb-primary-50);
   }
 }
@@ -551,4 +538,15 @@
 :global([data-theme="dark"]) .table th.name,
 :global([data-theme="dark"]) .cardTitle {
   color: var(--sb-text-primary);
+}
+
+/* Larger text: the title may wrap, so the view buttons stay on the screen. */
+@media (max-width: 767px) {
+  :global(html[data-text-size="large"]) .header {
+    flex-wrap: wrap;
+  }
+
+  :global(html[data-text-size="large"]) .title {
+    white-space: normal;
+  }
 }

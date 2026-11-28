@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import { NEWS } from "@/constants/sbi-home";
+import SectionHead from "@/components/ui/SectionHead";
 import styles from "./news.module.scss";
 
 /** Your Daily Market Digest — desktop 1:59641, mobile 0:54159. */
@@ -37,26 +37,20 @@ export default function NewsSection() {
   return (
     <section className={styles.section} ref={ref}>
       <div className={styles.inner}>
-        <div className={styles.head}>
-          <div>
-            {/* The 360 frame breaks the heading itself — "Your daily /
-                market digest" — rather than letting it wrap to the column. */}
-            <h2 className={styles.title}>
-              {NEWS.title.split(" ").slice(0, 2).join(" ")}{" "}
-              <br className={styles.mobileBreak} />
-              {NEWS.title.split(" ").slice(2).join(" ")}
-            </h2>
-            <p className={styles.subtext}>{NEWS.subtext}</p>
-          </div>
-          <Link href="#news" className={styles.arrow} aria-label="All market news">
-            <RiveArrowUpRight tone="dark" />
-          </Link>
-        </div>
+        {/* The 360 frame breaks the heading itself. */}
+        <SectionHead
+          title={NEWS.title}
+          subtext={NEWS.subtext}
+          titleBreakAfter={2}
+          tone="dark"
+          href="#news"
+          hrefLabel="All market news"
+          className={styles.head}
+        />
 
         <div className={`${styles.grid} ${shown ? styles.shown : ""}`}>
           <article className={styles.lead} style={{ transitionDelay: "0ms" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/figma/news/lead.png" alt="" aria-hidden="true" />
+            <Image src="/figma/news/lead.png" alt="" aria-hidden="true" width={1288} height={732} sizes="(max-width: 767px) 100vw, 644px" />
             <h3 className={styles.leadTitle}>{NEWS.lead.title}</h3>
             <p className={styles.stamp}>{NEWS.lead.timestamp}</p>
           </article>
@@ -68,8 +62,7 @@ export default function NewsSection() {
                 key={item.title}
                 style={{ transitionDelay: `${(i + 1) * 120}ms` }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/figma/news/item-${i + 1}.png`} alt="" aria-hidden="true" />
+                <Image src={`/figma/news/item-${i + 1}.png`} alt="" aria-hidden="true" width={508} height={286} sizes="(max-width: 767px) 100vw, 254px" />
                 <div>
                   <h3>{item.title}</h3>
                   <p className={styles.stamp}>{item.timestamp}</p>

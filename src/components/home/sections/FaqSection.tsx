@@ -5,6 +5,7 @@ import SbButton from "@/components/ui/SbButton";
 import { FAQS } from "@/constants/sbi-home";
 import type { FaqContent } from "@/types/pages";
 import RiveAnimation from "@/components/ui/rive/RiveAnimation";
+import SectionTitle from "@/components/ui/SectionTitle";
 import styles from "./faq.module.scss";
 
 /** What the section prints when no content is passed — the built-in copy. */
@@ -26,11 +27,11 @@ export default function FaqSection({ content = DEFAULT_CONTENT }: { content?: Fa
     <section className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.aside}>
-          <h2 className={styles.title}>
+          <SectionTitle className={styles.title}>
             {content.title.split(" ").slice(0, 2).join(" ")}{" "}
             <br />
             {content.title.split(" ").slice(2).join(" ")}
-          </h2>
+          </SectionTitle>
           <SbButton href={content.ctaHref} className={styles.cta}>
             {content.ctaLabel}
             {/* eslint-disable-next-line @next/next/no-img-element */}

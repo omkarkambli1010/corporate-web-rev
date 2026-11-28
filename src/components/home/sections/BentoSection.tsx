@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import RiveAnimation from "@/components/ui/rive/RiveAnimation";
 import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import type { RiveSlotKey } from "@/config/rive.config";
 import { BENTO } from "@/constants/sbi-home";
+import SectionHead from "@/components/ui/SectionHead";
 import styles from "./bento.module.scss";
 
 /** Whether the enclosing card has been scrolled to. */
@@ -124,15 +126,19 @@ export default function BentoSection() {
       </noscript>
 
       <div className={styles.inner}>
-        <header className={styles.head}>
-          <h2 id="bento-title" className={styles.title}>
-            {BENTO.title}
-          </h2>
-          <p className={styles.subtext}>
-            <span className={styles.desktopOnly}>{BENTO.subtext}</span>
-            <span className={styles.mobileOnly}>{BENTO.subtextMobile}</span>
-          </p>
-        </header>
+        <SectionHead
+          title={BENTO.title}
+          headingId="bento-title"
+          align="center"
+          mobileStart
+          className={styles.head}
+          subtext={
+            <>
+              <span className={styles.desktopOnly}>{BENTO.subtext}</span>
+              <span className={styles.mobileOnly}>{BENTO.subtextMobile}</span>
+            </>
+          }
+        />
 
         <div className={styles.grid}>
           {/* Row one runs wide then narrow; row two mirrors it. */}
@@ -158,8 +164,7 @@ export default function BentoSection() {
               </p>
 
               <BentoArt slot="bentoMarginTrading">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.scaleArt} src="/figma/bento/margin-scale.png" alt="" />
+                <Image className={styles.scaleArt} src="/figma/bento/margin-scale.png" alt="" width={878} height={664} sizes="(max-width: 767px) 62vw, 439px" />
               </BentoArt>
             </RevealCard>
 
@@ -180,10 +185,8 @@ export default function BentoSection() {
               </div>
 
               <BentoArt slot="bentoNri">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.nriGlobe} src="/figma/bento/nri-globe.png" alt="" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.nriPhone} src="/figma/bento/nri-phone.png" alt="" />
+                <Image className={styles.nriGlobe} src="/figma/bento/nri-globe.png" alt="" width={1066} height={362} sizes="(max-width: 767px) 100vw, 640px" />
+                <Image className={styles.nriPhone} src="/figma/bento/nri-phone.png" alt="" width={704} height={548} sizes="(max-width: 767px) 68vw, 352px" />
               </BentoArt>
             </RevealCard>
           </div>
@@ -219,8 +222,7 @@ export default function BentoSection() {
               </dl>
 
               <BentoArt slot="bentoSupport">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.indiaArt} src="/figma/bento/support-india.png" alt="" />
+                <Image className={styles.indiaArt} src="/figma/bento/support-india.png" alt="" width={512} height={532} sizes="(max-width: 767px) 52vw, 256px" />
               </BentoArt>
             </RevealCard>
 
@@ -239,10 +241,8 @@ export default function BentoSection() {
               </div>
 
               <BentoArt slot="bentoBaskets">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.basketChart} src="/figma/bento/baskets-chart.png" alt="" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={styles.basketPhone} src="/figma/bento/baskets-phone.png" alt="" />
+                <Image className={styles.basketChart} src="/figma/bento/baskets-chart.png" alt="" width={1510} height={468} sizes="(max-width: 767px) 100vw, 755px" />
+                <Image className={styles.basketPhone} src="/figma/bento/baskets-phone.png" alt="" width={812} height={618} sizes="(max-width: 767px) 74vw, 406px" />
               </BentoArt>
             </RevealCard>
           </div>

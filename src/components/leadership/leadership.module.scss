@@ -17,16 +17,6 @@
   display: inline;
 }
 
-.heading {
-  margin: 0;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: -1px;
-  color: var(--sb-text-display);
-}
-
 .listing {
   background: var(--sb-surface-primary);
 }
@@ -86,16 +76,16 @@
 .name {
   font-family: var(--sb-font-heading);
   font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
   color: var(--sb-text-primary);
 }
 
 /* Pre Login/Body/B1 Reg — 18/24. */
 .role {
   font-family: var(--sb-font-body);
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
   color: var(--sb-text-secondary);
 }
 
@@ -138,8 +128,8 @@
 .detailRole {
   margin: 0;
   font-family: var(--sb-font-body);
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
   color: var(--sb-text-secondary);
 }
 
@@ -147,8 +137,8 @@
 .bio {
   min-height: 400px;
   font-family: var(--sb-font-body);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--sb-text-secondary);
 }
 
@@ -166,10 +156,6 @@
   /* Hero section — 24 / 40 padding, 16 under the trail, a 40/48 title. */
   .bannerInner {
     padding: 24px var(--sb-gutter);
-  }
-
-  .heading {
-    letter-spacing: 0;
   }
 
   .stop {
@@ -196,13 +182,13 @@
   .name {
     font-family: var(--sb-font-body);
     font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .role {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   /* Leader-Tablet — the role moves up under the name in the banner (20/28,
@@ -222,8 +208,8 @@
   .tabletRole {
     margin: 0;
     font-family: var(--sb-font-body);
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
     color: var(--sb-text-secondary);
   }
 
@@ -254,8 +240,8 @@
 
   .bio {
     min-height: 0;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     color: #484f6b;
   }
 
@@ -273,9 +259,6 @@
   }
 
   .heading {
-    font-size: 28px;
-    line-height: 36px;
-    letter-spacing: -1px;
     text-align: center;
   }
 
@@ -307,13 +290,13 @@
   .name {
     font-family: var(--sb-font-body);
     font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .role {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .desktopOnly {
@@ -361,8 +344,8 @@
     margin: 0;
     font-family: var(--sb-font-heading);
     font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
     letter-spacing: -1px;
     color: var(--sb-text-primary);
   }
@@ -370,8 +353,8 @@
   .mobileRole {
     margin: 0;
     font-family: var(--sb-font-body);
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     color: var(--sb-text-secondary);
   }
 

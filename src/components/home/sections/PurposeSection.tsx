@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import SbButton from "@/components/ui/SbButton";
@@ -41,12 +42,14 @@ export default function PurposeSection() {
                 key={card.slug}
                 className={`${styles.card} ${open ? "" : styles.collapsed}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   className={styles.art}
                   src={`/figma/purpose/${card.slug}.png`}
                   alt=""
                   aria-hidden="true"
+                  width={620}
+                  height={348}
+                  sizes="(max-width: 767px) 100vw, 310px"
                 />
 
                 <div className={styles.cardHead}>

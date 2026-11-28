@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RiveArrowUpRight from "@/components/ui/rive/RiveArrowUpRight";
 import MarketPulseTicker from "./MarketPulseTicker";
+import SectionTitle from "@/components/ui/SectionTitle";
 import styles from "./market-pulse.module.scss";
 
 /** Market Pulse — desktop 1:56198, mobile Live market 0:46476. */
@@ -11,9 +12,9 @@ export default function MarketPulse() {
       <img className={styles.art} src="/figma/market-pulse/bull-bear.svg" alt="" aria-hidden="true" />
 
       <div className={styles.inner}>
-        <h2 id="market-pulse-title" className={styles.title}>
+        <SectionTitle id="market-pulse-title" size="medium" tone="dark" className={styles.title}>
           Market Pulse
-        </h2>
+        </SectionTitle>
 
         <MarketPulseTicker />
 

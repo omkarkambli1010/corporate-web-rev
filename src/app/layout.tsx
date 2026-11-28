@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 
 import BootstrapClient from "@/components/common/BootstrapClient/BootstrapClient";
-import GoogleTagManager from "@/components/common/GoogleTagManager/GoogleTagManager";
+import AnalyticsConsent from "@/components/common/AnalyticsConsent/AnalyticsConsent";
 import Loader from "@/components/common/Loader/Loader";
 import LoaderRegistration from "@/components/common/Loader/LoaderRegistration";
 import ToastContainer from "@/components/common/ToastContainer/ToastContainer";
 
 import { appConfig } from "@/config/app.config";
+import { THEME_SWITCH_ENABLED } from "@/config/features.config";
 
 import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import { LoaderProvider } from "@/context/LoaderContext";
@@ -100,12 +101,11 @@ export default function RootLayout({
             Keys match STORAGE_KEYS in src/context/AccessibilityContext.tsx. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement,t=localStorage.getItem("sbisecurities-theme");if(t==="dark"||t==="light"){d.setAttribute("data-theme",t);d.setAttribute("data-bs-theme",t)}var f=Number(localStorage.getItem("sbisecurities-font-size"));if(f>=14&&f<=22)d.style.setProperty("--font-size-base",f+"px")}catch(e){}})()`,
+            __html: `(function(){try{var d=document.documentElement,t=${THEME_SWITCH_ENABLED}&&localStorage.getItem("sbisecurities-theme");if(t==="dark"||t==="light"){d.setAttribute("data-theme",t);d.setAttribute("data-bs-theme",t)}var f=Number(localStorage.getItem("sbisecurities-font-size"));if(f>=14&&f<=22){d.style.setProperty("--font-size-base",f+"px");if(f>16)d.setAttribute("data-text-size","large")}}catch(e){}})()`,
           }}
         />
       </head>
       <body className={openSans.variable}>
-        <GoogleTagManager />
         <AccessibilityProvider>
 
 
@@ -117,6 +117,8 @@ export default function RootLayout({
               <a href="#main-content" className="skip-link">
                 Skip to main content
               </a>
+              {/* After the skip link, so keyboard users meet the question early. */}
+              <AnalyticsConsent />
               <LoaderRegistration />
               <Loader />
 

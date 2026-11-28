@@ -1,0 +1,59 @@
+/* The one place title type is set. A page whose mobile titles differ (About:
+   28/36) overrides --sh-title-m-size and --sh-title-m-lh on its scope. */
+
+/* :where() adds no specificity, so a section can place a title with a margin. */
+:where(.title) {
+  margin: 0;
+}
+
+.title {
+  /* Not --sb-font-heading: outside .sb-scope it does not reach the loaded font. */
+  font-family: var(--font-poppins), "Segoe UI", -apple-system, sans-serif;
+  font-weight: 400;
+  letter-spacing: -1px;
+  color: var(--sb-text-display);
+}
+
+.dark {
+  color: #ffffff;
+}
+
+/* Pre Login/Heading H1 Reg. */
+.section {
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+
+.medium,
+.page {
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+.compact {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+/* 768 frames. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section,
+  .medium {
+    font-size: 2.25rem;
+    line-height: 2.875rem;
+  }
+}
+
+/* 360 frames. */
+@media (max-width: 767px) {
+  .section,
+  .medium {
+    font-size: var(--sh-title-m-size, 2rem);
+    line-height: var(--sh-title-m-lh, 2.625rem);
+  }
+
+  .page {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+}

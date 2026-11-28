@@ -8,6 +8,7 @@ import StickyNudge from "@/components/home/sections/StickyNudge";
 import SbScope from "@/components/ui/SbScope";
 import type { LeadershipContent } from "@/types/pages";
 import LeaderCard from "./LeaderCard";
+import SectionTitle from "@/components/ui/SectionTitle";
 import styles from "./leadership.module.scss";
 
 /** Leadership listing — desktop 4:127542, tablet 2:73906, mobile 1:72949. */
@@ -20,7 +21,7 @@ export default function LeadershipListing({ content }: { content: LeadershipCont
       <section className={styles.banner}>
         <div className={styles.bannerInner}>
           <Breadcrumbs items={content.breadcrumbs} />
-          <h1 className={styles.heading}>
+          <SectionTitle as="h1" size="page" className={styles.heading}>
             {content.heading.endsWith(".") ? (
               <>
                 {content.heading.slice(0, -1)}
@@ -29,7 +30,7 @@ export default function LeadershipListing({ content }: { content: LeadershipCont
             ) : (
               content.heading
             )}
-          </h1>
+          </SectionTitle>
         </div>
       </section>
 

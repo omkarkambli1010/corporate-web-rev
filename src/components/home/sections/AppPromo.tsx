@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { FOOTER_CTA } from "@/constants/sbi-home";
@@ -44,8 +45,7 @@ export default function AppPromo({ content = DEFAULT_CONTENT }: { content?: Prom
         <div className={styles.phoneWindow} aria-hidden="true">
           <div className={styles.phoneStage}>
             <div className={styles.phoneFrame}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={styles.phone} src="/figma/footer/phone.png" alt="" />
+              <Image className={styles.phone} src="/figma/footer/phone.png" alt="" width={1600} height={1200} sizes="(max-width: 767px) 280vw, 1654px" />
             </div>
           </div>
         </div>

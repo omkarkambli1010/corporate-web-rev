@@ -30,7 +30,9 @@ function Item({
       {/* Figma: the text moves from Text Disabled to Text Display, letter by
           letter from left to right, as the section scrolls; entering a
           statement with the pointer fills the rest of it (0.5s, ease-out). */}
-      <p className={styles.text} aria-label={item.statement}>
+      <p className={styles.text}>
+        {/* Read whole; the letter-by-letter copy below is hidden from it. */}
+        <span className="visually-hidden">{item.statement}</span>
         {item.statement.split(" ").map((word, w) => (
           <Fragment key={`${w}-${word}`}>
             {w > 0 ? " " : null}
@@ -106,9 +108,15 @@ export default function MissionVision({ statements }: { statements: readonly Sta
         return;
       }
       const style = getComputedStyle(section);
-      const travel = parseFloat(style.getPropertyValue("--travel")) || 0;
-      const reveal = parseFloat(style.getPropertyValue("--reveal-run")) || 0;
-      const pinTop = parseFloat(style.getPropertyValue("--pin-top")) || 0;
+      const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      /* A custom property comes back as written, in px or in rem. */
+      const length = (name: string) => {
+        const value = style.getPropertyValue(name).trim();
+        return (parseFloat(value) || 0) * (value.endsWith("rem") ? rootSize : 1);
+      };
+      const travel = length("--travel");
+      const reveal = length("--reveal-run");
+      const pinTop = length("--pin-top");
       const run = travel + reveal;
       const p = clamp((pinTop - section.getBoundingClientRect().top) / run);
 

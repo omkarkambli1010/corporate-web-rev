@@ -91,7 +91,11 @@ export default function SearchPageView({
                   <SearchTabs result={result} tab={tab} />
                 </div>
               ) : null}
-              {heading ? <h1 className={styles.heading}>{heading}</h1> : null}
+              {heading ? (
+                <h1 className={styles.heading}>{heading}</h1>
+              ) : (
+                <h1 className="visually-hidden">Search results</h1>
+              )}
               <SearchResultsView result={result} tab={tab} showCount={Boolean(query)} />
             </>
           ) : (

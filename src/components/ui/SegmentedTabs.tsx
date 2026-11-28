@@ -1,5 +1,6 @@
 "use client";
 
+import type { KeyboardEvent } from "react";
 import styles from "./segmented-tabs.module.scss";
 
 interface SegmentedTabsProps {
@@ -27,8 +28,27 @@ export default function SegmentedTabs({
   width = 370,
   tone = "default",
 }: SegmentedTabsProps) {
+  /* Tabs pattern: one Tab stop; arrows, Home and End move and select. */
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const buttons = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const current = buttons.indexOf(event.target as HTMLButtonElement);
+    if (current < 0) return;
+    const last = buttons.length - 1;
+    const next = {
+      ArrowRight: current === last ? 0 : current + 1,
+      ArrowLeft: current === 0 ? last : current - 1,
+      Home: 0,
+      End: last,
+    }[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    buttons[next].focus();
+    onChange(tabs[next]);
+  };
+
   return (
     <div
+      onKeyDown={onKeyDown}
       className={`${styles.track} ${tone === "onWhite" ? styles.onWhite : ""}`}
       role="tablist"
       aria-label={label}
@@ -40,6 +60,7 @@ export default function SegmentedTabs({
           type="button"
           role="tab"
           aria-selected={tab === active}
+          tabIndex={tab === active ? 0 : -1}
           className={`${styles.tab} ${tab === active ? styles.active : ""}`}
           onClick={() => onChange(tab)}
         >

@@ -89,8 +89,8 @@ $muted: #ccd9e8;
 .address {
   margin: 0 0 14px;
   font-family: var(--footer-font-poppins), "Segoe UI", -apple-system, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   font-style: normal;
   color: $on-dark;
 }
@@ -99,8 +99,8 @@ $muted: #ccd9e8;
   display: flex;
   gap: 6px;
   margin: 0 0 8px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: $on-dark;
 }
 
@@ -122,8 +122,8 @@ $muted: #ccd9e8;
   align-items: center;
   gap: 24px;
   margin-top: 16px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .socialList {
@@ -161,8 +161,8 @@ $muted: #ccd9e8;
   padding: 12px;
   border-radius: 8px;
   background: linear-gradient(180deg, #f7fbff 20%, #dbdbfe 100%);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: $indigo;
   text-decoration: none;
   transition: filter 0.18s ease;
@@ -187,8 +187,8 @@ $muted: #ccd9e8;
 .groupHeading {
   margin: 0;
   padding: 10px 8px 10px 0;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 500;
   color: #ffffff;
 }
@@ -204,8 +204,8 @@ $muted: #ccd9e8;
    change to the inherited type. */
 .groupLinks li {
   padding: 4px 0;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 /* The two groups beside the contact block run tighter, at 24. */
@@ -214,8 +214,8 @@ $muted: #ccd9e8;
 }
 
 .link {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: $muted;
   text-decoration: none;
 }
@@ -256,8 +256,8 @@ $muted: #ccd9e8;
 
 .stocksHeading {
   margin: 0;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 500;
   color: #ffffff;
 }
@@ -292,8 +292,8 @@ $muted: #ccd9e8;
   justify-content: center;
   min-width: 0;
   padding: 0 4px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: $muted;
   text-decoration: none;
 }
@@ -321,10 +321,10 @@ $muted: #ccd9e8;
      Overview" in full (it needs 168 of the 194 track) and only truncates from
      the second label on. */
   padding: 0 12px;
-  line-height: 41px;
+  line-height: 2.5625rem;
   border: 1px solid $line;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: $on-dark;
   text-decoration: none;
   white-space: nowrap;
@@ -345,8 +345,8 @@ $muted: #ccd9e8;
 
 .legal p {
   margin: 0 0 16px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: $muted;
 }
 
@@ -421,8 +421,8 @@ $muted: #ccd9e8;
   .address {
     margin-bottom: 13px;
     font-family: inherit;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     color: $muted;
   }
 
@@ -514,9 +514,9 @@ $muted: #ccd9e8;
     border: 0;
     background: none;
     font: inherit;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 1.25rem;
     letter-spacing: 0;
     text-transform: uppercase;
     text-align: left;
@@ -569,14 +569,19 @@ $muted: #ccd9e8;
      the wide band runs 14/20. */
   .primaryGroups .groupLinks li,
   .groupLinks li {
-    padding: 2px 0;
-    font-size: 12px;
-    line-height: 20px;
+    padding: 0;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
   }
 
+  /* The 24px row is carried by the link itself so the tap target meets
+     WCAG 2.2 target size. */
   .link {
-    font-size: 12px;
-    line-height: 20px;
+    display: inline-block;
+    min-width: 24px;
+    padding: 2px 0;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
   }
 
   /* Open Demat Account leads the stack on mobile; the wide footer sets it
@@ -622,9 +627,9 @@ $muted: #ccd9e8;
   /* The index title is set like the accordion rows, not like the wide band's
      medium 16. */
   .stocksHeading {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 1.5rem;
   }
 
   /* Frame 2147226084 — 28 entries on a seven-wide grid of 46.857 squares. The
@@ -646,8 +651,8 @@ $muted: #ccd9e8;
   .letter {
     width: 100%;
     padding: 0;
-    font-size: 12px;
-    line-height: 20px;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
     color: #ffffff;
   }
 
@@ -664,8 +669,8 @@ $muted: #ccd9e8;
   /* Registration Info I0:66328;18333:22312 — 328x32 for two lines, so 16, and
      a dimmer neutral/200 than the link band above it. */
   .legal p {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
     color: rgba(204, 217, 232, 0.72);
   }
 }

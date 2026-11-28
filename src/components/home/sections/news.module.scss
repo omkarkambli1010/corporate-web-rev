@@ -9,41 +9,7 @@
 }
 
 .head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
   margin-bottom: 30px;
-}
-
-/* Pre Login/Heading H1 Reg — 48/56, -1px. */
-.title {
-  margin: 0 0 6px;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
-  letter-spacing: -1px;
-  color: #ffffff;
-}
-
-.subtext {
-  margin: 0;
-  font-family: var(--sb-font-body);
-  font-size: 20px;
-  line-height: 28px;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.arrow {
-  flex-shrink: 0;
-  display: inline-flex;
-  color: #ffffff;
-  transition: transform 0.2s ease;
-}
-
-.arrow:hover {
-  transform: translateX(4px);
 }
 
 /* Lead story beside a stack of three — 644 + 644 at 1440. */
@@ -79,7 +45,9 @@
 .lead img {
   display: block;
   width: 100%;
-  height: 362.25px;
+  /* 644x366 at 1440; by shape, so the headline in the art is never cut off. */
+  height: auto;
+  aspect-ratio: 1288 / 732;
   object-fit: cover;
   border-radius: var(--sb-radius-12);
   margin-bottom: 16px;
@@ -89,8 +57,8 @@
   margin: 0 0 8px;
   font-family: var(--sb-font-subheading);
   font-weight: 500;
-  font-size: 18px;
-  line-height: 32px;
+  font-size: 1.125rem;
+  line-height: 2rem;
   color: #ffffff;
 }
 
@@ -130,8 +98,8 @@
   overflow: hidden;
   font-family: var(--sb-font-subheading);
   font-weight: 500;
-  font-size: 18px;
-  line-height: 32px;
+  font-size: 1.125rem;
+  line-height: 2rem;
   color: #ffffff;
 }
 
@@ -139,8 +107,8 @@
 .stamp {
   margin: 0;
   font-family: var(--sb-font-body);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: rgba(255, 255, 255, 0.72);
 }
 
@@ -151,34 +119,19 @@
 }
 
 @media (max-width: 767px) {
+  /* The 360 frame carries no subtext in this section head. */
+  .head p {
+    display: none;
+  }
+
   /* Market news 0:66051 — 40 of head room, and the head is a 32/42 title on
-     its own; the mobile frame carries no subtext here. */
+     its own. */
   .inner {
     padding: 40px var(--sb-gutter);
   }
 
   .head {
-    gap: 16px;
     margin-bottom: 32px;
-  }
-
-  .title {
-    margin: 0;
-    font-size: 32px;
-    line-height: 42px;
-  }
-
-  .subtext {
-    display: none;
-  }
-
-  .arrow svg {
-    width: 32px;
-    height: 32px;
-  }
-
-  .arrow {
-    --rive-arrow-size: 32px;
   }
 
   /* Frame 2147225986 0:66059 — the four cards stack 24 apart, and every one is
@@ -230,8 +183,8 @@
   .item h3 {
     margin: 0;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
     max-height: none;
   }
 
@@ -243,8 +196,8 @@
   }
 
   .stamp {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
     color: #ccd9e8;
   }
 }
@@ -258,9 +211,4 @@
   .mobileBreak {
     display: inline;
   }
-}
-
-/* Once the Rive arrow is playing it animates the hover itself. */
-.arrow:has([data-rive-active]):hover {
-  transform: none;
 }

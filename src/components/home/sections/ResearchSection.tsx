@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/SbIcons";
 import SectionHead from "@/components/ui/SectionHead";
@@ -98,15 +99,26 @@ export default function ResearchSection({ content = DEFAULT_CONTENT }: { content
               className={styles.card}
               {...(isRail ? carouselSlide(i, reports.length) : {})}
             >
-              {/* The report kind is set inside the artwork, so it is repeated
-                  here for assistive tech rather than drawn twice. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className={styles.cover}
-                src={report.cover}
-                alt=""
-                aria-hidden="true"
-              />
+              <div className={styles.media}>
+                <Image
+                  className={styles.cover}
+                  src={report.cover}
+                  /* CMS covers may sit on hosts the optimizer is not configured for. */
+                  unoptimized={!report.cover.startsWith("/figma/")}
+                  alt=""
+                  aria-hidden="true"
+                  width={620}
+                  height={366}
+                  sizes="(max-width: 767px) 80vw, 310px"
+                />
+                {/* The report kind is data, so it is drawn as text over the
+                    cover. The heading below already reads it out. */}
+                {report.kind ? (
+                  <span className={styles.tag} data-testid="report-tag" aria-hidden="true">
+                    {report.kind}
+                  </span>
+                ) : null}
+              </div>
               <h3 className={styles.title}>
                 <span className="sr-only">{report.kind}: </span>
                 {report.title}

@@ -30,7 +30,7 @@ export default function StickyNudge({ content = DEFAULT_CONTENT }: { content?: N
   }, []);
 
   return (
-    <div className={`${styles.wrap} ${shown ? styles.shown : ""}`} aria-hidden={!shown}>
+    <div className={`${styles.wrap} ${shown ? styles.shown : ""}`} inert={!shown}>
       <form className={styles.bar} onSubmit={(event) => event.preventDefault()}>
         <p className={styles.title}>{content.title}</p>
         <input
@@ -38,13 +38,11 @@ export default function StickyNudge({ content = DEFAULT_CONTENT }: { content?: N
           inputMode="numeric"
           placeholder={content.mobilePlaceholder}
           aria-label={content.mobilePlaceholder}
-          tabIndex={shown ? undefined : -1}
         />
         <input
           type="text"
           placeholder={content.namePlaceholder}
           aria-label={content.namePlaceholder}
-          tabIndex={shown ? undefined : -1}
         />
         <SbButton variant="secondary" type="submit">
           {content.cta}

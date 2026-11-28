@@ -12,7 +12,9 @@
   --color-secondary: #6c757d;
   --color-border: #dee2e6;
 
-  --focus-outline-color: #ffbf47;
+  --focus-outline-color: #1b1670;
+  /* The white gap inside the ring is what shows on dark grounds. */
+  --focus-halo-color: #ffffff;
   --focus-outline-width: 3px;
 
   --container-max-width: 1200px;

@@ -45,8 +45,9 @@
 .service { background: var(--sb-primary-200); }
 .transparency { background: var(--sb-primary-300); }
 .ethics { background: var(--sb-primary-400); }
-.politeness { background: var(--sb-primary-500); }
-.sustainability { background: var(--sb-primary-600); }
+/* Dark enough for white text at 4.5:1. */
+.politeness { background: var(--sb-primary-700); }
+.sustainability { background: var(--sb-primary-800); }
 
 .icon {
   display: block;
@@ -59,8 +60,8 @@
   margin: 0;
   font-family: var(--sb-font-heading);
   font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
   color: var(--sb-text-display);
 }
 
@@ -68,8 +69,8 @@
 .body {
   margin: 0;
   font-family: var(--sb-font-body);
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
   color: var(--sb-text-secondary);
 }
 
@@ -81,7 +82,11 @@
 
 .politeness .body,
 .sustainability .body {
-  color: var(--sb-neutral-200);
+  color: #ffffff;
+}
+
+.ethics .body {
+  color: var(--sb-text-primary);
 }
 
 /* 768 frame — two 336 x 354 cards a row, 16 apart, with Sustainability
@@ -112,8 +117,8 @@
   .service .body,
   .transparency .body,
   .ethics .body {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 
@@ -143,8 +148,8 @@
   }
 
   .body {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .icon {

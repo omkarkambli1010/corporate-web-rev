@@ -89,8 +89,8 @@ $surface: var(--sb-surface-primary, #ffffff);
   gap: 2px;
   max-height: 44px;
   border-radius: 8px;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   color: $display;
   text-decoration: none;
   white-space: nowrap;
@@ -150,8 +150,8 @@ $surface: var(--sb-surface-primary, #ffffff);
 .searchLabel {
   flex: 1;
   min-width: 0;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   color: $muted;
 }
 
@@ -170,8 +170,8 @@ $surface: var(--sb-surface-primary, #ffffff);
   align-items: center;
   gap: 0;
   flex-shrink: 0;
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   color: $muted;
 }
 
@@ -234,8 +234,8 @@ $surface: var(--sb-surface-primary, #ffffff);
   border: 0;
   border-radius: 8px;
   box-shadow: 0 10px 20px 4px var(--sb-elevation-01, rgba(204, 217, 232, 0.2));
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -431,3 +431,24 @@ $surface: var(--sb-surface-primary, #ffffff);
   }
 }
 
+/* Larger text. */
+/* The menu no longer fits beside the logo and buttons: give it its own row. */
+@media (min-width: 1200px) {
+  :global(html[data-text-size="large"]) .inner {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  :global(html[data-text-size="large"]) .nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  :global(html[data-text-size="large"]) .navList {
+    flex-wrap: wrap;
+  }
+
+  :global(html[data-text-size="large"]) .actions {
+    margin-left: auto;
+  }
+}

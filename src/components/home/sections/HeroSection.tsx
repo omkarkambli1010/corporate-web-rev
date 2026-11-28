@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, type ChangeEvent } from "react";
+import Image from "next/image";
+import { type ChangeEvent } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import PlayPauseButton from "@/components/ui/PlayPauseButton";
 import SbButton from "@/components/ui/SbButton";
 import { HERO } from "@/constants/sbi-home";
 import {
@@ -68,12 +68,6 @@ export default function HeroSection() {
     },
   });
 
-  /* The headline rotates on its own, so it can be paused (WCAG 2.2.2). It
-     starts paused for visitors who ask for reduced motion. */
-  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const [userPlaying, setUserPlaying] = useState<boolean | null>(null);
-  const rotating = userPlaying ?? !reducedMotion;
-
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.inner}>
@@ -81,7 +75,7 @@ export default function HeroSection() {
           <h1 id="hero-title" className={styles.title}>
             <span className={styles.titleLead}>{HERO.titleLead}</span>
             {/* The headline cycles in place inside a fixed two-line window. */}
-            <span className={`${styles.rotator} ${rotating ? "" : styles.rotatorPaused}`}>
+            <span className={styles.rotator}>
               <span className={styles.rotatorTrack}>
                 {[...HERO.rotatingLines, HERO.rotatingLines[0]].map((lines, i) => (
                   <span className={styles.rotatorItem} key={i} aria-hidden={i === 3}>
@@ -98,18 +92,10 @@ export default function HeroSection() {
             <br />
             {HERO.subtext[1]}
           </p>
-          <PlayPauseButton
-            playing={rotating}
-            onToggle={() => setUserPlaying(!rotating)}
-            label="rotating headline"
-            size={32}
-            className={styles.rotatorToggle}
-          />
         </div>
 
         <div className={styles.mockup} aria-hidden="true">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/figma/hero/mockup.png" alt="" />
+          <Image src="/figma/hero/mockup.png" alt="" width={828} height={1116} sizes="(max-width: 767px) 80vw, 414px" loading="eager" fetchPriority="high" />
         </div>
 
         <div className={styles.watermarks} aria-hidden="true">
@@ -122,9 +108,11 @@ export default function HeroSection() {
             <label htmlFor="hero-name">
               <span className={styles.desktopOnly}>{HERO.form.nameLabel}</span>
               <span className={styles.mobileOnly}>{HERO.formMobile.nameLabel}</span>
+              <span aria-hidden="true"> *</span>
             </label>
             <input
               id="hero-name"
+              aria-required="true"
               type="text"
               placeholder={form.namePlaceholder}
               autoComplete="name"
@@ -144,9 +132,11 @@ export default function HeroSection() {
             <label htmlFor="hero-mobile">
               <span className={styles.desktopOnly}>{HERO.form.mobileLabel}</span>
               <span className={styles.mobileOnly}>{HERO.formMobile.mobileLabel}</span>
+              <span aria-hidden="true"> *</span>
             </label>
             <input
               id="hero-mobile"
+              aria-required="true"
               type="tel"
               inputMode="numeric"
               placeholder={form.mobilePlaceholder}
@@ -180,6 +170,7 @@ export default function HeroSection() {
           <label className={styles.consent}>
             <input
               type="checkbox"
+              aria-required="true"
               aria-invalid={errors.consent ? true : undefined}
               aria-describedby={errors.consent ? "hero-consent-error" : undefined}
               {...register("consent")}
@@ -188,7 +179,10 @@ export default function HeroSection() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/figma/hero/check.svg" alt="" width={12} height={12} />
             </span>
-            {HERO.form.consent}
+            <span>
+              {HERO.form.consent}
+              <span aria-hidden="true"> *</span>
+            </span>
           </label>
 
           {errors.consent ? (
@@ -230,8 +224,7 @@ export default function HeroSection() {
           </div>
           <div className={styles.kpi}>
             <dd className={styles.kpiLogo}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/figma/hero/backed-by-sbi.png" alt="" />
+              <Image src="/figma/hero/backed-by-sbi.png" alt="" width={960} height={422} sizes="80px" />
             </dd>
             <dt className={styles.kpiLabel}>{HERO.kpis.backing.label}</dt>
           </div>

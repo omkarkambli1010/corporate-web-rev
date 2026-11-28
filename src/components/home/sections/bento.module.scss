@@ -8,33 +8,9 @@
   padding: 40px var(--sb-gutter);
 }
 
-/* Title + sutext 1:58375 — 90 tall (H1 56 + 6 + SH1 28), 24 clear of Fold 1. */
 .head {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
   text-align: center;
   margin-bottom: 24px;
-}
-
-/* Pre Login/Heading H1 Reg — 48/56, -1px. */
-.title {
-  margin: 0;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
-  letter-spacing: -1px;
-  color: var(--sb-text-display);
-}
-
-.subtext {
-  margin: 0;
-  font-family: var(--sb-font-body);
-  font-size: 20px;
-  line-height: 28px;
-  color: var(--sb-text-secondary);
 }
 
 /* Row one is 755 + 533, row two mirrors it — 1312 across with a 24px gutter. */
@@ -60,7 +36,7 @@
 /* Card frame — 378 tall, 12px radius, white-to-primary/200 ground. */
 .card {
   position: relative;
-  height: 378px;
+  height: 23.625rem;
   padding: 32px;
   overflow: hidden;
   border-radius: var(--sb-radius-12);
@@ -93,8 +69,8 @@
   margin: 0;
   font-family: var(--sb-font-heading);
   font-weight: 400;
-  font-size: 28px;
-  line-height: 36px;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
   letter-spacing: -1px;
   color: var(--sb-text-display);
 }
@@ -125,8 +101,8 @@
 }
 
 .leverageSmall {
-  font-size: 28px;
-  line-height: 36px;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
   letter-spacing: -1px;
 }
 
@@ -134,8 +110,8 @@
    above and below it, which nets the 187 the group actually occupies. */
 .leverageBig {
   font-weight: 600;
-  font-size: 127.273px;
-  line-height: 115px;
+  font-size: 7.95456rem;
+  line-height: 7.1875rem;
   background: linear-gradient(0deg, var(--sb-primary-600) 0%, var(--sb-primary-1000) 115.63%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -195,16 +171,16 @@
   margin: 0;
   font-family: var(--sb-font-heading);
   font-weight: 600;
-  font-size: 48px;
-  line-height: 56px;
+  font-size: 3rem;
+  line-height: 3.5rem;
   letter-spacing: -1px;
   color: var(--sb-text-display);
 }
 
 .branches dt {
   font-family: var(--sb-font-body);
-  font-size: 16px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 1.4375rem;
   color: var(--sb-text-secondary);
 }
 
@@ -314,18 +290,7 @@
   }
 
   .head {
-    align-items: flex-start;
     text-align: left;
-  }
-
-  .title {
-    font-size: 32px;
-    line-height: 42px;
-  }
-
-  .subtext {
-    font-size: 16px;
-    line-height: 24px;
   }
 
   .grid {
@@ -348,7 +313,7 @@
   .card {
     position: sticky;
     top: calc(16px + var(--stack-index, 0) * 25px);
-    height: 400px;
+    height: 25rem;
     padding: 23px 18px 23px 23px;
     border: 1px solid var(--sb-primary-200);
     background-image: linear-gradient(
@@ -384,8 +349,8 @@
   .cardTitle {
     font-family: var(--sb-font-subheading);
     font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
     letter-spacing: 0;
   }
 
@@ -403,13 +368,13 @@
   }
 
   .leverageSmall {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
   }
 
   .leverageBig {
-    font-size: 76px;
-    line-height: 92px;
+    font-size: 4.75rem;
+    line-height: 5.75rem;
     letter-spacing: -2px;
   }
 
@@ -437,13 +402,13 @@
   }
 
   .branches dd {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 
   .branches dt {
-    font-size: 13px;
-    line-height: 18px;
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
   }
 
   .desktopOnly {
@@ -470,4 +435,11 @@
 
 .card .riveArt canvas {
   pointer-events: none;
+}
+
+/* Larger text. */
+/* The art is anchored to the bottom of each card, so a taller card keeps it
+   clear of the longer copy above. */
+:global(html[data-text-size="large"]) .card {
+  height: 31rem;
 }

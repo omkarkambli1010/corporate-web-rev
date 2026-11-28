@@ -23,7 +23,9 @@
   overflow: hidden;
 }
 
-.dot {
+/* Two classes: `.sb-scope img { max-width: 100% }` outranks a lone one and
+   would squash the texture to the width of its box. */
+.dotBox .dot {
   position: absolute;
   top: 0;
   left: -71.94%;
@@ -77,23 +79,12 @@
   gap: 8px;
 }
 
-/* Pre Login - 2/Heading/H2 Reg — 40/48, -1px. */
-.title {
-  margin: 0;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: -1px;
-  color: var(--sb-text-display);
-}
-
 /* Post Login/Sub-Heading/SH1 — 20/28. */
 .subtext {
   margin: 0;
   font-family: var(--sb-font-data);
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   color: var(--sb-text-secondary);
 }
 
@@ -148,7 +139,7 @@
   border-radius: 8.1px;
   font-family: var(--font-open-sans), "Open Sans", sans-serif;
   font-variation-settings: "wdth" 100;
-  font-size: 11.2px;
+  font-size: 0.7rem;
   line-height: normal;
   color: #222;
   text-align: center;
@@ -186,7 +177,7 @@
   border-radius: 16px;
   background: linear-gradient(119deg, rgba(40, 0, 113, 0.7) 6%, rgba(216, 32, 83, 0.7) 95%);
   font-family: var(--font-open-sans), "Open Sans", sans-serif;
-  font-size: 8.1px;
+  font-size: 0.50625rem;
   font-weight: 600;
   line-height: normal;
   color: #fff;
@@ -210,8 +201,8 @@
 .agree,
 .field input {
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .field label {
@@ -240,12 +231,12 @@
 .help {
   display: flex;
   align-items: center;
-  height: 20px;
+  height: 1.25rem;
   gap: 4px;
   margin: -4px 0 0;
   font-family: var(--sb-font-body);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-secondary);
 }
 
@@ -296,8 +287,8 @@
   background: var(--sb-gradient-primary);
   box-shadow: 0 3px 8px 1px var(--sb-elevation-01);
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-primary-50);
   cursor: pointer;
 }
@@ -358,17 +349,10 @@
     width: 100%;
   }
 
-  /* Heading H1 at 768 — 36/46; Paragraph 18/24. */
-  .title {
-    font-size: 36px;
-    line-height: 46px;
-    letter-spacing: 0;
-  }
-
   .subtext {
     font-family: var(--sb-font-body);
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
   }
 
   .form {
@@ -409,7 +393,7 @@
     gap: 8.7px;
     padding: 5.8px;
     border-radius: 5.8px;
-    font-size: 7.96px;
+    font-size: 0.4975rem;
   }
 
   .product:nth-child(-n + 6) {
@@ -430,7 +414,7 @@
     left: 19px;
     padding: 1.4px 2.9px;
     border-radius: 11.6px;
-    font-size: 5.8px;
+    font-size: 0.3625rem;
   }
 }
 
@@ -466,16 +450,9 @@
     display: none;
   }
 
-  /* Heading H1 at 360 — 28/36. */
-  .title {
-    font-size: 28px;
-    line-height: 36px;
-    letter-spacing: 0;
-  }
-
   .subtext {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .visual {
@@ -503,7 +480,7 @@
 
   .product {
     min-height: 47px;
-    font-size: 7px;
+    font-size: 0.4375rem;
     gap: 6px;
   }
 
@@ -514,5 +491,18 @@
 
   .form {
     width: 100%;
+  }
+}
+
+:global(html[data-text-size="large"]) .help {
+  height: auto;
+  min-height: 1.25rem;
+}
+
+/* Larger text. */
+@media (max-width: 767px) {
+  :global(html[data-text-size="large"]) .inner {
+    height: auto;
+    grid-template-rows: auto auto;
   }
 }

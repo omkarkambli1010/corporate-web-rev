@@ -1,6 +1,7 @@
 import Breadcrumbs, { type BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 import SbScope from "@/components/ui/SbScope";
 import type { LeaderContent } from "@/types/pages";
+import SectionTitle from "@/components/ui/SectionTitle";
 import styles from "./leadership.module.scss";
 
 /** Leader detail — desktop 4:127648, tablet 2:73906 (Leader-Tablet), mobile 1:76177. */
@@ -16,7 +17,7 @@ export default function LeaderDetail({
       <section className={styles.banner}>
         <div className={styles.bannerInner}>
           <Breadcrumbs items={breadcrumbs} />
-          <h1 className={`${styles.heading} ${styles.desktopOnly}`}>{leader.name}</h1>
+          <SectionTitle as="h1" size="page" className={`${styles.heading} ${styles.desktopOnly}`}>{leader.name}</SectionTitle>
           {/* Leader-Tablet sets the role under the name, in the banner. */}
           <p className={`${styles.tabletRole} ${styles.tabletOnly}`}>{leader.role}</p>
 

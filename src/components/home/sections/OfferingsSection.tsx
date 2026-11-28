@@ -43,7 +43,7 @@ export default function OfferingsSection() {
                 {card.artMobile ? (
                   <source media="(max-width: 767px)" srcSet={card.artMobile} />
                 ) : null}
-                <img className={styles.art} src={card.art} alt="" aria-hidden="true" />
+                <img className={styles.art} src={card.art} alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </picture>
               <h3 className={styles.cardTitle}>{card.title}</h3>
               <p className={styles.cardBody}>

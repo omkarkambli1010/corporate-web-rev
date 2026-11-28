@@ -37,7 +37,7 @@
   --sb-text-primary: #05080f;
   --sb-text-on-dark: #f7fbff;
   --sb-text-secondary: #3b4c72;
-  --sb-text-tertiary: #61799b;
+  --sb-text-tertiary: #566c8d;
   --sb-text-success: #0a5f3c;
   --sb-text-hover: #4437d8;
   --sb-icon-primary: #101b34;
@@ -268,6 +268,13 @@
 .sb-scope ol:not([class]) {
   margin: 0;
   padding: 0;
+}
+
+/* next/image sets width and height attributes. This lets a rule that sizes only
+   the width keep the aspect ratio; :where() adds no specificity, so any rule
+   that does set a height still wins. */
+:where(img[data-nimg]) {
+  height: auto;
 }
 
 .sb-scope img,

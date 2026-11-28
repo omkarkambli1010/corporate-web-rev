@@ -84,7 +84,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <Link href="/support" className={styles.support}>
+            <Link href="/support" prefetch={false} className={styles.support}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/figma/footer/headset.svg" alt="" width={16} height={16} />
               Help &amp; Support

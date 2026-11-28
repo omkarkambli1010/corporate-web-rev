@@ -35,8 +35,8 @@
   border-radius: var(--sb-radius-6);
   background: none;
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   color: var(--sb-text-tertiary);
   white-space: nowrap;
   cursor: pointer;
@@ -76,4 +76,15 @@
   .tab {
     flex: 1 0 auto;
   }
+}
+
+/* Larger text. */
+:global(html[data-text-size="large"]) .track {
+  flex-wrap: wrap;
+  width: auto;
+}
+
+:global(html[data-text-size="large"]) .tab {
+  flex: 1 0 auto;
+  max-height: none;
 }

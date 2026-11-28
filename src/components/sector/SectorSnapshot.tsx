@@ -13,6 +13,7 @@ import {
   type SectorView,
 } from "@/constants/sbi-sector";
 import type { SectorContent } from "@/types/pages";
+import SectionTitle from "@/components/ui/SectionTitle";
 import styles from "./sector.module.scss";
 
 type Snapshot = SectorContent["snapshot"];
@@ -41,6 +42,9 @@ function SectorTable({ rows, tab, labels }: { rows: readonly Sector[]; tab: Sect
   return (
     <div className={styles.tableWrap}>
       <table className={styles.table}>
+        <caption className="visually-hidden">
+          {labels.title}: {tab}
+        </caption>
         <thead>
           <tr>
             <th scope="col" className={styles.name}>{c.name}</th>
@@ -104,7 +108,7 @@ function SectorCards({ rows, tab, labels }: { rows: readonly Sector[]; tab: Sect
     <ul className={styles.cards}>
       {rows.map((sector) => (
         <li key={sector.name} className={styles.sectorCard}>
-          <h3 className={styles.cardTitle}>{sector.name}</h3>
+          <h2 className={styles.cardTitle}>{sector.name}</h2>
           {tab === "Performance" ? (
             <p className={styles.dayChange}>
               <span>{k.dayChange}</span>
@@ -281,7 +285,7 @@ export default function SectorSnapshot({
         <Breadcrumbs items={breadcrumbs} />
 
         <header className={styles.header}>
-          <h1 className={styles.title}>{snap.title}</h1>
+          <SectionTitle as="h1" size="page" className={styles.title}>{snap.title}</SectionTitle>
           <div className={styles.views} role="group" aria-label="View">
             {SECTOR_VIEWS_UI.map((v) => (
               <button

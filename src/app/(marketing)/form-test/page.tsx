@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Lead Enquiry Form" };
 
 import LeadForm from "@/components/forms/LeadForm/LeadForm";
 

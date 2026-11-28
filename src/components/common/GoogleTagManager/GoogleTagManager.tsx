@@ -52,23 +52,9 @@ export default function GoogleTagManager() {
                     );
                 `}
             </Script>
-
-            {/* <noscript>
-                {`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
-            </noscript> */}
-            <noscript>
-                <iframe
-                    src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
-                    height="0"
-                    width="0"
-                    title="Google Tag Manager"
-                    style={{ display: "none", visibility: "hidden" }}
-                ></iframe>
-            </noscript>
         </>
     );
 }
 
-// This component will provide both parts of the GTM installation:
-// Main JavaScript loader
-// Noscript iframe fallback
+// Rendered by AnalyticsConsent once the visitor accepts. There is no
+// <noscript> fallback: without JavaScript nobody can consent.

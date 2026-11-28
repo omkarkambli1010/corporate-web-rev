@@ -62,17 +62,13 @@
   border: 0;
   background: none;
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   color: var(--sb-text-primary);
 }
 
 .input::placeholder {
   color: var(--sb-text-tertiary);
-}
-
-.input:focus {
-  outline: none;
 }
 
 .input::-webkit-search-decoration,
@@ -93,8 +89,8 @@
   margin: 0;
   font-family: var(--sb-font-body);
   font-weight: 500;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   color: var(--sb-text-display);
 }
 

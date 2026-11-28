@@ -1,19 +1,19 @@
 /* Mission & Vision 4:127276 — 382 tall frame over a 636 column starting 80px
    down; the column's overflow is 334px, which is the scroll travel. */
 .mv {
-  --travel: 334px;
+  --travel: 20.875rem;
   /* Extra scroll spent on the letter-by-letter highlight (see MissionVision). */
-  --reveal-run: 666px;
+  --reveal-run: 41.625rem;
   --pin-top: 88px;
   position: relative;
-  height: calc(382px + var(--travel) + var(--reveal-run));
+  height: calc(23.875rem + var(--travel) + var(--reveal-run));
   background: var(--sb-surface-secondary);
 }
 
 .pin {
   position: sticky;
   top: var(--pin-top);
-  height: 382px;
+  height: 23.875rem;
   overflow: hidden;
 }
 
@@ -31,15 +31,19 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  outline: none;
+}
+
+.statement:focus-visible {
+  outline: 3px solid var(--sb-text-display);
+  outline-offset: 8px;
 }
 
 /* Post Login/Heading/H5 Reg — 24/30, -1px, tertiary. */
 .label {
   margin: 0;
   font-family: var(--sb-font-data);
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
   letter-spacing: -1px;
   color: var(--sb-text-tertiary);
 }
@@ -50,8 +54,8 @@
   margin: 0;
   font-family: var(--sb-font-heading);
   font-weight: 600;
-  font-size: 48px;
-  line-height: 56px;
+  font-size: 3rem;
+  line-height: 3.5rem;
 }
 
 .base {
@@ -91,12 +95,12 @@
    (Mission 278, 80 gap, Vision 222): 80 + 580 - 438 = 222 of travel. */
 @media (min-width: 768px) and (max-width: 1023px) {
   .mv {
-    --travel: 222px;
-    height: calc(438px + var(--travel) + var(--reveal-run));
+    --travel: 13.875rem;
+    height: calc(27.375rem + var(--travel) + var(--reveal-run));
   }
 
   .pin {
-    height: 438px;
+    height: 27.375rem;
   }
 
   .column {
@@ -129,12 +133,37 @@
 
   .statement {
     justify-content: center;
-    min-height: 540px;
+    min-height: 33.75rem;
     padding: 40px var(--sb-gutter);
   }
 
   .text {
-    font-size: 40px;
-    line-height: 48px;
+    /* Capped by the screen so a long word still fits at the larger text sizes. */
+    font-size: min(2.5rem, 11.2vw);
+    line-height: 1.2;
+  }
+}
+
+/* Larger text on a tablet is taller than the scroll window, so the section is
+   not pinned there: both statements simply show in full. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :global(html[data-text-size="large"]) .mv {
+    height: auto;
+  }
+
+  :global(html[data-text-size="large"]) .pin {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
+  :global(html[data-text-size="large"]) .column {
+    /* Over the offset the scroll code sets. */
+    transform: none !important;
+    padding-bottom: 40px;
+  }
+
+  :global(html[data-text-size="large"]) .letter {
+    color: var(--sb-text-display);
   }
 }

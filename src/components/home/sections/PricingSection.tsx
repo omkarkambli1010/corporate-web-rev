@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionHead from "@/components/ui/SectionHead";
 import { PLANS } from "@/constants/sbi-home";
 import styles from "./pricing.module.scss";
@@ -14,8 +15,7 @@ export default function PricingSection() {
             <li key={plan.name} className={`${styles.card} ${styles[plan.accent]}`}>
               <div className={styles.cardHead}>
                 <p className={styles.name}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/figma/pricing/${plan.accent}.png`} alt="" aria-hidden="true" />
+                  <Image src={`/figma/pricing/${plan.accent}.png`} alt="" aria-hidden="true" width={30} height={30} />
                   {plan.name}
                 </p>
                 {/* Figma sets the ₹ at 20 alongside the 32/42 figure, with the

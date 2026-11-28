@@ -1,7 +1,9 @@
 
 .skip-link {
   position: absolute;
-  top: -48px;
+  /* Hidden by its own height, so it stays out of sight at every text size. */
+  top: 0;
+  transform: translateY(-120%);
   left: 16px;
   z-index: 9999;
   padding: 10px 16px;
@@ -13,6 +15,7 @@
 
 .skip-link:focus {
   top: 16px;
+  transform: none;
 }
 
 .visually-hidden {

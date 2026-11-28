@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Open Your Demat Account" };
 
 import DematAccountForm from "@/components/forms/DematAccountForm/DematAccountForm";
 

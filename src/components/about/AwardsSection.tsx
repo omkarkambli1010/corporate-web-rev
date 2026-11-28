@@ -37,7 +37,7 @@ export default function AwardsSection({ awards }: { awards: AboutContent["awards
   return (
     <section className={styles.section}>
       <div className={styles.inner} {...carouselRegion(awards.title)}>
-        <SectionHead title={awards.title} align="center" mobileStart size="h2" />
+        <SectionHead title={awards.title} align="center" mobileStart size="medium" />
 
         <ul className={styles.rail} ref={railRef} tabIndex={0} onKeyDown={(e) => carouselKeys(e, page)}>
           {AWARDS.map((award, i) => {

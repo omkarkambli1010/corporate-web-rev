@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import SegmentedTabs from "@/components/ui/SegmentedTabs";
 import {
@@ -7,6 +8,7 @@ import {
   PLATFORM_PANEL_TRANSITION,
   PLATFORM_TABS,
 } from "@/constants/sbi-home";
+import SectionHead from "@/components/ui/SectionHead";
 import styles from "./platform.module.scss";
 
 /** Next-gen Investment Platform — desktop 1:59598, mobile 0:55678. */
@@ -59,21 +61,15 @@ export default function PlatformSection() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <header className={styles.head}>
-          {/* Title + sutext 0:59051 — the 360 frame sets its own breaks,
-              "Next-gen / Investment Platform" over "Trade, invest, and grow —
-              all in / one place", rather than wrapping to the 328 column. */}
-          <h2 className={styles.title}>
-            {PLATFORM.title.split(" ")[0]}{" "}
-            <br className={styles.mobileBreak} />
-            {PLATFORM.title.split(" ").slice(1).join(" ")}
-          </h2>
-          <p className={styles.subtext}>
-            {PLATFORM.subtext.split(" ").slice(0, 7).join(" ")}{" "}
-            <br className={styles.mobileBreak} />
-            {PLATFORM.subtext.split(" ").slice(7).join(" ")}
-          </p>
-        </header>
+        {/* Title + sutext 0:59051: the 360 frame sets its own breaks. */}
+        <SectionHead
+          title={PLATFORM.title}
+          subtext={PLATFORM.subtext}
+          titleBreakAfter={1}
+          subtextBreakAfter={7}
+          align="center"
+          mobileStart
+        />
 
         <div className={styles.tabs}>
           <SegmentedTabs
@@ -116,13 +112,15 @@ export default function PlatformSection() {
             }
           >
             {layers.map((layer) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
+              <Image
                 key={layer.id}
                 className={styles.panelLayer}
                 src={layer.src}
                 alt=""
                 aria-hidden="true"
+                width={1512}
+                height={850}
+                sizes="(max-width: 767px) 100vw, 756px"
               />
             ))}
           </div>

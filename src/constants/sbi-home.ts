@@ -42,7 +42,7 @@ export const HERO = {
   form: {
     mobileLabel: "Enter Mobile no.",
     mobilePlaceholder: "Enter your mobile number",
-    mobileHelp: "You will receive an OTP on the mobile number",
+    mobileHelp: "Enter 10 digits. We will send an OTP to it",
     nameLabel: "Enter Full Name",
     namePlaceholder: "Enter your full name",
     consent: "I agree to terms and conditions",
@@ -461,15 +461,29 @@ export interface Lesson {
   duration: string;
   /** Blogs card 0:66075 — the 360 frame sets a date under the title. */
   date: string;
+  /**
+   * A YouTube link or a video file (.mp4, .webm) plays in a popup; any other
+   * web link opens in a new tab. Without one the card has no Play button.
+   */
+  videoUrl?: string;
+  /** English captions (.vtt) for a video file. YouTube carries its own. */
+  captionsUrl?: string;
+  /** A transcript file visitors can download from the video popup. */
+  transcriptUrl?: string;
 }
 
+/* TEST VIDEO, NOT SBI CONTENT: Big Buck Bunny, an open film by the Blender
+   Foundation. Replace each lesson's videoUrl with its real link before
+   release. */
+const TEST_VIDEO_URL = "https://www.youtube.com/watch?v=aqz-KE-bpKQ";
+
 export const LESSONS: Lesson[] = [
-  { title: "Why our brain sees patterns that don't exist", duration: "12:45", date: "02 July 2025" },
-  { title: "Why stories influence investors more than numbers", duration: "12:28", date: "02 July 2025" },
-  { title: "You thought you had figured the market out.", duration: "12:28", date: "02 July 2025" },
-  { title: "Free advice is the most expensive advice", duration: "12:28", date: "02 July 2025" },
-  { title: "Why our brain sees patterns that don't exist", duration: "12:45", date: "02 July 2025" },
-  { title: "Why stories influence investors more than numbers", duration: "12:28", date: "02 July 2025" },
+  { title: "Why our brain sees patterns that don't exist", duration: "12:45", date: "02 July 2025", videoUrl: TEST_VIDEO_URL },
+  { title: "Why stories influence investors more than numbers", duration: "12:28", date: "02 July 2025", videoUrl: TEST_VIDEO_URL },
+  { title: "You thought you had figured the market out.", duration: "12:28", date: "02 July 2025", videoUrl: TEST_VIDEO_URL },
+  { title: "Free advice is the most expensive advice", duration: "12:28", date: "02 July 2025", videoUrl: TEST_VIDEO_URL },
+  { title: "Why our brain sees patterns that don't exist", duration: "12:45", date: "02 July 2025", videoUrl: TEST_VIDEO_URL },
+  { title: "Why stories influence investors more than numbers", duration: "12:28", date: "02 July 2025", videoUrl: TEST_VIDEO_URL },
 ];
 
 /* --- testimonials -------------------------------------------------------- */

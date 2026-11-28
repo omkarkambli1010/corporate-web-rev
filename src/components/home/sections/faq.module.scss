@@ -20,17 +20,6 @@
   gap: 24px;
 }
 
-/* Pre Login/Heading H1 Reg — 48/56, -1px. */
-.title {
-  margin: 0;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
-  letter-spacing: -1px;
-  color: var(--sb-text-display);
-}
-
 /* Buttons 0:64957 — the Figma pins this CTA to 228 wide rather than letting it
    hug its label, and pairs the label with a 16px ArrowRight at the button's
    own 6px gap (not a "92" glyph, which sets in Poppins and reads heavier). */
@@ -67,8 +56,8 @@
   background: none;
   font-family: var(--sb-font-subheading);
   font-weight: 500;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   color: var(--sb-text-display);
   text-align: left;
   cursor: pointer;
@@ -95,8 +84,8 @@
 .answerText {
   margin: 0;
   font-family: var(--sb-font-body);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--sb-text-secondary);
 }
 
@@ -118,9 +107,6 @@
 
   .title {
     order: 1;
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: 0;
     text-align: center;
   }
 
@@ -140,8 +126,8 @@
 
   .question {
     padding: 12px 0;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
   }
 
   .open .question {
@@ -180,18 +166,13 @@
     width: 100%;
   }
 
-  .title {
-    font-size: 32px;
-    line-height: 42px;
-  }
-
   /* FAQ-item 0:66320 — a collapsed row is 16 either side of a 16/24 question;
      0:66318 opens it to the 24 the expanded item uses, with the answer 16
      under the question and the column held clear of the 24px toggle. */
   .question {
     padding: 16px 0;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .open .question {
@@ -204,7 +185,7 @@
 
   /* Pre Login/Body B2 Reg — 14/20 on text/secondary. */
   .answerText {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }

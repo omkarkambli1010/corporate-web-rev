@@ -11,6 +11,8 @@ import {
   type ReactNode,
 } from "react";
 
+import { THEME_SWITCH_ENABLED } from "@/config/features.config";
+
 type ThemeMode = "light" | "dark";
 
 type AccessibilityContextValue = {
@@ -24,9 +26,9 @@ type AccessibilityContextValue = {
   setDarkTheme: () => void;
 };
 
-const DEFAULT_FONT_SIZE = 16;
-const MIN_FONT_SIZE = 14;
-const MAX_FONT_SIZE = 22;
+export const DEFAULT_FONT_SIZE = 16;
+export const MIN_FONT_SIZE = 14;
+export const MAX_FONT_SIZE = 22;
 
 export const STORAGE_KEYS = {
   theme: "sbisecurities-theme",
@@ -50,7 +52,7 @@ export function AccessibilityProvider({
       const savedTheme = window.localStorage.getItem(STORAGE_KEYS.theme);
       const savedFontSize = window.localStorage.getItem(STORAGE_KEYS.fontSize);
 
-      if (savedTheme === "light" || savedTheme === "dark") {
+      if (THEME_SWITCH_ENABLED && (savedTheme === "light" || savedTheme === "dark")) {
         setTheme(savedTheme);
       }
 
@@ -84,7 +86,10 @@ export function AccessibilityProvider({
     root.setAttribute("data-theme", theme);
     // Bootstrap 5.3's own dark mode, for any Bootstrap-styled controls.
     root.setAttribute("data-bs-theme", theme);
-    window.localStorage.setItem(STORAGE_KEYS.theme, theme);
+    /* While the switch is hidden, leave a visitor's earlier choice alone. */
+    if (THEME_SWITCH_ENABLED) {
+      window.localStorage.setItem(STORAGE_KEYS.theme, theme);
+    }
   }, [theme, preferencesLoaded]);
 
   useEffect(() => {
@@ -93,6 +98,12 @@ export function AccessibilityProvider({
       "--font-size-base",
       `${fontSize}px`
     );
+    /* Styles that need a different layout for enlarged text look for this. */
+    if (fontSize > DEFAULT_FONT_SIZE) {
+      document.documentElement.dataset.textSize = "large";
+    } else {
+      delete document.documentElement.dataset.textSize;
+    }
     window.localStorage.setItem(STORAGE_KEYS.fontSize, String(fontSize));
   }, [fontSize, preferencesLoaded]);
 

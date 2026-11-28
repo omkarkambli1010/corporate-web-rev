@@ -8,15 +8,8 @@
   padding: 40px var(--sb-gutter);
 }
 
-/* Pre Login/Heading H1 Reg — 48/56, 24 clear of the stage. */
 .title {
   margin: 0 0 24px;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
-  letter-spacing: -1px;
-  color: var(--sb-text-display);
   text-align: center;
 }
 
@@ -27,7 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 340px;
+  height: 21.25rem;
   padding-top: 32px;
 }
 
@@ -47,7 +40,7 @@
   position: relative;
   width: 774px;
   max-width: 100%;
-  height: 287px;
+  height: 17.9375rem;
 }
 
 /* The three slots the cards rotate through. Smart Animate interpolates a card
@@ -83,7 +76,7 @@
   left: 3.876%;
   top: 4px;
   width: 92.248%;
-  height: 300px;
+  height: 18.75rem;
   padding: 40px;
   background: var(--sb-neutral-00);
   border-width: 1px;
@@ -101,7 +94,7 @@
 .left,
 .right {
   width: 74.775%;
-  height: 285.907px;
+  height: 17.86919rem;
   padding: 32.424px;
   background: #f6f6ff;
   border-width: 0.811px;
@@ -130,6 +123,10 @@
   }
 }
 
+.figure {
+  display: contents;
+}
+
 .card blockquote {
   margin: 0;
 }
@@ -139,8 +136,8 @@
   margin: 0;
   font-family: var(--sb-font-heading);
   font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
   letter-spacing: -1px;
   color: var(--sb-text-display);
 }
@@ -157,8 +154,8 @@
   gap: 12px;
   font-family: var(--sb-font-subheading);
   font-weight: 500;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   color: var(--sb-text-display);
   transition: gap 0.3s linear;
 }
@@ -174,7 +171,7 @@
   background: var(--sb-primary-800);
   font-family: var(--sb-font-subheading);
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1;
   color: #ffffff;
   transition:
@@ -291,8 +288,8 @@
   border-radius: 42.857px;
   background: var(--sb-surface-secondary);
   font-family: var(--sb-font-data);
-  font-size: 20px;
-  line-height: 28.571px;
+  font-size: 1.25rem;
+  line-height: 1.78569rem;
 }
 
 .current {
@@ -345,11 +342,8 @@
     padding: 40px var(--sb-gutter) 20px;
   }
 
-  /* Head 0:66111 — 328x42, the title alone; mobile carries no subtext here. */
   .title {
     margin-bottom: 32px;
-    font-size: 32px;
-    line-height: 42px;
     text-align: left;
   }
 
@@ -407,7 +401,7 @@
     top: auto;
     flex: 0 0 259px;
     width: 259px;
-    height: 288px;
+    height: 18rem;
     padding: 24px;
     scroll-snap-align: start;
     background: var(--sb-surface-tertiary);
@@ -422,7 +416,7 @@
      is clipped rather than pushing the rule and the author out through the
      foot of the 288-tall card. */
   .card blockquote {
-    height: 168px;
+    height: 10.5rem;
     overflow: hidden;
   }
 
@@ -430,8 +424,8 @@
      Inter rather than the deck's Poppins H5, and without its display indigo. */
   .card blockquote p {
     font-family: var(--sb-font-data);
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     letter-spacing: 0;
     color: var(--sb-text-primary);
   }
@@ -446,8 +440,8 @@
   .left figcaption,
   .right figcaption {
     gap: 12px;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .avatar,
@@ -456,7 +450,7 @@
     width: 32px;
     height: 32px;
     border-radius: var(--sb-radius-6);
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   /* Pagination 0:66144 — 328x32, 32 below the rail. One dotted rule on the
@@ -486,7 +480,20 @@
   .pill {
     height: 28px;
     padding: 4px 14px;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+}
+
+/* Larger text wraps onto more lines than the fixed cards allow for. */
+@media (max-width: 767px) {
+  :global(html[data-text-size="large"]) .card {
+    height: auto;
+    min-height: 18rem;
+  }
+
+  :global(html[data-text-size="large"]) .card blockquote {
+    height: auto;
+    min-height: 10.5rem;
   }
 }

@@ -29,9 +29,11 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
   outline: var(--focus-outline-width) solid var(--focus-outline-color);
-  outline-offset: 3px;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--focus-halo-color);
 }
 
 img {

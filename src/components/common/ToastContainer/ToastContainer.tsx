@@ -55,6 +55,7 @@ export default function ToastContainer() {
   return (
     <div
       className={styles.container}
+      role="region"
       aria-label="Notifications"
     >
       {toasts.map((toast) => (

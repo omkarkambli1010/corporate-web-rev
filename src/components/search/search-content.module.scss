@@ -26,8 +26,8 @@
   font-family: var(--sb-font-body);
   font-style: italic;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--sb-text-hover);
 }
 
@@ -36,8 +36,8 @@
   margin: 0;
   font-family: var(--sb-font-body);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem;
+  line-height: 1.5rem;
   color: var(--sb-text-secondary);
 }
 
@@ -59,8 +59,8 @@
   border: 0;
   background: none;
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 21px;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
   color: var(--sb-text-display);
   cursor: pointer;
 }
@@ -86,8 +86,8 @@
   border-radius: 16px;
   background: linear-gradient(180deg, var(--sb-surface-primary) 0%, var(--sb-primary-100) 100%);
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-secondary);
   cursor: pointer;
 }
@@ -135,8 +135,8 @@
   max-width: 100%;
   font-family: var(--sb-font-data);
   font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -149,8 +149,8 @@
   gap: 4px;
   font-family: var(--sb-font-data);
   font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   color: var(--sb-text-secondary);
 }
 
@@ -204,8 +204,8 @@
   background: none;
   font-family: var(--sb-font-body);
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-tertiary);
   text-decoration: none;
   white-space: nowrap;
@@ -238,8 +238,8 @@
 .count {
   margin: 0;
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-tertiary);
 }
 
@@ -257,8 +257,8 @@
   border: 0;
   background: none;
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-tertiary);
   text-align: left;
   text-decoration: none;
@@ -293,8 +293,8 @@
 .noResults {
   margin: 0;
   font-family: var(--sb-font-data);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-tertiary);
   text-align: center;
 }
@@ -311,8 +311,8 @@
 
   .think,
   .blockTitle {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .recentCard {
@@ -330,8 +330,8 @@
   .recentName {
     font-family: var(--sb-font-body);
     font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     text-transform: none;
   }
 
@@ -354,7 +354,7 @@
   }
 
   .tab {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }

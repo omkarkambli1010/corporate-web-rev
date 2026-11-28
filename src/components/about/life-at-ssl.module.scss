@@ -11,34 +11,6 @@
   padding: 40px 100px;
 }
 
-.head {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-}
-
-/* H2 Reg — 40/48, -1px. */
-.title {
-  margin: 0;
-  font-family: var(--sb-font-heading);
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: -1px;
-  color: var(--sb-text-display);
-}
-
-/* SH3 Reg — 20/28. */
-.subtext {
-  margin: 0;
-  font-family: var(--sb-font-subheading);
-  font-size: 20px;
-  line-height: 28px;
-  color: var(--sb-text-secondary);
-}
-
 .body {
   display: flex;
   align-items: center;
@@ -59,8 +31,8 @@
   margin: 0 0 6px;
   font-family: var(--sb-font-heading);
   font-weight: 400;
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 2rem;
+  line-height: 2.5rem;
   letter-spacing: -1px;
   color: var(--sb-text-display);
 }
@@ -71,8 +43,8 @@
   max-height: 139px;
   overflow: hidden;
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-secondary);
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -91,8 +63,8 @@
   border: 0;
   background: none;
   font-family: var(--sb-font-body);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   color: var(--sb-text-hover);
   cursor: pointer;
   text-decoration: underline;
@@ -229,18 +201,6 @@
     padding: 40px var(--sb-gutter);
   }
 
-  .title {
-    font-size: 36px;
-    line-height: 46px;
-    letter-spacing: 0;
-  }
-
-  .subtext {
-    font-family: var(--sb-font-body);
-    font-size: 18px;
-    line-height: 24px;
-  }
-
   .body {
     flex-direction: column;
     align-items: center;
@@ -275,8 +235,8 @@
   .storyTitle {
     order: 2;
     max-width: 532px;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
     letter-spacing: 0;
     text-align: center;
     animation: life-story-in 0.3s linear;
@@ -286,8 +246,8 @@
     order: 3;
     max-width: 532px;
     max-height: 80px;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
     text-align: center;
     -webkit-line-clamp: 5;
     animation: life-story-in 0.3s linear;
@@ -331,22 +291,6 @@
     padding: 40px var(--sb-gutter);
   }
 
-  .head {
-    gap: 8px;
-  }
-
-  .title {
-    font-size: 28px;
-    line-height: 36px;
-    letter-spacing: 0;
-  }
-
-  .subtext {
-    max-width: 240px;
-    font-size: 14px;
-    line-height: 20px;
-  }
-
   .body {
     flex-direction: column;
     align-items: center;
@@ -371,8 +315,8 @@
     order: 2;
     margin: 0 0 8px;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
     letter-spacing: 0;
     text-align: center;
     animation: life-story-in 0.3s linear;

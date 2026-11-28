@@ -10,6 +10,7 @@ import {
 import { TESTIMONIALS } from "@/constants/sbi-home";
 import { scrollRail } from "@/utils/scrollRail.utils";
 import { carouselKeys, carouselLive, carouselRegion, carouselSlide } from "@/utils/carouselA11y";
+import SectionTitle from "@/components/ui/SectionTitle";
 import styles from "./testimonials.module.scss";
 
 function pad(n: number) {
@@ -98,7 +99,7 @@ export default function TestimonialsSection() {
   return (
     <section className={styles.section}>
       <div className={styles.inner} {...carouselRegion("Testimonials")}>
-        <h2 className={styles.title}>Testimonials</h2>
+        <SectionTitle className={styles.title}>Testimonials</SectionTitle>
 
         <div className={styles.stage}>
           <div className={styles.row}>
@@ -127,23 +128,25 @@ export default function TestimonialsSection() {
                 // All three are on show in the rail, so only the deck hides
                 // the two sitting behind the quote.
                 return (
-                  <figure
+                  <div
                     key={card}
                     className={`${styles.card} ${styles[SLOTS[slot]]}`}
                     aria-hidden={!isRail && slot !== 0}
                     {...carouselSlide(quote, total, true)}
                   >
-                    <blockquote>
-                      <p>{entry.quote}</p>
-                    </blockquote>
-                    <span className={styles.cardRule} aria-hidden="true" />
-                    <figcaption>
-                      <span className={styles.avatar} aria-hidden="true">
-                        {entry.author.charAt(0)}
-                      </span>
-                      {entry.author}
-                    </figcaption>
-                  </figure>
+                    <figure className={styles.figure}>
+                      <blockquote>
+                        <p>{entry.quote}</p>
+                      </blockquote>
+                      <span className={styles.cardRule} aria-hidden="true" />
+                      <figcaption>
+                        <span className={styles.avatar} aria-hidden="true">
+                          {entry.author.charAt(0)}
+                        </span>
+                        {entry.author}
+                      </figcaption>
+                    </figure>
+                  </div>
                 );
               })}
             </div>

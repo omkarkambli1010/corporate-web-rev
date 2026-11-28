@@ -76,7 +76,7 @@ export default function CsrSection({ csr }: { csr: AboutContent["csr"] }) {
   return (
     <section className={styles.section}>
       <div className={styles.inner} {...carouselRegion(csr.title)}>
-        <SectionHead title={csr.title} align="center" mobileStart size="h2" />
+        <SectionHead title={csr.title} align="center" mobileStart size="medium" />
 
         <div
           className={styles.stageWrap}

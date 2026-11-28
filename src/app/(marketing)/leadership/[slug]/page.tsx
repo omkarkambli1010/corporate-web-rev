@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const leader = (await getLeadershipContent()).leaders.find((l) => l.slug === slug);
-  return leader ? { title: `${leader.name} | SBI Securities`, description: leader.role } : {};
+  return leader ? { title: leader.name, description: leader.role } : {};
 }
 
 export default async function LeaderPage({ params }: Props) {

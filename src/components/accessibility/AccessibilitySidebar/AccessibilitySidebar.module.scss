@@ -3,7 +3,16 @@
     background-color: var(--color-body-bg);
 }
 
-.sidebarTitle {
+/* The panel keeps one size while the website text changes, so its buttons stay
+   where they are. Two classes: Bootstrap sizes .h5 in rem. */
+.sidebarPanel {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.sidebarPanel .sidebarTitle {
+    font-size: 20px;
+    line-height: 28px;
     color: var(--color-text);
 }
 
@@ -23,34 +32,83 @@
 }
 
 .sectionTitle {
-    margin-bottom: 8px;
-    font-size: 1rem;
+    margin-bottom: 4px;
+    font-size: 16px;
+    line-height: 24px;
     font-weight: 700;
     color: var(--color-text);
 }
 
 .helperText {
-    margin-bottom: 12px;
-    color: var(--color-secondary);
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text);
 }
 
 .buttonGroup {
-    display: flex;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
 }
 
-.controlButton,
+.sizeButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 84px;
+    padding: 12px 6px;
+    color: var(--sb-text-display);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    background-color: var(--sb-neutral-00);
+    border: 1px solid var(--sb-stroke-default);
+    border-radius: 12px;
+    cursor: pointer;
+
+    > svg {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.sizeButton:hover:not([aria-disabled="true"]) {
+    color: #292075;
+    background-color: var(--sb-primary-100);
+    border-color: var(--sb-primary-700);
+}
+
+/* Unavailable: dashed and greyed, still readable at 4.5:1. */
+.sizeButton[aria-disabled="true"] {
+    color: var(--sb-text-tertiary);
+    border-style: dashed;
+    cursor: default;
+}
+
+.status {
+    margin: 16px 0 0;
+    padding: 10px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: var(--color-text);
+    background-color: var(--sb-surface-secondary);
+    border-radius: 8px;
+}
+
 .themeButton {
     min-height: 40px;
     padding: 6px 14px;
     color: var(--color-text);
+    font-size: 16px;
     background-color: transparent;
     border: 1px solid var(--color-border);
     border-radius: 4px;
 }
 
-.controlButton:hover,
-.controlButton:focus,
 .themeButton:hover,
 .themeButton:focus {
     color: #ffffff;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 
@@ -27,6 +27,8 @@ export default function Header() {
      field in the bar, the glyph below 1440, and ⌘K / Ctrl+K all open it. */
   const [searchOpen, setSearchOpen] = useState(false);
 
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) {
@@ -41,7 +43,15 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`${styles.siteHeader} ${inter.variable}`}>
+    <header
+      className={`${styles.siteHeader} ${inter.variable}`}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && menuOpen) {
+          setMenuOpen(false);
+          menuToggleRef.current?.focus();
+        }
+      }}
+    >
       <div className={styles.inner}>
         {/* SSL-logo — a 182x48 box holding the wordmark and, set against its
             top-right corner, the registered mark, exactly as the frame nests
@@ -54,6 +64,7 @@ export default function Header() {
         </Link>
 
         <button
+          ref={menuToggleRef}
           type="button"
           className={styles.menuToggle}
           aria-expanded={menuOpen}
@@ -136,6 +147,8 @@ export default function Header() {
 
           <Link
             href="/support"
+            /* No /support page yet: prefetching it logs a 404 in the console. */
+            prefetch={false}
             className={`${styles.iconButton} ${styles.supportButton}`}
             aria-label="Help and support"
           >
